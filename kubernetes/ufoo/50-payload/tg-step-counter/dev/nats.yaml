@@ -14,7 +14,7 @@ spec:
 
     helm:
       values: |
-        nameOverride: "nats"
+        fullnameOverride: "nats"
 
   destination:
     namespace: tg-step-counter-dev
