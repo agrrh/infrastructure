@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master
-    path: kubernetes/ufoo/payload
+    path: kubernetes/ufoo/50-payload
     directory:
       recurse: true
   destination:
