@@ -1,0 +1,22 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: tech
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    repoURL: https://github.com/agrrh/infrastructure.git
+    targetRevision: master
+    path: kubernetes/ufoo/tech
+    directory:
+      recurse: true
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
