@@ -6,7 +6,7 @@ metadata:
   name: payload
   namespace: argocd
 spec:
-  project: infrastructure
+  project: default
   source:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master
