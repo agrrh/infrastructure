@@ -14,7 +14,9 @@ spec:
 
     helm:
       values: |
-        # nothing
+        # https://github.com/openfaas/faas-netes/blob/master/chart/openfaas/README.md#deploy-openfaas-community-edition
+        functionNamespace: openfaas-fn
+        generateBasicAuth: true
 
   destination:
     namespace: openfaas
