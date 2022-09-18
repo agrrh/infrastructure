@@ -2,11 +2,10 @@
 apiVersion: openfaas.com/v1
 kind: Function
 metadata:
-  name: cows
+  name: nodeinfo
   namespace: openfaas-fn
 spec:
-  name: cows
-  image: ghcr.io/openfaas/cows:latest
+  name: nodeinfo
+  image: ghcr.io/openfaas/nodeinfo:latest
   labels: {}
   annotations: {}
-
