@@ -1,0 +1,27 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: openfaas
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://openfaas.github.io/faas-netes
+    chart: openfaas
+    targetRevision: 10.2.11
+
+    helm:
+      values: |
+        # nothing
+
+  destination:
+    namespace: openfaas
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
