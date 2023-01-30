@@ -1,0 +1,15 @@
+---
+
+apiVersion: configsync.gke.io/v1beta1
+kind: RootSync
+metadata:
+  name: ufoo-root
+  namespace: config-management-system
+spec:
+  sourceFormat: unstructured
+  git:
+    repo: https://github.com/agrrh/infrastructure.git
+    revision: HEAD
+    branch: master
+    dir: config-sync
+    auth: none
