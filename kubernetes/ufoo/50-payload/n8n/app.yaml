@@ -8,8 +8,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://8gears.container-registry.com/chartrepo/library/
-    chart: open-8gears/n8n
+    repoURL: https://8gears.container-registry.com/chartrepo/library/open-8gears
+    chart: n8n
     targetRevision: "0.8.0"
     helm:
       releaseName: n8n
