@@ -1,0 +1,36 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: n8n
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://8gears.container-registry.com/chartrepo/library/
+    chart: open-8gears/n8n
+    targetRevision: "0.8.0"
+    helm:
+      releaseName: n8n
+      values: |
+        n8n: {}
+        extraEnv:
+          NODE_FUNCTION_ALLOW_EXTERNAL: lodash
+          TZ: Europe/Moscow
+        persistence:
+          enabled: true
+          type: dynamic
+          storageClass: microk8s-hostpath
+          accessModes:
+            - ReadWriteOnce
+          size: 5Gi
+  destination:
+    namespace: n8n
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
