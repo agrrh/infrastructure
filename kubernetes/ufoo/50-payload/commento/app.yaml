@@ -1,43 +1,43 @@
----
-
-kind: Application
-apiVersion: argoproj.io/v1alpha1
-metadata:
-  name: commento
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: https://groundhog2k.github.io/helm-charts/
-    chart: commento
-    targetRevision: "0.1.32"
-    helm:
-      releaseName: commento
-      values: |
-        postgres:
-          enabled: true
-          settings:
-            superuserPassword: aWfMWy1zwAo7CUzE  # FIXME Move to Secrets
-          userDatabase:
-            name: commento
-            user: commento
-            password: vsoGX4mC7TDu986J  # FIXME Move to Secrets
-          storage:
-            className: microk8s-hostpath
-            requestedSize: 5Gi
-            accessModes:
-              - ReadWriteOnce
-
-        settings:
-          origin: https://commento.agrrh.com
-          forbidNewOwners: false
-
-  destination:
-    namespace: commento
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-    automated:
-      selfHeal: true
-      prune: true
+# ---
+#
+# kind: Application
+# apiVersion: argoproj.io/v1alpha1
+# metadata:
+#   name: commento
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://groundhog2k.github.io/helm-charts/
+#     chart: commento
+#     targetRevision: "0.1.32"
+#     helm:
+#       releaseName: commento
+#       values: |
+#         postgres:
+#           enabled: true
+#           settings:
+#             superuserPassword: aWfMWy1zwAo7CUzE  # FIXME Move to Secrets
+#           userDatabase:
+#             name: commento
+#             user: commento
+#             password: vsoGX4mC7TDu986J  # FIXME Move to Secrets
+#           storage:
+#             className: microk8s-hostpath
+#             requestedSize: 5Gi
+#             accessModes:
+#               - ReadWriteOnce
+#
+#         settings:
+#           origin: https://commento.agrrh.com
+#           forbidNewOwners: false
+#
+#   destination:
+#     namespace: commento
+#     server: https://kubernetes.default.svc
+#   syncPolicy:
+#     syncOptions:
+#       - CreateNamespace=true
+#     automated:
+#       selfHeal: true
+#       prune: true
