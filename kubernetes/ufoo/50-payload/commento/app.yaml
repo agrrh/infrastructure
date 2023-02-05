@@ -29,6 +29,7 @@ spec:
               - ReadWriteOnce
 
         settings:
+          origin: https://commento.agrrh.com
           forbidNewOwners: false
 
   destination:
