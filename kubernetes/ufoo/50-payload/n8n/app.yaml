@@ -16,6 +16,7 @@ spec:
       values: |
         n8n: {}
         extraEnv:
+          WEBHOOK_URL: https://n8n.agrrh.com/
           NODE_FUNCTION_ALLOW_EXTERNAL: lodash
           TZ: Europe/Moscow
         persistence:
