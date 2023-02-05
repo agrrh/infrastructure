@@ -10,9 +10,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`commento.agrrh.com`) || Host(`commento.5426b488.nip.io`)
-      # middlewares:
-      #   - name: whitelist-trusted
-      #     namespace: traefik
+      middlewares:
+        - name: request-headers
+          namespace: traefik
       services:
         - kind: Service
           name: commento
