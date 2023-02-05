@@ -51,11 +51,13 @@ spec:
             exposedPort: 80
             port: 8000
             protocol: TCP
+            nodePort: 32080
           websecure:
             expose: true
             exposedPort: 443
             port: 8443
             protocol: TCP
+            nodePort: 32443
             tls:
               certResolver: ""
               domains: []
