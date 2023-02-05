@@ -32,6 +32,25 @@ spec:
           origin: https://commento.agrrh.com
           forbidNewOwners: false
 
+          # FIXME Move to Secrets!!!
+          oauth:
+            github:
+              enabled: true
+              key: 8f396799fa3586800ea3
+              secret: 4fdea2d9d567e69811dd817ac1bc0691eb6484cc
+            gitlab:
+              enabled: false
+              key: changeme
+              secret: changeme
+            google:
+              enabled: false
+              key: changeme
+              secret: changeme
+            twitter:
+              enabled: false
+              key: changeme
+              secret: changeme
+
   destination:
     namespace: commento
     server: https://kubernetes.default.svc
