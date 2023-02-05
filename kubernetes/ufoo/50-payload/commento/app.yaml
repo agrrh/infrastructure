@@ -36,8 +36,8 @@ spec:
           oauth:
             github:
               enabled: true
-              key: 8f396799fa3586800ea3
-              secret: 4fdea2d9d567e69811dd817ac1bc0691eb6484cc
+              key: "8f396799fa3586800ea3"
+              secret: "4fdea2d9d567e69811dd817ac1bc0691eb6484cc"
             gitlab:
               enabled: false
               key: changeme
