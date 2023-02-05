@@ -48,9 +48,9 @@ spec:
               key: changeme
               secret: changeme
             google:
-              enabled: false
-              key: changeme
-              secret: changeme
+              enabled: true
+              key: 542559261676-fve886bkp6cj3icsd5uko3tuo5thbleu.apps.googleusercontent.com
+              secret: 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
             twitter:
               enabled: false
               key: changeme
