@@ -35,7 +35,7 @@ spec:
 
         settings:
           origin: https://commento.agrrh.com
-          forbidNewOwners: false
+          forbidNewOwners: true
 
           # FIXME Move to Secrets!!!
           oauth:
