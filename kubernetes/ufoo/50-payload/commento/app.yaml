@@ -20,27 +20,7 @@ spec:
           tag: v1.8.7
 
         postgres:
-          enabled: true
-
-          userDatabase: commento
-
-          env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: user
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: password
-
-          storage:
-            className: microk8s-hostpath
-            requestedSize: 5Gi
-            accessModes:
-              - ReadWriteOnce
+          enabled: false
 
         env:
           - name: COMMENTO_POSTGRES
