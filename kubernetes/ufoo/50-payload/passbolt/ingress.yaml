@@ -1,0 +1,17 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: passbolt-http
+  namespace: passbolt
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`passbolt.agrrh.com`)
+      services:
+        - kind: Service
+          name: passbolt
+          namespace: passbolt
+          port: 80
