@@ -12,6 +12,6 @@ spec:
       match: Host(`passbolt.agrrh.com`)
       services:
         - kind: Service
-          name: passbolt
+          name: nginx
           namespace: passbolt
           port: 80
