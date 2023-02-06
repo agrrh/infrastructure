@@ -5,14 +5,14 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: passbolt-mariadb
+  name: passbolt
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    chart: mariadb
-    targetRevision: "11.4.5"
+    repoURL: https://cnieg.github.io/helm-charts
+    chart: passbolt
+    targetRevision: "1.1.15"
     helm:
       releaseName: mariadb
       values: |
