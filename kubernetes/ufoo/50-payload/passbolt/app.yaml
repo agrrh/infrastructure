@@ -1,6 +1,6 @@
 ---
 
-# NOTE: https://artifacthub.io/packages/helm/bitnami/mariadb
+# NOTE: https://artifacthub.io/packages/helm/cnieg/passbolt
 
 kind: Application
 apiVersion: argoproj.io/v1alpha1
@@ -16,8 +16,8 @@ spec:
     helm:
       releaseName: passbolt
       values: |
-        image:
-          tag: 2.12.1-debian
+        # image:
+        #   tag: 2.12.1-debian
 
         env:
           PASSBOLT_EMAIL_SHOW_SECRET: false
@@ -25,7 +25,7 @@ spec:
           PASSBOLT_EMAIL_SHOW_USERNAME: false
           PASSBOLT_EMAIL_SEND_PASSWORD_CREATE: false
           PASSBOLT_EMAIL_SEND_PASSWORD_UPDATE: false
-          # PASSBOLT_REGISTRATION_PUBLIC: true
+          PASSBOLT_REGISTRATION_PUBLIC: true  # FIXME!
 
         persistence:
           enabled: true
