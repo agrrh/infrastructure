@@ -1,0 +1,3 @@
+# Ignore Kubernetes Secrets manifests
+**/*.secret.yml
+**/*.secret.yaml
