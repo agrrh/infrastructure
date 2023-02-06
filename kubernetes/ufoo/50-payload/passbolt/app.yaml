@@ -25,7 +25,7 @@ spec:
           PASSBOLT_EMAIL_SHOW_USERNAME: false
           PASSBOLT_EMAIL_SEND_PASSWORD_CREATE: false
           PASSBOLT_EMAIL_SEND_PASSWORD_UPDATE: false
-          PASSBOLT_REGISTRATION_PUBLIC: true  # FIXME!
+          PASSBOLT_REGISTRATION_PUBLIC: false
 
         persistence:
           enabled: true
