@@ -22,6 +22,12 @@ spec:
         postgres:
           enabled: false
 
+        externalDatabase:
+          host: postgres
+          name: commento
+          user: commento
+          password: null  # Stored as secret
+
         env:
           - name: COMMENTO_POSTGRES
             valueFrom:
