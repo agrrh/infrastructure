@@ -14,13 +14,18 @@ spec:
     chart: passbolt
     targetRevision: "1.1.15"
     helm:
-      releaseName: mariadb
+      releaseName: passbolt
       values: |
         image:
           tag: 2.12.1-debian
 
-        mariadb:
-          enabled: false
+        env:
+          PASSBOLT_EMAIL_SHOW_SECRET: false
+          PASSBOLT_EMAIL_SHOW_URI: false
+          PASSBOLT_EMAIL_SHOW_USERNAME: false
+          PASSBOLT_EMAIL_SEND_PASSWORD_CREATE: false
+          PASSBOLT_EMAIL_SEND_PASSWORD_UPDATE: false
+          # PASSBOLT_REGISTRATION_PUBLIC: true
 
         persistence:
           enabled: true
@@ -31,9 +36,22 @@ spec:
         passbolt:
           baseUrl: passbolt.agrrh.com
 
+        # email:
+        #   host: "smtp.example.com"
+        #   port: 25
+        #   from: "noreply@example.com"
+        #   timeout: 30
+
+        mariadb:
+          enabled: false
+
         db:
           host: mariadb
           name: passbolt
+          existingSecret:
+            name: db-passbolt
+            usernameKey: username
+            passwordKey: password
 
   destination:
     namespace: passbolt
