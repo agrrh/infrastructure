@@ -1,0 +1,25 @@
+---
+
+# NOTE: Used to place gpg keys
+
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: passbolt-init
+#   namespace: passbolt
+# spec:
+#   volumes:
+#     - name: data
+#       persistentVolumeClaim:
+#         claimName: passbolt
+#   containers:
+#     - name: main
+#       image: alpine:3.14
+#       command:
+#         - /bin/sh
+#         - "-c"
+#         - "sleep 60m"
+#       volumeMounts:
+#         - name: data
+#           mountPath: /etc/passbolt/gpg
+#           subPath: gpg
