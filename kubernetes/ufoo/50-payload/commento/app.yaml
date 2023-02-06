@@ -59,7 +59,7 @@ spec:
 
         settings:
           origin: https://commento.agrrh.com
-          forbidNewOwners: true
+          forbidNewOwners: false
 
   destination:
     namespace: commento
