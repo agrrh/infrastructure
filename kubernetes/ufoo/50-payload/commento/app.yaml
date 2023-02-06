@@ -22,12 +22,9 @@ spec:
         postgres:
           enabled: true
 
+          userDatabase: commento
+
           env:
-            - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: database
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
