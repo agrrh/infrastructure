@@ -21,12 +21,24 @@ spec:
 
         postgres:
           enabled: true
-          settings:
-            superuserPassword: aWfMWy1zwAo7CUzE  # FIXME Move to Secrets
-          userDatabase:
-            name: commento
-            user: commento
-            password: vsoGX4mC7TDu986J  # FIXME Move to Secrets
+
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: database
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: password
+
           storage:
             className: microk8s-hostpath
             requestedSize: 5Gi
