@@ -22,17 +22,27 @@ spec:
 
         image:
           repository: agrrh/hajimari
-          pullPolicy: Always
+          pullPolicy: IfNotPresent
           tag: v0.3.2
 
         env:
           TZ: Europe/Moscow
 
+        serviceAccount:
+          create: false
+
+        persistence:
+          data:
+            enabled: true
+            accessMode: ReadWriteOnce
+            size: 1Gi
+
         hajimari:
           instanceName: null
-          defaultEnable: true
+          defaultEnable: false
           namespaceSelector:
             any: true
+
             # matchNames:
             #   - default
             #   - downloads
@@ -161,12 +171,6 @@ spec:
                   url: 'https://theverge.com/'
                 - name: MIT Technology Review
                   url: 'https://www.technologyreview.com/'
-
-        persistence:
-          data:
-            enabled: true
-            accessMode: ReadWriteOnce
-            size: 1Gi
 
   destination:
     namespace: hajimari
