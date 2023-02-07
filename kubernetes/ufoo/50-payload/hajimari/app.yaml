@@ -1,0 +1,64 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: hajimari
+  namespace: hajimari
+spec:
+  project: default
+  source:
+    path: ../../../../charts
+    chart: hajimari
+    helm:
+      releaseName: hajimari
+      values: |
+        # https://github.com/toboshii/hajimari/tree/main/charts/hajimari
+        #
+        # Also this chart inherits from the bjw-s library chart.
+        # You can check the default values/options here:
+        # https://github.com/bjw-s/helm-charts/tree/main/charts/library/common
+
+        image:
+          repository: agrrh/hajimari
+          tag: v0.3.2
+
+        env:
+          TZ: Europe/Moscow
+
+        hajimari:
+          instanceName: My Startpage
+
+          namespaceSelector:
+            any: true
+
+          title: "Hajimari Dashboard"
+          name: "Kirill"
+
+          customApps: []
+          # - group: Media
+          #   apps:
+          #     - name: Test
+          #       url: 'https://example.com'
+          #       icon: 'mdi:test-tube'
+          #       info: This is a test app
+
+          globalBookmarks: []
+          # - group: Communicate
+          #   bookmarks:
+          #   - name: Discord
+          #     url: 'https://discord.com'
+          #   - name: Gmail
+          #     url: 'http://gmail.com'
+          #   - name: Slack
+          #     url: 'https://slack.com/signin'
+
+  destination:
+    namespace: hajimari
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true

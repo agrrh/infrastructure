@@ -1,0 +1,20 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: hajimari-http
+  namespace: hajimari
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`hajimari.agrrh.com`) || Host(`hajimari.5426b488.nip.io`)
+      # middlewares:
+      #   - name: whitelist-trusted
+      #     namespace: traefik
+      services:
+        - kind: Service
+          name: hajimari
+          namespace: hajimari
+          port: 3000
