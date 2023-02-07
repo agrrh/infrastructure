@@ -8,8 +8,9 @@ metadata:
 spec:
   project: default
   source:
-    path: ../../../../charts
+    repoURL: https://hajimari.io
     chart: hajimari
+    targetRevision: "2.0.2"
     helm:
       releaseName: hajimari
       values: |
