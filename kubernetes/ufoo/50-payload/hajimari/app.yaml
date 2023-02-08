@@ -70,6 +70,39 @@ spec:
           defaultAppIcon: mdi:application
           alwaysTargetBlank: false
 
+          customApps:
+            - group: torrent
+              apps:
+                - name: qBitTorrent
+                  url: http://10.0.55.101:9500
+                  icon: mdi:magnet
+                  info: Torrent box 24/7
+
+          globalBookmarks:
+            - group: news
+              bookmarks:
+                - name: Fontanka
+                  url: http://fontanka.ru
+                - name: Oper.ru
+                  url: https://oper.ru
+
+            - group: social
+              bookmarks:
+                - name: Pikabu
+                  url: https://pikabu.ru
+
+            - group: tech
+              bookmarks:
+                - name: Habr
+                  url: http://habr.com
+                - name: Vas3k
+                  url: http://vas3k.ru/all/
+
+            - group: routines
+              bookmarks:
+                - name: Kvado
+                  url: https://kvado.ru/
+
           defaultSearchProvider: Google
           searchProviders:
             - name: Google
@@ -92,35 +125,6 @@ spec:
               icon: mdi:search-web
               searchUrl: https://yandex.ru/search/?text={query}
               url: https://yandex.ru
-
-          customApps: []
-            # - group: Media
-            #   apps:
-            #     - name: Test
-            #       url: 'https://example.com'
-            #       icon: 'mdi:test-tube'
-            #       info: This is a test app
-
-          globalBookmarks:
-
-            - group: Social
-              bookmarks:
-                - name: Pikabu
-                  url: 'https://pikabu.ru'
-
-            - group: Tech
-              bookmarks:
-                - name: Habr
-                  url: 'http://habr.com'
-                - name: Vas3k
-                  url: 'http://vas3k.ru/all/'
-
-            - group: News
-              bookmarks:
-                - name: Oper.ru
-                  url: 'https://oper.ru'
-                - name: Fontanka
-                  url: 'http://fontanka.ru'
 
   destination:
     namespace: hajimari
