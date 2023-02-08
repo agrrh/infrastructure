@@ -55,6 +55,11 @@ spec:
           darkTheme: horizon
 
           customThemes: []
+            - name: one-dark
+              backgroundColor: '#21252b'
+              primaryColor: '#585f6c'
+              accentColor: '#abb2bf'
+
             # - name: danger
             #   backgroundColor: '#0c0e0c'
             #   primaryColor: '#eaebea'
@@ -115,22 +120,22 @@ spec:
                   url: 'http://gmail.com'
                 - name: Slack
                   url: 'https://slack.com/signin'
-            - group: Cloud
-              bookmarks:
-                - name: Box
-                  url: 'https://box.com'
-                - name: Dropbox
-                  url: 'https://dropbox.com'
-                - name: Drive
-                  url: 'https://drive.google.com'
-            - group: Design
-              bookmarks:
-                - name: Awwwards
-                  url: 'https://awwwards.com'
-                - name: Dribbble
-                  url: 'https://dribbble.com'
-                - name: Muz.li
-                  url: 'https://medium.muz.li/'
+            # - group: Cloud
+            #   bookmarks:
+            #     - name: Box
+            #       url: 'https://box.com'
+            #     - name: Dropbox
+            #       url: 'https://dropbox.com'
+            #     - name: Drive
+            #       url: 'https://drive.google.com'
+            # - group: Design
+            #   bookmarks:
+            #     - name: Awwwards
+            #       url: 'https://awwwards.com'
+            #     - name: Dribbble
+            #       url: 'https://dribbble.com'
+            #     - name: Muz.li
+            #       url: 'https://medium.muz.li/'
             - group: Dev
               bookmarks:
                 - name: Codepen
@@ -139,22 +144,22 @@ spec:
                   url: 'https://devdocs.io'
                 - name: Devhints
                   url: 'https://devhints.io'
-            - group: Lifestyle
-              bookmarks:
-                - name: Design Milk
-                  url: 'https://design-milk.com/category/interior-design/'
-                - name: Dwell
-                  url: 'https://www.dwell.com/'
-                - name: Freshome
-                  url: 'https://www.mymove.com/freshome/'
-            - group: Media
-              bookmarks:
-                - name: Spotify
-                  url: 'http://browse.spotify.com'
-                - name: Trakt
-                  url: 'http://trakt.tv'
-                - name: YouTube
-                  url: 'https://youtube.com/feed/subscriptions'
+            # - group: Lifestyle
+            #   bookmarks:
+            #     - name: Design Milk
+            #       url: 'https://design-milk.com/category/interior-design/'
+            #     - name: Dwell
+            #       url: 'https://www.dwell.com/'
+            #     - name: Freshome
+            #       url: 'https://www.mymove.com/freshome/'
+            # - group: Media
+            #   bookmarks:
+            #     - name: Spotify
+            #       url: 'http://browse.spotify.com'
+            #     - name: Trakt
+            #       url: 'http://trakt.tv'
+            #     - name: YouTube
+            #       url: 'https://youtube.com/feed/subscriptions'
             - group: Reading
               bookmarks:
                 - name: Instapaper
