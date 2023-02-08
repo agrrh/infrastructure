@@ -25,7 +25,7 @@ spec:
 
         service:
           web:
-            type: ClusterIp
+            type: ClusterIP
 
         web:
           baseUrl: "/"
