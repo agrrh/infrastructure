@@ -56,10 +56,14 @@ spec:
           name: Kirill
           title: Hajimari
 
-          lightTheme: one-dark
-          darkTheme: one-dark
+          lightTheme: concourse
+          darkTheme: concourse
 
           customThemes:
+            - name: concourse
+              backgroundColor: '#262626'
+              primaryColor: '#e2dfdc'
+              accentColor: '#6d6c6b'
             - name: one-dark
               backgroundColor: '#21252b'
               primaryColor: '#abb2bf'
