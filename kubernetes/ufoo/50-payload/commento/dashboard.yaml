@@ -10,3 +10,16 @@ spec:
   icon: mdi:comment-text
   url: https://commento.agrrh.com/
   info: Free comments platform
+
+---
+apiVersion: hajimari.io/v1alpha1
+kind: Application
+metadata:
+  name: weblog
+  namespace: hajimari
+spec:
+  name: Weblog
+  group: weblog
+  icon: mdi:typewriter
+  url: https://agrrh.com/
+  info: My Weblog
