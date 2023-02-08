@@ -1,0 +1,51 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: concourse
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://concourse-charts.storage.googleapis.com/
+    chart: concourse
+    targetRevision: 17.1.1
+
+    helm:
+      values: |
+        # https://github.com/concourse/concourse-chart
+
+        persistence:
+          enabled: true
+          storageClass: microk8s-hostpath
+
+        postgresql:
+          enabled: true
+          persistence:
+          enabled: true
+            storageClass: microk8s-hostpath
+
+        secrets:
+          create: true
+          # githubClientId: changeme
+          # githubClientSecret: changeme
+
+          localUsers:
+
+        web:
+          prometheus:
+            enabled: true
+
+        worker:
+          kind: Deployment
+
+  destination:
+    namespace: concourse
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    # syncOptions:
+    #   - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
