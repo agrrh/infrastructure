@@ -18,7 +18,8 @@ spec:
 
         persistence:
           enabled: true
-          storageClass: microk8s-hostpath
+          worker:
+            storageClass: microk8s-hostpath
 
         postgresql:
           enabled: true
