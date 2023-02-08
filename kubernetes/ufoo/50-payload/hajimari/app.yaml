@@ -90,13 +90,15 @@ spec:
               bookmarks:
                 - name: Pikabu
                   url: https://pikabu.ru
-
-            - group: tech
-              bookmarks:
                 - name: Habr
                   url: http://habr.com
                 - name: Vas3k
                   url: http://vas3k.ru/all/
+
+            - group: infra
+              bookmarks:
+                - name: Trello
+                  url: https://trello.com/b/54KghmPk/infrastructure
 
             - group: routines
               bookmarks:
