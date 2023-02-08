@@ -1,0 +1,12 @@
+---
+apiVersion: hajimari.io/v1alpha1
+kind: Application
+metadata:
+  name: commento
+  namespace: hajimari
+spec:
+  name: Commento
+  group: weblog
+  icon: mdi:comment-text
+  url: https://commento.agrrh.com/
+  info: Free comments platform
