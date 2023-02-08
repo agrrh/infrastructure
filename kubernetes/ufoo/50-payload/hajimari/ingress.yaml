@@ -10,8 +10,7 @@ spec:
   routes:
     - kind: Rule
       match: >-
-        (Host(`hajimari.agrrh.com`) || Host(`hajimari.5426b488.nip.io`))
-        &&
+        Host(`hajimari.agrrh.com`) || Host(`hajimari.5426b488.nip.io`)
       middlewares:
         - name: auth
       services:
