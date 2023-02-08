@@ -20,6 +20,10 @@ spec:
         # You can check the default values/options here:
         # https://github.com/bjw-s/helm-charts/tree/main/charts/library/common
 
+        controller:
+          annotations:
+            configmap.reloader.stakater.com/reload: "hajimari-settings"
+
         image:
           repository: agrrh/hajimari
           pullPolicy: IfNotPresent
