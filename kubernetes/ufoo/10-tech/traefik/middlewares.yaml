@@ -21,7 +21,7 @@ spec:
     sourceRange:
       - 10.0.40.0/24        # vpn
       - 10.0.55.0/24        # lan
-      - 178.170.198.141/32  # home
+      - 178.170.198.0/24    # home
     ipStrategy:
       excludedIPs:
         - 84.38.180.136/32 # gateway
