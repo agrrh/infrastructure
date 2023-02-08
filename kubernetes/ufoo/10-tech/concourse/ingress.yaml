@@ -18,4 +18,4 @@ spec:
         - kind: Service
           name: concourse-web
           namespace: concourse
-          port: 443
+          port: 80
