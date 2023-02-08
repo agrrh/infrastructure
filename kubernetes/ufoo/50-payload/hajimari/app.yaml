@@ -54,12 +54,11 @@ spec:
           lightTheme: gazette
           darkTheme: horizon
 
-          customThemes: []
+          customThemes:
             - name: one-dark
               backgroundColor: '#21252b'
               primaryColor: '#585f6c'
               accentColor: '#abb2bf'
-
             # - name: danger
             #   backgroundColor: '#0c0e0c'
             #   primaryColor: '#eaebea'
