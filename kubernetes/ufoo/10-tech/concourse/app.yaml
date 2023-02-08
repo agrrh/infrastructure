@@ -8,45 +8,37 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://concourse-charts.storage.googleapis.com/
+    repoURL: https://charts.bitnami.com/bitnami
     chart: concourse
-    targetRevision: 17.1.1
+    targetRevision: 2.0.2
 
     helm:
       values: |
         # https://github.com/concourse/concourse-chart
 
-        persistence:
-          enabled: true
-          worker:
-            storageClass: microk8s-hostpath
-
-        postgresql:
-          enabled: true
-          persistence:
-            enabled: true
-            storageClass: microk8s-hostpath
-
-        concourse:
-          web:
-            externalUrl: https://concourse.agrrh.com
-            prometheus:
-              enabled: true
-
-        worker:
-          kind: Deployment
-          replicas: 1
-
-          baggageclaim:
-            # detect, naive, btrfs, and overlay.
-            driver: naive
-          # guardian, containerd, houdini
-          runtime: houdini
+        global:
+          storageClass: microk8s-hostpath
 
         secrets:
-          create: true
-          # githubClientId: changeme
-          # githubClientSecret: changeme
+          localUsers:
+            - agrrh:fiftyonepw
+
+        web:
+          externalUrl: https://concourse.agrrh.com
+          auth:
+            duration: 168h
+
+        worker:
+          mode: deployment
+          replicaCount: 1
+          baggageclaim:
+            # detect, naive, btrfs, overlay
+            driver: detect
+
+          # NOTE: Set globally
+          # persistence:
+          #   storageClass: microk8s-hostpath
+
 
   destination:
     namespace: concourse
