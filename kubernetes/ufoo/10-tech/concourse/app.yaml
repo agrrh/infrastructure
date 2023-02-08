@@ -14,7 +14,7 @@ spec:
 
     helm:
       values: |
-        # https://github.com/concourse/concourse-chart
+        # https://artifacthub.io/packages/helm/bitnami/concourse
 
         global:
           storageClass: microk8s-hostpath
@@ -24,7 +24,8 @@ spec:
             agrrh:fiftyonepw
 
         web:
-          externalUrl: https://concourse.agrrh.com
+          baseUrl: "/"
+          externalUrl: "https://concourse.agrrh.com"
           auth:
             duration: 168h
 
