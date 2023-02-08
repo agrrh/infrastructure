@@ -10,4 +10,3 @@ spec:
   icon: mdi:robot-confused
   url: https://n8n.agrrh.com/
   info: No-code platform to automate routines
-  targetBlank: false

@@ -10,4 +10,3 @@ spec:
   icon: mdi:lock-open-check
   url: https://passbolt.agrrh.com/
   info: Secure passwords storage
-  targetBlank: false
