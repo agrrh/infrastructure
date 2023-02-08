@@ -44,8 +44,8 @@ spec:
     namespace: concourse
     server: https://kubernetes.default.svc
   syncPolicy:
-    # syncOptions:
-    #   - CreateNamespace=true
+    syncOptions:
+      - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true
