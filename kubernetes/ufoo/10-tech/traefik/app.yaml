@@ -59,8 +59,9 @@ spec:
         service:
           enabled: true
           type: NodePort
-          spec: {}
-            # externalTrafficPolicy: Cluster
+          spec:
+            externalTrafficPolicy: Local
+            internalTrafficPolicy: Local
 
         ports:
           web:
