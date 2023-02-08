@@ -9,12 +9,23 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`hajimari.agrrh.com`) || Host(`hajimari.5426b488.nip.io`)
-      # middlewares:
-      #   - name: whitelist-trusted
-      #     namespace: traefik
+      match: >-
+        (Host(`hajimari.agrrh.com`) || Host(`hajimari.5426b488.nip.io`))
+        &&
+      middlewares:
+        - name: auth
       services:
         - kind: Service
           name: hajimari
           namespace: hajimari
           port: 3000
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: auth
+  namespace: hajimari
+spec:
+  basicAuth:
+    secret: auth
