@@ -13,6 +13,7 @@ spec:
         Host(`hajimari.agrrh.com`) || Host(`hajimari.5426b488.nip.io`)
       middlewares:
         - name: whitelist
+          namespace: hajimari
       services:
         - kind: Service
           name: hajimari
