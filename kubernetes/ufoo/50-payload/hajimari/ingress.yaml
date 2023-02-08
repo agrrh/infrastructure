@@ -12,7 +12,7 @@ spec:
       match: >-
         Host(`hajimari.agrrh.com`) || Host(`hajimari.5426b488.nip.io`)
       middlewares:
-        - name: auth
+        - name: whitelist
       services:
         - kind: Service
           name: hajimari
@@ -23,8 +23,10 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: auth
+  name: whitelist
   namespace: hajimari
 spec:
-  basicAuth:
-    secret: auth
+  ipWhiteList:
+    sourceRange:
+      - 127.0.0.1/32
+      - 10.0.0.0/8
