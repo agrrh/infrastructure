@@ -20,8 +20,8 @@ spec:
           storageClass: microk8s-hostpath
 
         secrets:
-          localUsers:
-            - agrrh:fiftyonepw
+          localUsers: >-
+            agrrh:fiftyonepw
 
         web:
           externalUrl: https://concourse.agrrh.com
