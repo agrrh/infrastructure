@@ -23,8 +23,8 @@ spec:
         postgresql:
           enabled: true
           persistence:
-          enabled: true
-            storageClass: microk8s-hostpath
+            enabled: true
+              storageClass: microk8s-hostpath
 
         concourse:
           web:
@@ -32,8 +32,8 @@ spec:
             prometheus:
               enabled: true
 
-          worker:
-            kind: Deployment
+        worker:
+          kind: Deployment
 
         secrets:
           create: true
