@@ -28,8 +28,11 @@ spec:
             type: ClusterIP
 
         web:
+          tls:
+            enabled: true
+          externalUrl: "concourse.agrrh.com"
           baseUrl: "/"
-          externalUrl: "https://concourse.agrrh.com"
+
           auth:
             duration: 168h
 
