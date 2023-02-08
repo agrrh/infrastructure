@@ -1,0 +1,50 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: httpbin
+  namespace: traefik
+spec:
+  project: default
+  source:
+    repoURL: https://matheusfm.dev/charts
+    chart: httpbin
+    targetRevision: 0.1.1
+
+    helm:
+      values: |
+        serviceAccount:
+          create: false
+
+  destination:
+    namespace: traefik
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: httpbin-http
+  namespace: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: >-
+        Host(`httpbin.agrrh.com`)
+      # middlewares:
+      #   - name: whitelist
+      #     namespace: hajimari
+      services:
+        - kind: Service
+          name: httpbin
+          namespace: traefik
+          port: 80
