@@ -17,7 +17,7 @@ spec:
         # https://github.com/traefik/traefik-helm-chart
         deployment:
           enabled: true
-          replicas: 1
+          replicas: 2
         env:
           - name: TZ
             value: Europe/Moscow
@@ -25,9 +25,17 @@ spec:
           - --global.checknewversion
           - --global.sendanonymoususage
         additionalArguments:
+          - --accesslog=true
+          - --accesslog.format=json
+
           - --providers.kubernetescrd.allowCrossNamespace=true
+
           - --entryPoints.web.forwardedHeaders.trustedIPs=127.0.0.1/32,10.0.40.0/24,10.0.55.0/24,84.38.180.136/32
+          - --entryPoints.web.proxyProtocol.trustedIPs=127.0.0.1/32,10.0.40.0/24,10.0.55.0/24,84.38.180.136/32
+
           - --entryPoints.websecure.forwardedHeaders.trustedIPs=127.0.0.1/32,10.0.40.0/24,10.0.55.0/24,84.38.180.136/32
+          - --entryPoints.websecure.proxyProtocol.trustedIPs=127.0.0.1/32,10.0.40.0/24,10.0.55.0/24,84.38.180.136/32
+
         image:
           name: traefik
           pullPolicy: IfNotPresent
