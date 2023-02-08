@@ -31,8 +31,6 @@ spec:
           # githubClientId: changeme
           # githubClientSecret: changeme
 
-          localUsers:
-
         web:
           prometheus:
             enabled: true
