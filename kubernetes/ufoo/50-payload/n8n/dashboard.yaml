@@ -2,8 +2,8 @@
 apiVersion: hajimari.io/v1alpha1
 kind: Application
 metadata:
-  name: main
-  namespace: n8n
+  name: n8n
+  namespace: hajimari
 spec:
   name: n8n
   group: general
