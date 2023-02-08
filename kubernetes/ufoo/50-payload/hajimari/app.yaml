@@ -45,6 +45,7 @@ spec:
           instanceName: null
           defaultEnable: false
           namespaceSelector:
+            # All namespaces
             any: true
 
             # matchNames:
