@@ -28,6 +28,8 @@ spec:
           - --providers.kubernetescrd.allowCrossNamespace=true
           - --entryPoints.web.proxyProtocol.insecure
           - --entryPoints.web.forwardedHeaders.insecure
+          - --entryPoints.websecure.proxyProtocol.insecure
+          - --entryPoints.websecure.forwardedHeaders.insecure
         image:
           name: traefik
           pullPolicy: IfNotPresent
