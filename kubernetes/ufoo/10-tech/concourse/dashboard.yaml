@@ -3,11 +3,11 @@
 apiVersion: hajimari.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: concourse
   namespace: hajimari
 spec:
-  name: ArgoCD
+  name: Concourse CI
   group: homelab
-  icon: simple-icons:argo
-  url: https://argocd.agrrh.com/
-  info: CD platform for Kubernetes
+  icon: simple-icons:concourse
+  url: https://concourse.agrrh.com/
+  info: Declarative CI/CD
