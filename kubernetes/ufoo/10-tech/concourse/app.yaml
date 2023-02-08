@@ -35,6 +35,7 @@ spec:
 
         worker:
           kind: Deployment
+          replicas: 1
 
         secrets:
           create: true
