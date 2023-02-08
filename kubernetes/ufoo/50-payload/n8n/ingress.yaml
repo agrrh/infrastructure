@@ -1,4 +1,5 @@
 ---
+
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
@@ -10,9 +11,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`n8n.agrrh.com`) || Host(`n8n.5426b488.nip.io`)
-      # middlewares:
-      #   - name: whitelist-trusted
-      #     namespace: traefik
+      middlewares:
+        - name: whitelist
+          namespace: traefik
       services:
         - kind: Service
           name: n8n

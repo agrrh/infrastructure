@@ -28,6 +28,7 @@ spec:
       selfHeal: true
 
 ---
+
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
@@ -38,8 +39,7 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: >-
-        Host(`httpbin.agrrh.com`)
+      match: Host(`httpbin.agrrh.com`)
       # middlewares:
       #   - name: whitelist
       #     namespace: hajimari
