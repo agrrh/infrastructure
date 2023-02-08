@@ -26,17 +26,19 @@ spec:
           enabled: true
             storageClass: microk8s-hostpath
 
+        concourse:
+          web:
+            externalUrl: https://concourse.agrrh.com
+            prometheus:
+              enabled: true
+
+          worker:
+            kind: Deployment
+
         secrets:
           create: true
           # githubClientId: changeme
           # githubClientSecret: changeme
-
-        web:
-          prometheus:
-            enabled: true
-
-        worker:
-          kind: Deployment
 
   destination:
     namespace: concourse
