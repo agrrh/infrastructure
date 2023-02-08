@@ -37,6 +37,12 @@ spec:
           kind: Deployment
           replicas: 1
 
+          baggageclaim:
+            # Possible values: detect, naive, btrfs, and overlay.
+            driver: overlay
+          # guardian, containerd, houdini
+          runtime: containerd
+
         secrets:
           create: true
           # githubClientId: changeme
