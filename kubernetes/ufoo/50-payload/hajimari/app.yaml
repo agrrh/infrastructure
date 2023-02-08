@@ -66,9 +66,9 @@ spec:
 
           showGreeting: true
           showAppGroups: true
-          showAppUrls: true
-          showAppInfo: false
-          showAppStatus: true
+          showAppUrls: false
+          showAppInfo: true
+          showAppStatus: false
           showBookmarkGroups: true
           showGlobalBookmarks: false
           defaultAppIcon: mdi:application
