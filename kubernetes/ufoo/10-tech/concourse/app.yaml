@@ -39,7 +39,7 @@ spec:
 
           baggageclaim:
             # Possible values: detect, naive, btrfs, and overlay.
-            driver: overlay
+            driver: naive
           # guardian, containerd, houdini
           runtime: containerd
 
