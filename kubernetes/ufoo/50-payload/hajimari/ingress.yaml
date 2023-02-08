@@ -29,10 +29,10 @@ metadata:
 spec:
   ipWhiteList:
     sourceRange:
-      # - 127.0.0.1/32
       - 10.0.55.0/24
     ipStrategy:
       excludedIPs:
+        - 84.38.180.136/32 # gateway @ selectel
+        - 10.0.40.1/32     # vpn tunnel
         - 10.0.55.1/32     # home router
         - 10.0.55.101/32   # home lab
-        - 84.38.180.136/32 # gateway @ selectel
