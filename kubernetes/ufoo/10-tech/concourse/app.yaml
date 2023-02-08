@@ -46,6 +46,10 @@ spec:
             # detect, naive, btrfs, overlay
             driver: detect
 
+          extraEnvVars:
+            - name: CONCOURSE_RUNTIME
+              value: containerd
+
           # NOTE: Set globally
           # persistence:
           #   storageClass: microk8s-hostpath
