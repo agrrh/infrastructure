@@ -35,6 +35,9 @@ spec:
 
           auth:
             duration: 168h
+            mainTeam:
+              localUser: >-
+                agrrh
 
         worker:
           mode: deployment
