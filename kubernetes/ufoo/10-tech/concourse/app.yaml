@@ -24,7 +24,7 @@ spec:
           enabled: true
           persistence:
             enabled: true
-              storageClass: microk8s-hostpath
+            storageClass: microk8s-hostpath
 
         concourse:
           web:
