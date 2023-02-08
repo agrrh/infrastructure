@@ -26,10 +26,8 @@ spec:
           - --global.sendanonymoususage
         additionalArguments:
           - --providers.kubernetescrd.allowCrossNamespace=true
-          - --entryPoints.web.proxyProtocol.insecure
-          - --entryPoints.web.forwardedHeaders.insecure
-          - --entryPoints.websecure.proxyProtocol.insecure
-          - --entryPoints.websecure.forwardedHeaders.insecure
+          - --entryPoints.web.forwardedHeaders.trustedIPs=127.0.0.1/32,10.0.40.0/24,10.0.55.0/24,84.38.180.136/32
+          - --entryPoints.websecure.forwardedHeaders.trustedIPs=127.0.0.1/32,10.0.40.0/24,10.0.55.0/24,84.38.180.136/32
         image:
           name: traefik
           pullPolicy: IfNotPresent
