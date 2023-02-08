@@ -6,7 +6,7 @@ metadata:
   namespace: hajimari
 spec:
   name: ArgoCD
-  group: general
+  group: homelab
   icon: simple-icons:argo
   url: https://argocd.agrrh.com/
   info: CD platform for Kubernetes

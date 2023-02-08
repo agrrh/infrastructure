@@ -6,7 +6,7 @@ metadata:
   namespace: hajimari
 spec:
   name: Passbolt
-  group: general
+  group: security
   icon: mdi:lock-open-check
   url: https://passbolt.agrrh.com/
   info: Secure passwords storage

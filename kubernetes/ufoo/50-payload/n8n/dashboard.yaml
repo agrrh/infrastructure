@@ -6,7 +6,7 @@ metadata:
   namespace: hajimari
 spec:
   name: n8n
-  group: general
+  group: homelab
   icon: mdi:robot-confused
   url: https://n8n.agrrh.com/
   info: No-code platform to automate routines
