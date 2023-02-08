@@ -1,0 +1,21 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: concourse-http
+  namespace: argocd
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`concourse.agrrh.com`) || Host(`concourse.5426b488.nip.io`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+      services:
+        - kind: Service
+          name: concourse-web
+          namespace: concourse
+          port: 8080

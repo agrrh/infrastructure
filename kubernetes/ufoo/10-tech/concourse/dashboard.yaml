@@ -1,0 +1,13 @@
+---
+
+apiVersion: hajimari.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: hajimari
+spec:
+  name: ArgoCD
+  group: homelab
+  icon: simple-icons:argo
+  url: https://argocd.agrrh.com/
+  info: CD platform for Kubernetes
