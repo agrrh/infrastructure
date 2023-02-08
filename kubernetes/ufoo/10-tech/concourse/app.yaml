@@ -23,6 +23,10 @@ spec:
           localUsers: >-
             agrrh:fiftyonepw
 
+        service:
+          web:
+            type: ClusterIp
+
         web:
           baseUrl: "/"
           externalUrl: "https://concourse.agrrh.com"
