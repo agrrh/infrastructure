@@ -16,7 +16,8 @@ spec:
       values: |
         # https://artifacthub.io/packages/helm/drone/drone-runner-kube
         env:
-          DRONE_RPC_HOST: drone-server.drone.svc
+          DRONE_NAMESPACE_DEFAULT: drone
+          DRONE_RPC_HOST: drone-server
 
         extraSecretNamesForEnvFrom:
           - config
