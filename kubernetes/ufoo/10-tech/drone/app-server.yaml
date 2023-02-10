@@ -17,6 +17,7 @@ spec:
         # https://artifacthub.io/packages/helm/drone/drone
 
         env:
+          DRONE_SERVER_PROTO: https
           DRONE_SERVER_HOST: drone.agrrh.com
           # https://community.harness.io/t/drone-server-changing-ports-protocol/11400
           DRONE_SERVER_PORT: ":80"
