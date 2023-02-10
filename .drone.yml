@@ -11,18 +11,18 @@ steps:
       - name: dump
         path: /var/tmp/dump
     environment:
-      HOST:
+      DB_HOSTNAME:
         from_secret: commento_postgres_hostname
-      USERNAME:
+      DB_USERNAME:
         from_secret: commento_postgres_username
-      PASSWORD:
+      DB_PASSWORD:
         from_secret: commento_postgres_password
-      DATABASE:
+      DB_DATABASE:
         from_secret: commento_postgres_database
     commands:
-      - |
+      - >
         pg_dump \
-          postgresql://$${USERNAME}:$${PASSWORD}@$${HOST}:5432/$${DATABASE} \
+          postgresql://$${DB_USERNAME}:$${DB_PASSWORD}@$${DB_HOSTNAME}:5432/$${DB_DATABASE} \
           > /var/tmp/dump/dump.sql
 
   - name: compress-data
