@@ -60,8 +60,9 @@ steps:
       - env
 
       # Prepare Rclone profile
+      - cd /tmp
       - mkdir -p ~/.config/rclone
-      - echo $${RCLONE_CONFIG} | base64 -d > $${HOME}/.config/rclone/rclone.conf
+      - echo $${RCLONE_CONFIG} | base64 -d > ~/.config/rclone/rclone.conf
       - rclone size yandex:/
 
       # Actually upload
