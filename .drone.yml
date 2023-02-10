@@ -48,21 +48,15 @@ steps:
       RESTIC_REPOSITORY: "rclone:yandex:/backups"
       RESTIC_PASSWORD:
         from_secret: restic_password
-      RCLONE_CONFIG:
+      RCLONE_CONFIG_BODY:
         from_secret: rclone_yandex_config
     volumes:
       - name: commento-dump
         path: /var/tmp/dump
     commands:
-      # Debug
-      - whoami
-      - pwd
-      - env
-
       # Prepare Rclone profile
-      - cd /tmp
       - mkdir -p ~/.config/rclone
-      - echo $${RCLONE_CONFIG} | base64 -d > ~/.config/rclone/rclone.conf
+      - echo $${RCLONE_CONFIG_BODY} | base64 -d > ~/.config/rclone/rclone.conf
       - rclone size yandex:/
 
       # Actually upload
