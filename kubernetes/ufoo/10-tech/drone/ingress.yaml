@@ -16,6 +16,6 @@ spec:
           namespace: traefik
       services:
         - kind: Service
-          name: drone
+          name: drone-server
           namespace: drone
-          port: 80
+          port: 8080
