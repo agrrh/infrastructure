@@ -66,7 +66,23 @@ steps:
           backup \
           --host drone \
           --tag sql,commento \
-          --stdin < dump.sql
+          ./
+
+      - >
+        restic \
+          forget \
+          --host drone \
+          --tag sql,commento \
+          --keep-daily 7 \
+          --keep-weekly 4 \
+          --keep-monthly 12 \
+          --keep-yearly 30
+
+      - >
+        restic \
+          snapshots \
+          --host drone \
+          --tag sql,commento
 
 trigger:
   event:
