@@ -10,12 +10,12 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`concourse.agrrh.com`) || Host(`concourse.5426b488.nip.io`)
+      match: Host(`drone.agrrh.com`) || Host(`drone.5426b488.nip.io`)
       middlewares:
         - name: whitelist
           namespace: traefik
       services:
         - kind: Service
-          name: concourse-web
-          namespace: concourse
+          name: drone
+          namespace: drone
           port: 80

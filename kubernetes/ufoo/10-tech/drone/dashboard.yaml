@@ -3,11 +3,11 @@
 apiVersion: hajimari.io/v1alpha1
 kind: Application
 metadata:
-  name: concourse
+  name: drone
   namespace: hajimari
 spec:
-  name: Concourse CI
+  name: Drone CI
   group: homelab
-  icon: simple-icons:concourse
-  url: https://concourse.agrrh.com/
+  icon: simple-icons:drone
+  url: https://drone.agrrh.com/
   info: Declarative CI/CD

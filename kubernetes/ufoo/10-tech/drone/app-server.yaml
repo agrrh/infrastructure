@@ -1,0 +1,30 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: drone-server
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.drone.io
+    chart: drone
+    targetRevision: 0.6.3
+
+    helm:
+      values: |
+        # https://artifacthub.io/packages/helm/drone/drone
+
+        extraSecretNamesForEnvFrom:
+          - drone-secret
+
+  destination:
+    namespace: drone
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
