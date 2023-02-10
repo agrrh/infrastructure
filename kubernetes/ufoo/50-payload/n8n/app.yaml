@@ -14,9 +14,6 @@ spec:
     helm:
       releaseName: n8n
       values: |
-        n8n:
-          encryption_key: MyEncryptionKey1
-
         extraEnv:
           WEBHOOK_URL: https://n8n.agrrh.com/
           NODE_FUNCTION_ALLOW_EXTERNAL: lodash
@@ -27,6 +24,9 @@ spec:
             type: postgresdb
 
         # NOTE: Those are packed in external secret
+        # n8n:
+        #   encryption_key: MyEncryptionKey1
+        #
         # secret:
         #   database:
         #     postgresdb:
