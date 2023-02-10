@@ -18,11 +18,15 @@ steps:
         from_secret: commento_postgres_database
     commands:
       - >
-        pg_dump \
+        echo pg_dump \
           postgresql://$${USERNAME}:$${PASSWORD}@$${commento_postgres_hostname}:5432/$${DATABASE} \
           > dump.sql
-      - head dump.sql
-      - stat dump.sql
+      - |
+        echo pg_dump \
+          postgresql://$${USERNAME}:$${PASSWORD}@$${commento_postgres_hostname}:5432/$${DATABASE} \
+          > dump.sql
+      # - head dump.sql
+      # - stat dump.sql
 
 trigger:
   event:
