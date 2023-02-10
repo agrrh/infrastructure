@@ -23,12 +23,11 @@ spec:
           database:
             type: postgresdb
 
-        # NOTE: Those are packed in external secret
+        # FIXME Store password in secure manner
         n8n:
           encryption_key: MyEncryptionKey1
 
-        # NOTE: Everything is packed in external secret
-        #   But this object is required to properly provision volume
+        # FIXME Store password in secure manner
         secret:
           database:
             postgresdb:
