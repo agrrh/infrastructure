@@ -57,17 +57,16 @@ steps:
       # Prepare Rclone profile
       - mkdir -p ~/.config/rclone
       - echo $${RCLONE_CONFIG} | base64 -d > ~/.config/rclone/rclone.conf
-      - cat ~/.config/rclone/rclone.conf
 
       # Actually upload
-      # - cd /var/tmp/dump
-      # - >
-      #   restic \
-      #     --repo $${RESTIC_REPOSITORY} \
-      #     backup \
-      #     --host drone \
-      #     --tag sql,commento \
-      #     ./dump.sql
+      - cd /var/tmp/dump
+      - >
+        restic \
+          --repo $${RESTIC_REPOSITORY} \
+          backup \
+          --host drone \
+          --tag sql,commento \
+          ./dump.sql
 
 trigger:
   event:
