@@ -14,11 +14,27 @@ spec:
     helm:
       releaseName: n8n
       values: |
-        n8n: {}
+        n8n:
+          encryption_key: MyEncryptionKey1
+
         extraEnv:
           WEBHOOK_URL: https://n8n.agrrh.com/
           NODE_FUNCTION_ALLOW_EXTERNAL: lodash
           TZ: Europe/Moscow
+
+
+        config:
+          database:
+            type: postgresdb
+
+        secret:
+          database:
+            postgresdb:
+              host: postgres.n8n.svc
+              user: n8n
+              password: qwerty
+              database: n8n
+
         persistence:
           enabled: true
           type: dynamic
