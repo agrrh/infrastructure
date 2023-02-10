@@ -16,8 +16,11 @@ spec:
       values: |
         # https://artifacthub.io/packages/helm/drone/drone
 
+        env:
+          DRONE_SERVER_HOST: drone.agrrh.com
+
         extraSecretNamesForEnvFrom:
-          - drone-secret
+          - config
 
   destination:
     namespace: drone
