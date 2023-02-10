@@ -11,9 +11,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`drone.agrrh.com`) || Host(`drone.5426b488.nip.io`)
-      middlewares:
-        - name: whitelist
-          namespace: traefik
+      # middlewares:
+      #   - name: whitelist
+      #     namespace: traefik
       services:
         - kind: Service
           name: drone-server
