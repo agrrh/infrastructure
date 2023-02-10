@@ -1,0 +1,32 @@
+---
+
+kind: pipeline
+type: kubernetes
+name: backup-commento
+
+steps:
+  - name: dump-pgsql
+    image: postgres:15.1
+    environment:
+      HOST:
+        from_secret: commento_postgres_hostname
+      USERNAME:
+        from_secret: commento_postgres_username
+      PASSWORD:
+        from_secret: commento_postgres_password
+      DATABASE:
+        from_secret: commento_postgres_database
+    commands:
+      - >
+        pg_dump
+          postgresql://$${USERNAME}:$${PASSWORD}@$${commento_postgres_hostname}:5432/$${DATABASE}
+          > dump.sql
+      - head dump.sql
+      - stat dump.sql
+
+trigger:
+  event:
+    - cron
+    - custom
+  ref:
+    - refs/heads/master
