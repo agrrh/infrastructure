@@ -91,3 +91,97 @@ trigger:
     - custom
   ref:
     - refs/heads/master
+
+---
+
+kind: pipeline
+type: kubernetes
+name: backup-n8n
+
+volumes:
+  - name: n8n-dump
+    temp: {}
+
+steps:
+  - name: pgsql-dump
+    image: postgres:15.1
+    volumes:
+      - name: n8n-dump
+        path: /var/tmp/dump
+    environment:
+      DB_HOSTNAME:
+        from_secret: n8n_postgres_hostname
+      DB_USERNAME:
+        from_secret: n8n_postgres_username
+      DB_PASSWORD:
+        from_secret: n8n_postgres_password
+      DB_DATABASE:
+        from_secret: n8n_postgres_database
+    commands:
+      - >
+        pg_dump \
+          postgresql://$${DB_USERNAME}:$${DB_PASSWORD}@$${DB_HOSTNAME}:5432/$${DB_DATABASE} \
+          > /var/tmp/dump/dump.sql
+
+  # TODO: notify size somewhere to perform sanity check?
+  - name: audit
+    image: alpine:3.17
+    volumes:
+      - name: n8n-dump
+        path: /var/tmp/dump
+    commands:
+      - cd /var/tmp/dump
+      - head dump.sql
+      - stat dump.sql
+
+  - name: upload-data
+    depends_on:
+      - pgsql-dump
+    image: agrrh/cider:0.4.0
+    environment:
+      RESTIC_REPOSITORY: "rclone:yandex:/backups"
+      RESTIC_PASSWORD:
+        from_secret: restic_password
+      RCLONE_CONFIG_BODY:
+        from_secret: rclone_yandex_config
+    volumes:
+      - name: n8n-dump
+        path: /var/tmp/dump
+    commands:
+      # Prepare Rclone profile
+      - mkdir -p ~/.config/rclone
+      - echo $${RCLONE_CONFIG_BODY} | base64 -d > ~/.config/rclone/rclone.conf
+      - rclone size yandex:/
+
+      # Actually upload
+      - cd /var/tmp/dump
+      - >
+        restic \
+          backup \
+          --host drone \
+          --tag sql,n8n \
+          ./
+
+      - >
+        restic \
+          forget \
+          --host drone \
+          --tag sql,n8n \
+          --keep-daily 7 \
+          --keep-weekly 4 \
+          --keep-monthly 12 \
+          --keep-yearly 10 \
+          --prune
+
+      - >
+        restic \
+          snapshots \
+          --host drone \
+          --tag sql,n8n
+
+trigger:
+  event:
+    - cron
+    - custom
+  ref:
+    - refs/heads/master
