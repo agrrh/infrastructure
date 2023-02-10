@@ -30,7 +30,7 @@ steps:
           > /var/tmp/dump/dump.sql
 
   - name: compress-data
-    image: cider:0.3.0
+    image: agrrh/cider:0.3.0
     volumes:
       - name: commento-dump
         path: /var/tmp/dump
