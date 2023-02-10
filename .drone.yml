@@ -4,11 +4,15 @@ kind: pipeline
 type: kubernetes
 name: backup-commento
 
+volumes:
+  - name: commento-dump
+    temp: {}
+
 steps:
   - name: pgsql-dump
     image: postgres:15.1
     volumes:
-      - name: dump
+      - name: commento-dump
         path: /var/tmp/dump
     environment:
       DB_HOSTNAME:
@@ -28,7 +32,7 @@ steps:
   - name: compress-data
     image: cider:0.3.0
     volumes:
-      - name: dump
+      - name: commento-dump
         path: /var/tmp/dump
     commands:
       - pigz --best /var/tmp/dump/dump.sql
@@ -36,7 +40,7 @@ steps:
   - name: audit
     image: alpine:3.17
     volumes:
-      - name: dump
+      - name: commento-dump
         path: /var/tmp/dump
     commands:
       - cd /var/tmp/dump
