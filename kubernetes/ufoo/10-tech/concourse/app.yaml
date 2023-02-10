@@ -39,6 +39,10 @@ spec:
               localUser: >-
                 agrrh
 
+          extraEnvVars:
+            - name: CONCOURSE_KUBERNETES_IN_CLUSTER
+              value: "true"
+
         worker:
           mode: deployment
           replicaCount: 1
