@@ -26,6 +26,7 @@ spec:
           accessModes:
             - ReadWriteOnce
           size: 5Gi
+
   destination:
     namespace: n8n
     server: https://kubernetes.default.svc
