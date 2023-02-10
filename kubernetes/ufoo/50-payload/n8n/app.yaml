@@ -22,18 +22,18 @@ spec:
           NODE_FUNCTION_ALLOW_EXTERNAL: lodash
           TZ: Europe/Moscow
 
-
         config:
           database:
             type: postgresdb
 
-        secret:
-          database:
-            postgresdb:
-              host: postgres.n8n.svc
-              user: n8n
-              password: qwerty
-              database: n8n
+        # NOTE: Those are packed in external secret
+        # secret:
+        #   database:
+        #     postgresdb:
+        #       host: host
+        #       user: user
+        #       password: qwerty
+        #       database: database
 
         persistence:
           enabled: true
