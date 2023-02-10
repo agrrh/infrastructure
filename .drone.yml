@@ -54,9 +54,14 @@ steps:
       - name: commento-dump
         path: /var/tmp/dump
     commands:
+      # Debug
+      - whoami
+      - pwd
+      - env
+
       # Prepare Rclone profile
       - mkdir -p ~/.config/rclone
-      - echo $${RCLONE_CONFIG} | base64 -d > ~/.config/rclone/rclone.conf
+      - echo $${RCLONE_CONFIG} | base64 -d > $${HOME}/.config/rclone/rclone.conf
       - rclone size yandex:/
 
       # Actually upload
@@ -66,7 +71,7 @@ steps:
           backup \
           --host drone \
           --tag sql,commento \
-          dump.sql
+          --stdin < dump.sql
 
 trigger:
   event:
