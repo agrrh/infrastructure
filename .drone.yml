@@ -5,8 +5,11 @@ type: kubernetes
 name: backup-commento
 
 steps:
-  - name: dump-pgsql
+  - name: pgsql-dump
     image: postgres:15.1
+    volumes:
+      - name: dump
+        path: /var/tmp/dump
     environment:
       HOST:
         from_secret: commento_postgres_hostname
@@ -20,9 +23,25 @@ steps:
       - |
         pg_dump \
           postgresql://$${USERNAME}:$${PASSWORD}@$${HOST}:5432/$${DATABASE} \
-          > dump.sql
-      - stat dump.sql
-      - head dump.sql
+          > /var/tmp/dump/dump.sql
+
+  - name: compress-data
+    image: cider:0.3.0
+    volumes:
+      - name: dump
+        path: /var/tmp/dump
+    commands:
+      - pigz --best /var/tmp/dump/dump.sql
+
+  - name: audit
+    image: alpine:3.17
+    volumes:
+      - name: dump
+        path: /var/tmp/dump
+    commands:
+      - cd /var/tmp/dump
+      - zcat dump.sql.gz | head
+      - stat dump.sql.gz
 
 trigger:
   event:
