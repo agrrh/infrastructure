@@ -9,12 +9,17 @@ spec:
   project: default
   source:
     repoURL: https://charts.drone.io
-    chart: drone-runner
+    chart: drone-runner-kube
     targetRevision: 0.1.10
 
     helm:
       values: |
         # https://artifacthub.io/packages/helm/drone/drone-runner-kube
+        env:
+          DRONE_RPC_HOST: drone-server.drone.svc
+
+        extraSecretNamesForEnvFrom:
+          - config
 
   destination:
     namespace: drone
