@@ -29,14 +29,7 @@ steps:
           postgresql://$${DB_USERNAME}:$${DB_PASSWORD}@$${DB_HOSTNAME}:5432/$${DB_DATABASE} \
           > /var/tmp/dump/dump.sql
 
-  - name: compress-data
-    image: agrrh/cider:0.3.0
-    volumes:
-      - name: commento-dump
-        path: /var/tmp/dump
-    commands:
-      - pigz --best /var/tmp/dump/dump.sql
-
+  # TODO: notify size somewhere to perform sanity check?
   - name: audit
     image: alpine:3.17
     volumes:
@@ -44,8 +37,37 @@ steps:
         path: /var/tmp/dump
     commands:
       - cd /var/tmp/dump
-      - zcat dump.sql.gz | head
-      - stat dump.sql.gz
+      - head dump.sql
+      - stat dump.sql
+
+  - name: upload-data
+    depends_on:
+      - pgsql-dump
+    image: agrrh/cider:0.4.0
+    environment:
+      RESTIC_REPOSITORY: "rclone:yandex:/backups"
+      RESTIC_PASSWORD:
+        from_secret: restic_password
+    volumes:
+      - name: commento-dump
+        path: /var/tmp/dump
+    commands:
+      # Prepare Rclone profile
+      - mkdir -p ~/.config/rclone
+      - echo $${RCLONE_CONFIG} | base64 -d > ~/.config/rclone/rclone.conf
+      - cat ~/.config/rclone/rclone.conf
+
+      # Actually upload
+      - env | grep RESTIC
+      - cd /var/tmp/dump
+      - >
+        echo \
+        restic \
+          --repo $${RESTIC_REPOSITORY} \
+          backup \
+          --host drone \
+          --tag sql,commento \
+          ./dump.sql
 
 trigger:
   event:
