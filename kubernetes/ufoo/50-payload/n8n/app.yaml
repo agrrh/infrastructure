@@ -24,8 +24,8 @@ spec:
             type: postgresdb
 
         # NOTE: Those are packed in external secret
-        # n8n:
-        #   encryption_key: MyEncryptionKey1
+        n8n:
+          encryption_key: MyEncryptionKey1
 
         # NOTE: Everything is packed in external secret
         #   But this object is required to properly provision volume
@@ -33,6 +33,9 @@ spec:
           database:
             postgresdb:
               host: postgres.n8n.svc
+              user: n8n
+              password: n8nQwertyPass
+              database: n8n
 
         persistence:
           enabled: true
