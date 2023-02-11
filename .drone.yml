@@ -3,14 +3,4 @@
 kind: template
 load: backup-pg.yaml
 data:
-  name: commento
-
----
-
-kind: template
-load: backup-pg.yaml
-data:
   name: n8n
-
-depends_on:
-  - backup-commento
