@@ -55,7 +55,6 @@ steps:
         path: /tmp/rclone
     commands:
       - echo $${RCLONE_CONFIG_BODY} | base64 -d > /tmp/rclone/rclone.conf
-      - rclone size yandex:/
 
   - name: upload-data
     image: agrrh/cider:0.4.0
@@ -71,7 +70,8 @@ steps:
       - name: data
         path: /data
     commands:
-      # Actually upload
+      - rclone size yandex:/
+
       - cd /data
       - >
         restic \
