@@ -16,6 +16,7 @@ spec:
       values: |
         # https://artifacthub.io/packages/helm/drone/drone-runner-kube
         env:
+          TZ: Europe/Moscow
           DRONE_NAMESPACE_DEFAULT: drone
           DRONE_RPC_HOST: "drone-server.drone.svc:8080"
 
