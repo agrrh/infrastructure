@@ -6,9 +6,6 @@ data:
   name: commento
   delay: 0
 
-depends_on:
-  - backup-commento
-
 ---
 
 kind: template
