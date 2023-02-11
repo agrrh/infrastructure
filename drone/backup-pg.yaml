@@ -1,8 +1,10 @@
+{{ range .input.targets }}
+
 ---
 
 kind: pipeline
 type: kubernetes
-name: backup-{{ .input.name }}
+name: backup-{{ .name }}
 
 clone:
   disable: true
@@ -12,7 +14,7 @@ volumes:
     temp: {}
 
 steps:
-  - name: {{ .input.name }}-dump
+  - name: {{ .name }}-dump
     image: postgres:15.1
     depends_on: []
     volumes:
@@ -20,13 +22,13 @@ steps:
         path: /data
     environment:
       DB_HOSTNAME:
-        from_secret: {{ .input.name }}_postgres_hostname
+        from_secret: {{ .name }}_postgres_hostname
       DB_USERNAME:
-        from_secret: {{ .input.name }}_postgres_username
+        from_secret: {{ .name }}_postgres_username
       DB_PASSWORD:
-        from_secret: {{ .input.name }}_postgres_password
+        from_secret: {{ .name }}_postgres_password
       DB_DATABASE:
-        from_secret: {{ .input.name }}_postgres_database
+        from_secret: {{ .name }}_postgres_database
     commands:
       - >
         pg_dump \
@@ -47,7 +49,7 @@ steps:
   - name: delay
     image: alpine:3.17
     commands:
-      - sleep {{ .input.delay }}
+      - sleep {{ .delay }}
 
   - name: upload-data
     image: agrrh/cider:0.4.0
@@ -72,14 +74,14 @@ steps:
         restic \
           backup \
           --host drone \
-          --tag sql,{{ .input.name }} \
+          --tag sql,{{ .name }} \
           ./
 
       - >
         restic \
           forget \
           --host drone \
-          --tag sql,{{ .input.name }} \
+          --tag sql,{{ .name }} \
           --keep-daily 7 \
           --keep-weekly 4 \
           --keep-monthly 12 \
@@ -97,3 +99,5 @@ trigger:
     - custom
   ref:
     - refs/heads/master
+
+{{ end }}

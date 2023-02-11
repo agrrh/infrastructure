@@ -3,13 +3,8 @@
 kind: template
 load: backup-pg.yaml
 data:
-  name: commento
-  delay: 0
-
----
-
-kind: template
-load: backup-pg.yaml
-data:
-  name: n8n
-  delay: 60
+  targets:
+    - name: commento
+      delay: 0
+    - name: n8n
+      delay: 60
