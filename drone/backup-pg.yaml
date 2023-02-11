@@ -4,6 +4,9 @@ kind: pipeline
 type: kubernetes
 name: backup-{{ .input.name }}
 
+clone:
+  disable: true
+
 volumes:
   - name: data
     temp: {}
@@ -30,7 +33,6 @@ steps:
           postgresql://$${DB_USERNAME}:$${DB_PASSWORD}@$${DB_HOSTNAME}:5432/$${DB_DATABASE} \
           > /data/dump.sql
 
-
   # TODO: notify size somewhere to perform sanity check?
   - name: audit
     image: alpine:3.17
@@ -40,6 +42,12 @@ steps:
     commands:
       - cd /data
       - ls -lh ./
+
+  # NOTE: To evade concurrency
+  - name: delay
+    image: alpine:3.17
+    commands:
+      - sleep {{ .input.delay }}
 
   - name: upload-data
     image: agrrh/cider:0.4.0
