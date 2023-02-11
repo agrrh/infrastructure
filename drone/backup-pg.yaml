@@ -30,7 +30,7 @@ steps:
         from_secret: {{ .name }}_postgres_database
     commands:
       - >
-        pg_dump \
+        pg_dump --verbose \
           postgresql://$${DB_USERNAME}:$${DB_PASSWORD}@$${DB_HOSTNAME}:5432/$${DB_DATABASE} \
           > /data/{{ .name }}.sql
 
