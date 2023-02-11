@@ -1,0 +1,98 @@
+# ---
+#
+# kind: template
+# load: backup.yaml
+# data:
+#   name: commento  # service name
+
+---
+
+kind: pipeline
+type: kubernetes
+name: backup-{{ .input.name }}
+
+volumes:
+  - name: data
+    temp: {}
+
+steps:
+  - name: {{ .input.name }}-dump
+    image: postgres:15.1
+    depends_on: []
+    volumes:
+      - name: data
+        path: /data
+    environment:
+      DB_HOSTNAME:
+        from_secret: {{ .input.name }}_postgres_hostname
+      DB_USERNAME:
+        from_secret: {{ .input.name }}_postgres_username
+      DB_PASSWORD:
+        from_secret: {{ .input.name }}_postgres_password
+      DB_DATABASE:
+        from_secret: {{ .input.name }}_postgres_database
+    commands:
+      - >
+        pg_dump \
+          postgresql://$${DB_USERNAME}:$${DB_PASSWORD}@$${DB_HOSTNAME}:5432/$${DB_DATABASE} \
+          > /data/dump.sql
+
+
+  # TODO: notify size somewhere to perform sanity check?
+  - name: audit
+    image: alpine:3.17
+    volumes:
+      - name: data
+        path: /data
+    commands:
+      - cd /data
+      - ls -lh ./
+
+  - name: upload-data
+    image: agrrh/cider:0.4.0
+    environment:
+      RESTIC_REPOSITORY: "rclone:yandex:/backups"
+      RESTIC_PASSWORD:
+        from_secret: restic_password
+      RCLONE_CONFIG_BODY:
+        from_secret: rclone_yandex_config
+    volumes:
+      - name: data
+        path: /data
+    commands:
+      # Prepare Rclone profile
+      - mkdir -p ~/.config/rclone
+      - echo $${RCLONE_CONFIG_BODY} | base64 -d > ~/.config/rclone/rclone.conf
+      - rclone size yandex:/
+
+      # Actually upload
+      - cd /data
+      - >
+        restic \
+          backup \
+          --host drone \
+          --tag sql,{{ .input.name }} \
+          ./
+
+      - >
+        restic \
+          forget \
+          --host drone \
+          --tag sql,{{ .input.name }} \
+          --keep-daily 7 \
+          --keep-weekly 4 \
+          --keep-monthly 12 \
+          --keep-yearly 10 \
+          --prune
+
+      - >
+        restic \
+          snapshots \
+          --host drone
+
+trigger:
+  event:
+    - cron
+    - custom
+  ref:
+    - refs/heads/master
