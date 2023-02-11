@@ -8,6 +8,8 @@ clone:
   disable: true
 
 volumes:
+  - name: rclone-config
+    temp: {}
   - name: data
     temp: {}
 
@@ -46,6 +48,15 @@ steps:
       - cd /data
       - ls -lh ./
 
+  - name: rclone-init
+    image: alpine:3.17
+    volumes:
+      - name: rclone-config
+        path: /tmp/rclone
+    commands:
+      - echo $${RCLONE_CONFIG_BODY} | base64 -d > /tmp/rclone/rclone.conf
+      - rclone size yandex:/
+
   - name: upload-data
     image: agrrh/cider:0.4.0
     environment:
@@ -55,14 +66,11 @@ steps:
       RCLONE_CONFIG_BODY:
         from_secret: rclone_yandex_config
     volumes:
+      - name: rclone-config
+        path: /root/.config/rclone
       - name: data
         path: /data
     commands:
-      # Prepare Rclone profile
-      - mkdir -p ~/.config/rclone
-      - echo $${RCLONE_CONFIG_BODY} | base64 -d > ~/.config/rclone/rclone.conf
-      - rclone size yandex:/
-
       # Actually upload
       - cd /data
       - >
