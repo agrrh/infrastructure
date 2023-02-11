@@ -4,6 +4,9 @@ kind: pipeline
 type: kubernetes
 name: backup
 
+concurrency:
+  limit: 1
+
 clone:
   disable: true
 
