@@ -1,5 +1,3 @@
----
-
 kind: template
 load: backup-pg.yaml
 data:
