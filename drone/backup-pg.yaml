@@ -50,6 +50,9 @@ steps:
 
   - name: rclone-init
     image: alpine:3.17
+    environment:
+      RCLONE_CONFIG_BODY:
+        from_secret: rclone_yandex_config
     volumes:
       - name: rclone-config
         path: /tmp/rclone
@@ -62,8 +65,6 @@ steps:
       RESTIC_REPOSITORY: "rclone:yandex:/backups"
       RESTIC_PASSWORD:
         from_secret: restic_password
-      RCLONE_CONFIG_BODY:
-        from_secret: rclone_yandex_config
     volumes:
       - name: rclone-config
         path: /root/.config/rclone
