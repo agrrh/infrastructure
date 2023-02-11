@@ -5,6 +5,4 @@ load: backup-pg.yaml
 data:
   targets:
     - name: commento
-      delay: 0
     - name: n8n
-      delay: 60

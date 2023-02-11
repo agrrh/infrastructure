@@ -1,9 +1,8 @@
-{{ range .input.targets }}
 ---
 
 kind: pipeline
 type: kubernetes
-name: backup-{{ .name }}
+name: backup
 
 clone:
   disable: true
@@ -13,6 +12,7 @@ volumes:
     temp: {}
 
 steps:
+  {{ range .input.targets }}
   - name: {{ .name }}-dump
     image: postgres:15.1
     depends_on: []
@@ -32,7 +32,9 @@ steps:
       - >
         pg_dump \
           postgresql://$${DB_USERNAME}:$${DB_PASSWORD}@$${DB_HOSTNAME}:5432/$${DB_DATABASE} \
-          > /data/dump.sql
+          > /data/{{ .name }}.sql
+
+  {{ end }}
 
   # TODO: notify size somewhere to perform sanity check?
   - name: audit
@@ -43,12 +45,6 @@ steps:
     commands:
       - cd /data
       - ls -lh ./
-
-  # NOTE: To evade concurrency
-  - name: delay
-    image: alpine:3.17
-    commands:
-      - sleep {{ .delay }}
 
   - name: upload-data
     image: agrrh/cider:0.4.0
@@ -73,14 +69,14 @@ steps:
         restic \
           backup \
           --host drone \
-          --tag sql,{{ .name }} \
+          --tag sql \
           ./
 
       - >
         restic \
           forget \
           --host drone \
-          --tag sql,{{ .name }} \
+          --tag sql \
           --keep-daily 7 \
           --keep-weekly 4 \
           --keep-monthly 12 \
@@ -98,5 +94,3 @@ trigger:
     - custom
   ref:
     - refs/heads/master
-
-{{ end }}
