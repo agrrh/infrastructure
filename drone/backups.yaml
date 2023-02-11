@@ -14,7 +14,7 @@ volumes:
     temp: {}
 
 steps:
-  {{ range .input.targets }}
+  {{ range .input.postgres }}
   - name: {{ .name }}-dump
     image: postgres:15.1
     depends_on: []
@@ -34,6 +34,30 @@ steps:
       - >
         pg_dump --verbose \
           postgresql://$${DB_USERNAME}:$${DB_PASSWORD}@$${DB_HOSTNAME}:5432/$${DB_DATABASE} \
+          > /data/{{ .name }}.sql
+
+  {{ end }}
+
+  {{ range .input.mysql }}
+  - name: {{ .name }}-dump
+    image: bitnami/mariadb:10.6.11-debian-11-r22
+    depends_on: []
+    volumes:
+      - name: data
+        path: /data
+    environment:
+      DB_HOSTNAME:
+        from_secret: {{ .name }}_mysql_hostname
+      DB_USERNAME:
+        from_secret: {{ .name }}_mysql_username
+      DB_PASSWORD:
+        from_secret: {{ .name }}_mysql_password
+      DB_DATABASE:
+        from_secret: {{ .name }}_mysql_database
+    commands:
+      - >
+        mysqldump --verbose \
+          -h $${DB_HOSTNAME} -u $${DB_USERNAME} -p $${DB_PASSWORD} $${DB_DATABASE} \
           > /data/{{ .name }}.sql
 
   {{ end }}

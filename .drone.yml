@@ -1,8 +1,10 @@
 ---
 
 kind: template
-load: backup-pg.yaml
+load: backups.yaml
 data:
-  targets:
+  postgres:
     - name: commento
     - name: n8n
+  mysql:
+    - name: passbolt
