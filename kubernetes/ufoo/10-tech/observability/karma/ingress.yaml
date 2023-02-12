@@ -18,4 +18,4 @@ spec:
         - kind: Service
           name: karma
           namespace: metrics
-          port: 8080
+          port: 80
