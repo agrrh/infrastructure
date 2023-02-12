@@ -7,13 +7,17 @@ metadata:
   namespace: metrics
 spec:
   headers:
-    accessControlAllowCredentials: true
+    accessControlAllowOriginList:
+      - "https://alertmanager.agrrh.com"
+      - "https://karma.agrrh.com"
     accessControlAllowMethods:
       - "HEAD"
       - "GET"
       - "OPTIONS"
       - "PUT"
       - "POST"
-    accessControlAllowOriginList:
-      - "https://alertmanager.agrrh.com"
-      - "https://karma.agrrh.com"
+    accessControlAllowCredentials: true
+    accessControlAllowHeaders:
+      - Date
+      - Content-Type
+      - Content-Length
