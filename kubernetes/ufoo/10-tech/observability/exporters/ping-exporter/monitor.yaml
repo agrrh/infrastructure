@@ -1,0 +1,27 @@
+---
+
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+
+metadata:
+  name: ping-exporter
+  namespace: default
+  labels:
+    app.kubernetes.io/instance: prometheus
+    release: prometheus
+
+spec:
+  endpoints:
+    - honorLabels: true
+      path: /metrics
+      port: http
+      scheme: http
+      scrapeTimeout: 30s
+  jobLabel: prometheus
+  namespaceSelector:
+    matchNames:
+      - metrics
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: ping-exporter
+      app.kubernetes.io/name: ping-exporter
