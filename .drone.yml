@@ -3,11 +3,26 @@
 kind: template
 load: backups.yaml
 data:
-  postgres:
-    - name: commento
-    - name: n8n
-  mysql:
-    - name: passbolt
-  files:
-    - name: passbolt
-      claim: passbolt
+  - name: commento
+    namespace: drone
+    postgres:
+      - name: commento
+    mysql: []
+    files: []
+
+  - name: n8n
+    namespace: drone
+    postgres:
+      - name: commento
+    mysql: []
+    files: []
+
+  - name: passbolt
+    namespace: passbolt
+    postgres: []
+    mysql:
+      - name: passbolt
+    files:
+      - name: passbolt
+        claim: passbolt
+        subpath: gpg/

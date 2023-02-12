@@ -1,11 +1,16 @@
+{{ range .input }}
+
 ---
 
 kind: pipeline
 type: kubernetes
-name: backup
+name: backup-{{ .name }}
 
 concurrency:
   limit: 1
+
+metadata:
+  namespace: {{ .namespace }}
 
 clone:
   disable: true
@@ -15,9 +20,15 @@ volumes:
     temp: {}
   - name: data
     temp: {}
+  {{ range .files }}
+  - name: files-{{ .name }}
+    claim:
+      name: {{ .claim }}
+      read_only: true
+  {{ end }}
 
 steps:
-  {{ range .input.postgres }}
+  {{ range .postgres }}
   - name: {{ .name }}-dump
     image: postgres:15.1
     depends_on: []
@@ -41,7 +52,7 @@ steps:
 
   {{ end }}
 
-  {{ range .input.mysql }}
+  {{ range .mysql }}
   - name: {{ .name }}-dump
     image: bitnami/mariadb:10.6.11-debian-11-r22
     depends_on: []
@@ -62,6 +73,21 @@ steps:
         mysqldump --verbose \
           -h $${DB_HOSTNAME} -u $${DB_USERNAME} -p$${DB_PASSWORD} $${DB_DATABASE} \
           > /data/{{ .name }}.sql
+
+  {{ end }}
+
+  {{ range .files }}
+  - name: {{ .name }}-copy
+    image: agrrh/cider:0.4.0
+    depends_on: []
+    volumes:
+      - name: data
+        path: /data
+      - name: files-{{ .name }}
+        path: /source
+    commands:
+      - mkdir -p /data/files-{{ .name }}
+      - cp -r -p -v /source/{{ .subpath }} /data/files-{{ .name }}/
 
   {{ end }}
 
@@ -105,14 +131,14 @@ steps:
         restic \
           backup \
           --host drone \
-          --tag sql \
+          --tag {{ .name }} \
           ./
 
       - >
         restic \
           forget \
           --host drone \
-          --tag sql \
+          --tag {{ .name }} \
           --keep-daily 7 \
           --keep-weekly 4 \
           --keep-monthly 12 \
@@ -130,3 +156,5 @@ trigger:
     - custom
   ref:
     - refs/heads/master
+
+{{ end }}
