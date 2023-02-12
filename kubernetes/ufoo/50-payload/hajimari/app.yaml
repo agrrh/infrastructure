@@ -24,6 +24,9 @@ spec:
           annotations:
             configmap.reloader.stakater.com/reload: "hajimari-settings"
 
+        strategy:
+          type: RollingUpdate
+
         image:
           repository: agrrh/hajimari
           pullPolicy: IfNotPresent
