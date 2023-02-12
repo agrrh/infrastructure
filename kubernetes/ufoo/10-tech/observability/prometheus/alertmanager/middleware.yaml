@@ -1,0 +1,18 @@
+---
+  
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: cors-alertmanager
+  namespace: metrics
+spec:
+  headers:
+    accessControlAllowMethods:
+      - "HEAD"
+      - "GET"
+      - "OPTIONS"
+      - "PUT"
+      - "POST"
+    accessControlAllowOriginList:
+      - "https://alertmanager.agrrh.com"
+      - "https://karma.agrrh.com"
