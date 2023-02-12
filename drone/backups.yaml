@@ -1,4 +1,4 @@
-{{ range .input }}
+{{ range .input.profiles }}
 
 ---
 
