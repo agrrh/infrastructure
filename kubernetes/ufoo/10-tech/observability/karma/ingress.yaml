@@ -1,0 +1,21 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: karma-http
+  namespace: argocd
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`karma.agrrh.com`) || Host(`karma.5426b488.nip.io`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+      services:
+        - kind: Service
+          name: karma
+          namespace: metrics
+          port: 8080

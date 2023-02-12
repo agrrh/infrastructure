@@ -1,0 +1,13 @@
+---
+
+apiVersion: hajimari.io/v1alpha1
+kind: Application
+metadata:
+  name: karma
+  namespace: hajimari
+spec:
+  name: Karma
+  group: observability
+  icon: mdi:monitor-dashboard
+  url: https://karma.agrrh.com/
+  info: Alerts dashboard
