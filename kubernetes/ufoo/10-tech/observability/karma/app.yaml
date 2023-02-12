@@ -18,7 +18,7 @@ spec:
 
         deployment:
           annotations:
-            configmap.reloader.stakater.com/reload: "karma"
+            configmap.reloader.stakater.com/reload: "karma-config"
 
         configMap:
           enabled: true
@@ -45,18 +45,19 @@ spec:
 
             filters:
               default:
-                - "@receiver=by-cluster-service"
+                - "@state!=suppressed"
+                - "severity!=none"
 
             labels:
               color:
-                static:
-                  - job
+                static: []
+                  # - job
                 unique:
-                  - cluster
-                  - instance
-                  - "@receiver"
+                  - namespace
+                  # - node
               keep: []
-              strip: []
+              strip:
+                - prometheus
 
             log:
               config: false
