@@ -8,3 +8,6 @@ data:
     - name: n8n
   mysql:
     - name: passbolt
+  files:
+    - name: passbolt
+      claim: passbolt
