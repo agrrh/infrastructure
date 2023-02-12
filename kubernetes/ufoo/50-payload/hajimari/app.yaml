@@ -75,7 +75,7 @@ spec:
           showAppInfo: true
           showAppStatus: false
           showBookmarkGroups: true
-          showGlobalBookmarks: false
+          showGlobalBookmarks: true
           defaultAppIcon: mdi:application
           alwaysTargetBlank: false
 
