@@ -1,0 +1,35 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: bot
+  namespace: tg-dukhota-bot
+  labels:
+    app: dukhota
+
+spec:
+  replicas: 1
+  strategy: Recreate
+
+  selector:
+    matchLabels:
+      app: dukhota
+  template:
+    metadata:
+      labels:
+        app: dukhota
+    spec:
+      containers:
+        - name: main
+          image: agrrh/tg-dukhota-bot:0.1.0
+          env:
+            - name: APP_REDIS_HOST
+              value: redis
+
+            - name: APP_TG_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: config
+                  key: tg_token
