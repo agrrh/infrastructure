@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: main
-          image: agrrh/tg-dukhota-bot:0.2.0
+          image: agrrh/tg-dukhota-bot:0.2.1
           env:
             - name: APP_REDIS_HOST
               value: redis
