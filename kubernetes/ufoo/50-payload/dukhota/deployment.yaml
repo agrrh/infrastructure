@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: main
-          image: agrrh/tg-dukhota-bot:0.2.6-debug
+          image: agrrh/tg-dukhota-bot:0.2.6
           imagePullPolicy: Always
           env:
             - name: APP_REDIS_HOST
