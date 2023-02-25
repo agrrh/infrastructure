@@ -63,7 +63,7 @@ spec:
               labels:
                 syslog: "possible"
                 vector: "possible"
-              "labels.*": "{{ kubernetes.pod_labels }}"
+              "labels.*": "{{ "{{ kubernetes.pod_labels }}" }}"
               encoding:
                 codec: json
 
