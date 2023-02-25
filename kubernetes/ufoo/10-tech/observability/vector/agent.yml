@@ -27,7 +27,8 @@ spec:
           api:
             enabled: true
             address: 127.0.0.1:8686
-            playground: false
+            # playground: false
+            playground: true
 
           sources:
             kubernetes_logs:
