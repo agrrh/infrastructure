@@ -24,15 +24,15 @@ spec:
         loki:
           auth_enabled: false
 
+          commonConfig:
+            replication_factor: 1
+
         persistence:
           enabled: true
           accessModes:
             - ReadWriteOnce
           size: 10Gi
           storageClassName: microk8s-hostpath
-
-        commonConfig:
-          replication_factor: 1
 
         storage:
           type: filesystem
