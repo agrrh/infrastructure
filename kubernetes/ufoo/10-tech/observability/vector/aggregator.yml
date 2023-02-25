@@ -21,9 +21,10 @@ spec:
 
         role: Aggregator
 
-        existingConfigMaps:
-          - vector-aggregator-custom
-        customConfig: {}
+        # existingConfigMaps:
+        #   - vector-aggregator-custom
+        # dataDir: ""
+        # customConfig: {}
 
         service:
           enabled: true

@@ -21,9 +21,10 @@ spec:
 
         role: Agent
 
-        existingConfigMaps:
-          - vector-agent-custom
-        customConfig: {}
+        # existingConfigMaps:
+        #   - vector-agent-custom
+        # dataDir: ""
+        # customConfig: {}
 
         resources:
           limits:
