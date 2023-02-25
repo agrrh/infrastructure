@@ -59,7 +59,7 @@ spec:
               inputs:
                 - syslog
                 - vector
-              endpoint: http://loki-write.loki.svc:3100
+              endpoint: http://loki-gateway.loki.svc:80
               labels:
                 syslog: "possible"
                 vector: "possible"
