@@ -47,13 +47,13 @@ spec:
               inputs:
                 - internal_metrics
               address: 0.0.0.0:9090
-            stdout:
-              type: console
-              inputs:
-                - syslog
-                - vector
-              encoding:
-                codec: json
+            # stdout:
+            #   type: console
+            #   inputs:
+            #     - syslog
+            #     - vector
+            #   encoding:
+            #     codec: json
             loki:
               type: loki
               inputs:
