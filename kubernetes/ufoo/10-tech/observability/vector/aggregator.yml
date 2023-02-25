@@ -61,6 +61,8 @@ spec:
                 - vector
               endpoint: http://loki-write.loki.svc:3100
               labels:
+                syslog: "possible"
+                vector: "possible"
                 pod_labels_*: "{{ kubernetes.pod_labels }}"
               encoding:
                 codec: json
