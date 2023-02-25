@@ -1,0 +1,49 @@
+---
+
+# NOTE Vector is logs processing and shipping tool
+#   https://vector.dev/docs/setup/installation/package-managers/helm/
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: vector-aggregator
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://helm.vector.dev
+    chart: vector
+    targetRevision: "0.19.2"
+    helm:
+      # ref: https://github.com/vectordotdev/helm-charts
+      values: |
+        ---
+
+        role: Aggregator
+
+        existingConfigMaps:
+          - vector-aggregator-custom
+        customConfig: {}
+
+        service:
+          enabled: true
+          # ports:
+          #   - name: 514
+
+        resources:
+          limits:
+            memory: 128Mi
+            cpu: 200m
+          requests:
+            memory: 64Mi
+            cpu: 50m
+
+  destination:
+    namespace: vector
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

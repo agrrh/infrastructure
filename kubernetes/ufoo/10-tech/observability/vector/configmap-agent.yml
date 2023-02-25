@@ -57,11 +57,11 @@ data:
           namespace: "{{ "{{ kubernetes.pod_namespace }}" }}"
           container: "{{ "{{ kubernetes.container_name }}" }}"
           app: "{{ "{{ kubernetes.pod_labels.app }}" }}"
-          logs_retention_profile: "{{ "{{ kubernetes.pod_labels.logs_retention_profile }}" }}"
         encoding:
           codec: json
 
       prometheus_sink:
         type: prometheus_exporter
-        inputs: ["vector_metrics",]
+        inputs:
+          - vector_metrics
         address: 0.0.0.0:9090
