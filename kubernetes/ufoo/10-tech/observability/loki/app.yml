@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://grafana.github.io/helm-charts
     chart: loki
-    targetRevision: "2.11.1"
+    targetRevision: "4.7.0"
     helm:
       # https://github.com/grafana/loki/blob/v2.5.0/production/helm/loki/values.yaml
       values: |
@@ -21,73 +21,9 @@ spec:
         ingress:
           enabled: false
 
-        config:
+        loki:
           auth_enabled: false
-          ingester:
-            chunk_idle_period: 3m
-            chunk_block_size: 262144
-            chunk_retain_period: 1m
-            max_transfer_retries: 0
-            lifecycler:
-              ring:
-                kvstore:
-                  store: inmemory
-                replication_factor: 1
 
-          limits_config:
-            enforce_metric_name: false
-            reject_old_samples: true
-            reject_old_samples_max_age: 168h
-            # global config
-            retention_period: 30d
-
-          schema_config:
-            configs:
-            - from: 2020-10-24
-              store: boltdb-shipper
-              object_store: filesystem
-              schema: v11
-              index:
-                prefix: index_
-                period: 24h
-
-          server:
-            http_listen_port: 3100
-
-          storage_config:
-            boltdb_shipper:
-              active_index_directory: /data/loki/boltdb-shipper-active
-              cache_location: /data/loki/boltdb-shipper-cache
-              cache_ttl: 24h # Can be increased for faster performance over longer query periods, uses more disk space
-              shared_store: filesystem
-            filesystem:
-              directory: /data/loki/chunks
-
-          chunk_store_config:
-            max_look_back_period: 0s
-
-          table_manager:
-            retention_deletes_enabled: false
-            retention_period: 0s
-
-          compactor:
-            working_directory: /data/loki/boltdb-shipper-compactor
-            shared_store: filesystem
-            compaction_interval: 10m
-            retention_enabled: true
-            retention_delete_delay: 2h
-            retention_delete_worker_count: 150
-
-        livenessProbe:
-          httpGet:
-            path: /ready
-            port: http-metrics
-          initialDelaySeconds: 45
-
-        ## ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
-        ## If you set enabled as "True", you need :
-        ## - create a pv which above 10Gi and has same namespace with loki
-        ## - keep storageClassName same with below setting
         persistence:
           enabled: true
           accessModes:
@@ -95,42 +31,14 @@ spec:
           size: 10Gi
           storageClassName: microk8s-hostpath
 
-        podAnnotations:
-          prometheus.io/scrape: "true"
-          prometheus.io/port: "http-metrics"
+        write:
+          replicas: 1
 
-        rbac:
-          create: true
-          pspEnabled: true
+        read:
+          replicas: 1
 
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: http-metrics
-          initialDelaySeconds: 45
-
-        replicas: 1
-
-        resources:
-          limits:
-            cpu: 200m
-            memory: 512Mi
-          requests:
-            cpu: 50m
-            memory: 64Mi
-
-        service:
-          type: ClusterIP
-          port: 3100
-          annotations: {}
-          labels: {}
-          targetPort: http-metrics
-
-        serviceMonitor:
-          enabled: true
-
-        updateStrategy:
-          type: RollingUpdate
+        backend:
+          replicas: 3
 
   destination:
     namespace: loki
