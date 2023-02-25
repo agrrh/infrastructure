@@ -37,14 +37,14 @@ spec:
           size: 10Gi
           storageClassName: microk8s-hostpath
 
-        write:
-          replicas: 1
-
-        read:
-          replicas: 1
-
-        backend:
-          replicas: 1
+        # write:
+        #   replicas: 1
+        #
+        # read:
+        #   replicas: 1
+        #
+        # backend:
+        #   replicas: 1
 
         singleBinary:
           replicas: 1
