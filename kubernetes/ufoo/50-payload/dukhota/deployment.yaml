@@ -25,14 +25,12 @@ spec:
       containers:
         - name: main
 
-          # NOTE: Normal
-          image: agrrh/tg-dukhota-bot:0.2.7
-
-          # NOTE: Debug
-          # image: agrrh/tg-dukhota-bot:0.2.6-debug
-          # imagePullPolicy: Always
+          image: agrrh/tg-dukhota-bot:0.2.8
 
           env:
+            - name: LOGLEVEL
+              value: DEBUG
+
             - name: APP_REDIS_HOST
               value: redis
 
