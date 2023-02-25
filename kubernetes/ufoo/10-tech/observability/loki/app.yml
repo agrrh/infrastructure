@@ -31,15 +31,6 @@ spec:
           size: 10Gi
           storageClassName: microk8s-hostpath
 
-        write:
-          replicas: 1
-
-        read:
-          replicas: 1
-
-        backend:
-          replicas: 3
-
   destination:
     namespace: loki
     server: https://kubernetes.default.svc
