@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: vector-agent-custom
+  name: vector-aggregator-custom
   namespace: vector
 data:
   vector.yaml: |-
