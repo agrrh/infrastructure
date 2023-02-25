@@ -46,7 +46,7 @@ spec:
               type: prometheus_exporter
               inputs:
                 - internal_metrics
-              address: 0.0.0.0:9090
+              address: "0.0.0.0:9090"
             # stdout:
             #   type: console
             #   inputs:
@@ -59,16 +59,14 @@ spec:
               inputs:
                 - syslog
                 - vector
-              endpoint: http://loki-gateway.loki.svc:80
+              endpoint: "http://loki-gateway.loki.svc:80"
               labels:
-                "{{ * }}": "{{ "{{ kubernetes.pod_labels }}" }}"
+                '*': "{{ "{{ kubernetes.pod_labels }}" }}"
               encoding:
                 codec: json
 
         service:
           enabled: true
-          # ports:
-          #   - name: 514
 
         resources:
           limits:
