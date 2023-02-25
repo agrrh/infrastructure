@@ -27,15 +27,15 @@ spec:
           commonConfig:
             replication_factor: 1
 
+          storage:
+            type: filesystem
+
         persistence:
           enabled: true
           accessModes:
             - ReadWriteOnce
           size: 10Gi
           storageClassName: microk8s-hostpath
-
-        storage:
-          type: filesystem
 
         write:
           replicas: 1
