@@ -62,7 +62,7 @@ spec:
               endpoint: "http://loki-gateway.loki.svc:80"
               labels:
                 kubernetes: "true"
-                "{{- "{{- "pod_labels_*" -}}" -}}": "{{- "{{- "{{ kubernetes.pod_labels }}" -}}" -}}"
+                pod_labels_*: '{{ "{{ kubernetes.pod_labels }}" }}'
               encoding:
                 codec: json
 
