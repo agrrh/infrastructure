@@ -46,6 +46,9 @@ spec:
         backend:
           replicas: 1
 
+        singleBinary:
+          replicas: 1
+
   destination:
     namespace: loki
     server: https://kubernetes.default.svc
