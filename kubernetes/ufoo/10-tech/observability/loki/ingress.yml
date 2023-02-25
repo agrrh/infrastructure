@@ -1,0 +1,23 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: loki-http
+  namespace: argocd
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`loki.agrrh.com`) || Host(`loki.5426b488.nip.io`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+        - name: cors-alertmanager
+          namespace: metrics
+      services:
+        - kind: Service
+          name: loki
+          namespace: loki
+          port: 3100
