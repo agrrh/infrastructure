@@ -25,7 +25,7 @@ spec:
       containers:
         - name: main
 
-          image: agrrh/tg-dukhota-bot:0.2.13
+          image: agrrh/tg-dukhota-bot:0.2.14
 
           env:
             - name: LOGLEVEL
