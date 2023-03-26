@@ -15,6 +15,9 @@ spec:
     helm:
       values: |
         fullnameOverride: "nats"
+        nats:
+          jetstream:
+            enabled: true
 
   destination:
     namespace: bus-dev
