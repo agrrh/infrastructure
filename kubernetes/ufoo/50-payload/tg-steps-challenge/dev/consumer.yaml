@@ -3,7 +3,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: tg-steps-challenge
+  name: tg-steps-challenge-dev
   namespace: argocd
 spec:
   project: default
@@ -13,6 +13,8 @@ spec:
     path: helm/
     helm:
       parameters:
+        - name: "serviceAccount.create"
+          value: false
         - name: "app.name"
           value: steps-challenge
         - name: "app.nats.addr"
