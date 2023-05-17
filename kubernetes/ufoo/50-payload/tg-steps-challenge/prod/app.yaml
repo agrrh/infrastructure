@@ -1,0 +1,22 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: tg-steps-challenge-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/agrrh/tg-steps-challenge
+    targetRevision: master
+    path: kubernetes/prod
+    directory:
+      recurse: true
+  destination:
+    namespace: tg-steps-challenge-prod
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
