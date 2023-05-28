@@ -9,5 +9,5 @@ spec:
   image: ghcr.io/openfaas/nodeinfo:latest
   labels:
     com.openfaas.scale.min: "0"
-    com.openfaas.scale.max: "1"
+    com.openfaas.scale.max: "5"
   annotations: {}
