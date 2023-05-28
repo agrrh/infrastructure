@@ -25,5 +25,5 @@ spec:
     - group: apps
       kind: Deployment
       jqPathExpressions:
-        - .spec.template.spec.initContainers[] | .image
-        - .spec.template.spec.containers[] | .image
+        - .spec.template.spec.initContainers[.image]
+        - .spec.template.spec.containers[.image]
