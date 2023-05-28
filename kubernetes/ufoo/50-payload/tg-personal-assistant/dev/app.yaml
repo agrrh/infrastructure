@@ -25,11 +25,11 @@ spec:
     - group: apps
       kind: Deployment
       jqPathExpressions:
-        # - .spec.template.spec.initContainers[.image]
-        # - .spec.template.spec.containers[.image]
-        - >-
-          select(.metadata.annotations | select(.["keel.sh/policy"] != null))
-          | .spec.template.spec.initContainers[.image]
-        - >-
-          select(.metadata.annotations | select(.["keel.sh/policy"] != null))
-          | .spec.template.spec.containers[.image]
+        - .spec.template.spec.initContainers[.image]
+        - .spec.template.spec.containers[.image]
+        # - >-
+        #   select(.metadata.annotations | select(.["keel.sh/policy"] != null))
+        #   | .spec.template.spec.initContainers[.image]
+        # - >-
+        #   select(.metadata.annotations | select(.["keel.sh/policy"] != null))
+        #   | .spec.template.spec.containers[.image]
