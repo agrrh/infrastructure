@@ -16,6 +16,10 @@ spec:
       values: |
         namespace: kube-system
 
+        webhook:
+          enabled: true
+          endpoint: "https://fn.agrrh.com/function/keel-webhook"
+
   destination:
     namespace: kube-system
     server: https://kubernetes.default.svc
