@@ -11,3 +11,9 @@ spec:
     com.openfaas.scale.min: "0"
     com.openfaas.scale.max: "5"
   annotations: {}
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "100m"
+    memory: "128Mi"
