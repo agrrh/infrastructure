@@ -1,0 +1,25 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: keel
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.keel.sh
+    chart: keel
+    targetRevision: 1.0.2
+
+    helm:
+      values: |
+        namespace: kube-system
+
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
