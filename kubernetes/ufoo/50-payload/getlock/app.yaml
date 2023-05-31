@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/getlock/getlock
-    targetRevision: master
+    targetRevision: dev
     path: kubernetes
     directory:
       recurse: true
