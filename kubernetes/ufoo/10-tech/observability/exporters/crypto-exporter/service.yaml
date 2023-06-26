@@ -5,7 +5,7 @@ kind: Service
 
 metadata:
   name: crypto-exporter
-  namespace: finances
+  namespace: metrics
   labels:
     app: crypto-exporter
 
