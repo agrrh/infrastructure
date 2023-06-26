@@ -12,10 +12,10 @@ metadata:
 spec:
   endpoints:
     - honorLabels: true
-      path: /metrics
+      path: /
       port: http
       scheme: http
-      scrapeTimeout: 30s
+      scrapeTimeout: 300s
   jobLabel: prometheus
   namespaceSelector:
     matchNames:

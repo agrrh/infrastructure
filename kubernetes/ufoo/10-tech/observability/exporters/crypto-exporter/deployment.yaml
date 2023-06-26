@@ -40,7 +40,7 @@ spec:
 
           ports:
             - containerPort: 9999
-              name: http
+              name: metrics
               protocol: TCP
 
           resources:
