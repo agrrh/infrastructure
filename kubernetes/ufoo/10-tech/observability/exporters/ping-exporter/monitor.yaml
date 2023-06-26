@@ -8,7 +8,7 @@ metadata:
   namespace: metrics
   labels:
     app.kubernetes.io/instance: prometheus
-    release: prometheus
+    release: kube-prometheus-stack
 
 spec:
   endpoints:
