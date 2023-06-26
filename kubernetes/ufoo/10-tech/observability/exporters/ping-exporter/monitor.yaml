@@ -16,6 +16,7 @@ spec:
       path: /metrics
       port: http
       scheme: http
+      interval: 30s
       scrapeTimeout: 30s
   jobLabel: prometheus
   namespaceSelector:

@@ -16,7 +16,8 @@ spec:
       path: /
       port: http
       scheme: http
-      scrapeTimeout: 300s
+      interval: 300s
+      scrapeTimeout: 60s
   jobLabel: prometheus
   namespaceSelector:
     matchNames:
