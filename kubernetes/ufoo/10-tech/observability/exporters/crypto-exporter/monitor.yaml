@@ -19,7 +19,7 @@ spec:
   jobLabel: prometheus
   namespaceSelector:
     matchNames:
-      - finances
+      - metrics
   selector:
     matchLabels:
       app: crypto-exporter
