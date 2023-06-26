@@ -1,0 +1,25 @@
+---
+
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+
+metadata:
+  name: crypto-exporter
+  namespace: finances
+  labels:
+    app: crypto-exporter
+
+spec:
+  endpoints:
+    - honorLabels: true
+      path: /metrics
+      port: http
+      scheme: http
+      scrapeTimeout: 30s
+  jobLabel: prometheus
+  namespaceSelector:
+    matchNames:
+      - finances
+  selector:
+    matchLabels:
+      app: crypto-exporter

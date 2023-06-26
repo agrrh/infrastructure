@@ -1,0 +1,52 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: crypto-exporter
+  namespace: finances
+  labels:
+    app: crypto-exporter
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: crypto-exporter
+  template:
+    metadata:
+      labels:
+        app: crypto-exporter
+    spec:
+      containers:
+        - name: main
+
+          image: registry.gitlab.com/ix.ai/crypto-exporter:v1.9.0
+
+          env:
+            - name: EXCHANGE
+              value: binance
+
+            - name: REFERENCE_CURRENCIES
+              value: "USD,EUR"
+
+            - name: SYMBOLS
+              value: "LTC/BTC,ETH/BTC"
+
+            - name: PORT
+              value: "9999"
+
+          ports:
+            - containerPort: 9999
+              name: http
+              protocol: TCP
+
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
