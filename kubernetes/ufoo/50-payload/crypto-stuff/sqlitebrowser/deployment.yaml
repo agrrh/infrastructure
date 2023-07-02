@@ -1,0 +1,49 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: sqlitebrowser
+  namespace: crypto-stuff
+  labels:
+    app: sqlitebrowser
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: sqlitebrowser
+  template:
+    metadata:
+      labels:
+        app: sqlitebrowser
+    spec:
+      containers:
+        - name: main
+
+          image: ghcr.io/linuxserver/sqlitebrowser:3.12.2
+
+          env:
+            - name: PUID
+              value: "1000"
+
+            - name: PGID
+              value: "1000"
+
+            - name: TZ
+              value: "Europe/Moscow"
+
+          ports:
+            - containerPort: 3000
+              name: http
+
+          volumeMounts:
+            - mountPath: /data
+              name: binance-bot-data
+
+      volumes:
+        - name: binance-bot-data
+          persistentVolumeClaim:
+            claimName: binance-bot-data
