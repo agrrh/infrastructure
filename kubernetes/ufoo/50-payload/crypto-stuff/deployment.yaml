@@ -117,9 +117,21 @@ spec:
         - name: binance-bot-logs
           persistentVolumeClaim:
             claimName: binance-bot-logs
-            storageClass: microk8s-hostpath
+            spec:
+              storageClass: microk8s-hostpath
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
 
         - name: binance-bot-data
           persistentVolumeClaim:
             claimName: binance-bot-data
-            storageClass: microk8s-hostpath
+            spec:
+              storageClass: microk8s-hostpath
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 1Gi
