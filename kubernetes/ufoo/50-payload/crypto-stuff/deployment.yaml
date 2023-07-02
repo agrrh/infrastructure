@@ -106,3 +106,20 @@ spec:
             limits:
               cpu: "500m"
               memory: "512Mi"
+
+          volumeMounts:
+            - mountPath: /app/data
+              name: binance-bot-data
+            - mountPath: /app/logs
+              name: binance-bot-logs
+
+      volumes:
+        - name: binance-bot-logs
+          persistentVolumeClaim:
+            claimName: binance-bot-logs
+            storageClass: microk8s-hostpath
+
+        - name: binance-bot-data
+          persistentVolumeClaim:
+            claimName: binance-bot-data
+            storageClass: microk8s-hostpath
