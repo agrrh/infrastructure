@@ -4,6 +4,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: binance-bot-logs
+  namespace: crypto-stuff
 spec:
   storageClassName: microk8s-hostpath
   accessModes:
@@ -18,6 +19,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: binance-bot-data
+  namespace: crypto-stuff
 spec:
   storageClassName: microk8s-hostpath
   accessModes:
