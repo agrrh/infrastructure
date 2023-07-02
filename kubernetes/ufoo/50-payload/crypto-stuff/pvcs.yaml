@@ -5,7 +5,7 @@ apiVersion: v1
 metadata:
   name: binance-bot-logs
 spec:
-  storageClass: microk8s-hostpath
+  storageClassName: microk8s-hostpath
   accessModes:
     - ReadWriteOnce
   resources:
@@ -19,7 +19,7 @@ apiVersion: v1
 metadata:
   name: binance-bot-data
 spec:
-  storageClass: microk8s-hostpath
+  storageClassName: microk8s-hostpath
   accessModes:
     - ReadWriteOnce
   resources:
