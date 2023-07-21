@@ -1,0 +1,31 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: crypto-signals
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/agrrh/crypto-signals
+    targetRevision: master
+    path: helm
+    helm:
+      releaseName: crypto-signals
+      values: |
+        app:
+          tg:
+            secretName: crypto-signals-tg
+            tokenKey: token
+            chatKey: chat
+
+  destination:
+    namespace: crypto-signals
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
