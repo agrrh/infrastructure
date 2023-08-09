@@ -8,9 +8,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: oci://ghcr.io/metacontroller
-    chart: metacontroller-helm
-    targetRevision: 4.10.4
+    repoURL: https://cowboysysop.github.io/charts/
+    chart: metacontroller
+    targetRevision: 1.2.2
 
     helm:
       values: |
