@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: hello-controller
-  namespace: hello
+  namespace: metacontroller-hello
 data:
   sync.py: |
     from http.server import BaseHTTPRequestHandler, HTTPServer

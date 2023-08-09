@@ -1,9 +1,10 @@
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-controller
-  namespace: hello
+  namespace: metacontroller-hello
 spec:
   replicas: 1
   selector:
@@ -27,11 +28,12 @@ spec:
           name: hello-controller
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
   name: hello-controller
-  namespace: hello
+  namespace: metacontroller-hello
 spec:
   selector:
     app: hello-controller
