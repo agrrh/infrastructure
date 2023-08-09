@@ -3,6 +3,7 @@ apiVersion: metacontroller.k8s.io/v1alpha1
 kind: CompositeController
 metadata:
   name: hello-controller
+  namespace: hello
 spec:
   generateSelector: true
   parentResource:
