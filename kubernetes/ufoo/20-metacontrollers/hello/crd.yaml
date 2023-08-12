@@ -25,4 +25,4 @@ spec:
               who:
                 type: string
     subresources:
-     status: {}
+      status: {}
