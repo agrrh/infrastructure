@@ -9,7 +9,7 @@ spec:
   names:
     kind: Project
     plural: projects
-    singular: projects
+    singular: project
   scope: Cluster
   versions:
     - name: v1
