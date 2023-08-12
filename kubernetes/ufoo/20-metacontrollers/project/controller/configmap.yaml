@@ -27,11 +27,9 @@ data:
             "kind": "Namespace",
             "metadata": {
               "name": parent["metadata"]["name"],
-              "labels": {
-                "license": parent["spec"]["license"],
-              },
               "annotations": {
                 "description": parent["spec"]["description"],
+                "license": parent["spec"]["license"],
               }
             }
           }
