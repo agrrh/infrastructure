@@ -13,10 +13,8 @@ data:
     class Controller(BaseHTTPRequestHandler):
       def sync(self, parent, children):
         # Compute status based on observed state.
-        print(children["Namespace.v1"])
-
         desired_status = {
-          "namespaces": hash(children["Namespace.v1"])
+          "namespaces": len(children["Namespace.v1"])
         }
 
         # Generate the desired child object(s).
