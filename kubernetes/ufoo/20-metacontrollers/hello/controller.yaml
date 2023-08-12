@@ -4,7 +4,7 @@ apiVersion: metacontroller.k8s.io/v1alpha1
 kind: CompositeController
 metadata:
   name: hello-controller
-  namespace: metacontroller-hello
+  namespace: meta-hello
 spec:
   generateSelector: true
   parentResource:
@@ -18,4 +18,4 @@ spec:
   hooks:
     sync:
       webhook:
-        url: http://hello-controller.metacontroller-hello/sync
+        url: http://hello-controller.meta-hello/sync
