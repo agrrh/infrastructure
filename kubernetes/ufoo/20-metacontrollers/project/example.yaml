@@ -1,0 +1,9 @@
+---
+
+apiVersion: agrrh.com/v1
+kind: Project
+metadata:
+  name: test
+spec:
+  description: test project
+  license: WTFPL
