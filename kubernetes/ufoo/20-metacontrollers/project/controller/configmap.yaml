@@ -26,7 +26,7 @@ data:
             "apiVersion": "v1",
             "kind": "Namespace",
             "metadata": {
-              "name": parent["metadata"]["name"],
+              "name": "-".join("proj", parent["metadata"]["name"]),
               "annotations": {
                 "description": parent["spec"]["description"],
                 "license": parent["spec"]["license"],
