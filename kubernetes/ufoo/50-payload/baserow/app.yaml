@@ -3,7 +3,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: nocodb
+  name: baserow
   namespace: argocd
 spec:
   project: default
@@ -13,7 +13,7 @@ spec:
     path: charts/nocodb
 
     helm:
-      releaseName: nocodb
+      releaseName: baserow
       values: |
         image:
           repository: nocodb/nocodb
@@ -32,7 +32,7 @@ spec:
           storageClassName: "microk8s-hostpath"
 
   destination:
-    namespace: nocodb
+    namespace: baserow
     server: https://kubernetes.default.svc
   syncPolicy:
     syncOptions:

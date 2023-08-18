@@ -3,19 +3,19 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: nocodb-http
-  namespace: nocodb
+  name: baserow-http
+  namespace: baserow
 spec:
   entryPoints:
     - web
   routes:
     - kind: Rule
-      match: Host(`nocodb.agrrh.com`) || Host(`nocodb.5426b488.nip.io`)
+      match: Host(`baserow.agrrh.com`) || Host(`baserow.5426b488.nip.io`)
       middlewares:
         - name: whitelist
           namespace: traefik
       services:
         - kind: Service
-          name: nocodb
-          namespace: nocodb
-          port: 8080
+          name: baserow
+          namespace: baserow
+          port: 80
