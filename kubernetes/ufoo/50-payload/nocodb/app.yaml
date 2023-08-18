@@ -12,6 +12,7 @@ spec:
     targetRevision: 0.109.7
     path: charts/nocodb
     helm:
+      releaseName: nocodb
       values: |
         extraEnvs:
           NC_PUBLIC_URL: https://nocodb.agrrh.com
