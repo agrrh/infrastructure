@@ -25,6 +25,16 @@ spec:
           ingress:
             enabled: false
 
+          persistence:
+            enabled: true
+            storageClassName: microk8s-hostpath
+
+          asgi:
+            replicaCount: 0
+
+          wsgi:
+            replicaCount: 0
+
         frontend:
           ingress:
             enabled: false
