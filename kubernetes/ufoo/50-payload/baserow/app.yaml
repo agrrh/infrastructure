@@ -20,7 +20,7 @@ spec:
             jobs:
               importToleratedTypeErrorThreshold: "0"
             email:
-              smtpPassword: "foo"
+              password: "foo"
 
           ingress:
             enabled: false
