@@ -20,19 +20,11 @@ spec:
 
         extraSecretEnvs:
           NC_AUTH_JWT_SECRET: oVi5mDVJSK8i1zrG
+          NC_DB: ""
 
         storage:
           size: 4Gi
           storageClassName: "microk8s-hostpath"
-
-        postgresql:
-          enabled: true
-          auth:
-            database: nocodb
-            username: nocodb
-            password: 4tIxvcdiuQqlncMj
-          persistence:
-            size: 8Gi
 
   destination:
     namespace: nocodb
