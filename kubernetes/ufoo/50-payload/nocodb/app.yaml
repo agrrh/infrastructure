@@ -27,9 +27,9 @@ spec:
         # extraSecretEnvs:
         #   NC_AUTH_JWT_SECRET: oVi5mDVJSK8i1zrG
 
-        # storage:
-        #   size: 4Gi
-        #   storageClassName: "microk8s-hostpath"
+        storage:
+          size: 3Gi
+          storageClassName: "microk8s-hostpath"
 
   destination:
     namespace: nocodb
