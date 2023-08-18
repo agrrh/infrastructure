@@ -25,6 +25,15 @@ spec:
           size: 4Gi
           storageClassName: "microk8s-hostpath"
 
+        postgresql:
+          enabled: true
+          auth:
+            database: nocodb
+            username: nocodb
+            password: 4tIxvcdiuQqlncMj
+          persistence:
+            size: 8Gi
+
   destination:
     namespace: nocodb
     server: https://kubernetes.default.svc
