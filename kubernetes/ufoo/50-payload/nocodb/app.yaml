@@ -20,7 +20,7 @@ spec:
 
         extraSecretEnvs:
           NC_AUTH_JWT_SECRET: oVi5mDVJSK8i1zrG
-          NC_DB: "postgres://nocodb:nVwmMZGY5EcYrDtw@postgres:5432/nocodb?sslmode=disable"
+          NC_DB: "pg://postgres:5432?u=nocodb&p=nVwmMZGY5EcYrDtw&d=nocodb"
 
         storage:
           size: 4Gi
