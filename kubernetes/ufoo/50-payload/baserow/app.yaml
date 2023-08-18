@@ -16,6 +16,12 @@ spec:
       releaseName: baserow
       values: |
         backend:
+          config:
+            jobs:
+              importToleratedTypeErrorThreshold: "0"
+            email:
+              smtpPassword: "foo"
+
           ingress:
             enabled: false
 
