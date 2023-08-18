@@ -17,6 +17,7 @@ spec:
       values: |
         extraEnvs:
           NC_PUBLIC_URL: https://nocodb.agrrh.com
+          NC_MIN: "yes"
 
         extraSecretEnvs:
           NC_AUTH_JWT_SECRET: oVi5mDVJSK8i1zrG
