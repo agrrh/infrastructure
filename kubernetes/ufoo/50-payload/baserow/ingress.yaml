@@ -19,3 +19,25 @@ spec:
           name: baserow
           namespace: baserow
           port: 80
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: baserow-api-http
+  namespace: baserow
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`baserow-api.agrrh.com`) || Host(`baserow-api.5426b488.nip.io`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+      services:
+        - kind: Service
+          name: baserow-api
+          namespace: baserow
+          port: 80

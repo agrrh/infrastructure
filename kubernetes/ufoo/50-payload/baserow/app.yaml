@@ -8,28 +8,24 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/agrrh/infrastructure
-    targetRevision: master  # 0.109.7
-    path: charts/nocodb
+    repoURL: https://christianknell.github.io/helm-charts
+    chart: baserow
+    targetRevision: 1.5.3
 
     helm:
       releaseName: baserow
       values: |
-        image:
-          repository: nocodb/nocodb
-          pullPolicy: IfNotPresent
-          tag: "0.109.7"
+        backend:
+          ingress:
+            enabled: false
 
-        # extraEnvs:
-        #   NC_PUBLIC_URL: https://nocodb.agrrh.com
-        #   NC_MIN: "yes"
+        frontend:
+          ingress:
+            enabled: false
 
-        # extraSecretEnvs:
-        #   NC_AUTH_JWT_SECRET: oVi5mDVJSK8i1zrG
-
-        storage:
-          size: 3Gi
-          storageClassName: "microk8s-hostpath"
+        config:
+          publicFrontendUrl: https://baserow.agrrh.com
+          publicBackendUrl: https://baserow-api.agrrh.com
 
   destination:
     namespace: baserow
