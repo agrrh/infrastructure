@@ -20,7 +20,6 @@ spec:
 
         extraSecretEnvs:
           NC_AUTH_JWT_SECRET: oVi5mDVJSK8i1zrG
-          NC_DB: ""
 
         storage:
           size: 4Gi
