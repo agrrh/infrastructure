@@ -1,26 +1,26 @@
----
-
-apiVersion: openfaas.com/v1
-kind: Function
-metadata:
-  name: film-reviews-get-metadata
-  namespace: openfaas-fn
-spec:
-  name: film-reviews-get-metadata
-  image: agrrh/film-reviews-get-metadata:latest-v20230528-1-geea4f63
-  labels:
-    com.openfaas.scale.min: "0"
-    com.openfaas.scale.max: "1"
-  requests:
-    cpu: "50m"
-    memory: "128Mi"
-  limits:
-    cpu: "500m"
-    memory: "256Mi"
-  environment:
-    NOCODB_ADDR: "https://nocodb.agrrh.com"
-    NOCODB_ORG: "noco"
-    NOCODB_PROJECT: "kisovna_film_review"
-    NOCODB_TABLE_METADATA: "kinopoisk_metadata"
-  secrets:
-    - film-reviews-get-metadata
+# ---
+#
+# apiVersion: openfaas.com/v1
+# kind: Function
+# metadata:
+#   name: film-reviews-get-metadata
+#   namespace: openfaas-fn
+# spec:
+#   name: film-reviews-get-metadata
+#   image: agrrh/film-reviews-get-metadata:latest-v20230528-1-geea4f63
+#   labels:
+#     com.openfaas.scale.min: "0"
+#     com.openfaas.scale.max: "1"
+#   requests:
+#     cpu: "50m"
+#     memory: "128Mi"
+#   limits:
+#     cpu: "500m"
+#     memory: "256Mi"
+#   environment:
+#     NOCODB_ADDR: "https://nocodb.agrrh.com"
+#     NOCODB_ORG: "noco"
+#     NOCODB_PROJECT: "kisovna_film_review"
+#     NOCODB_TABLE_METADATA: "kinopoisk_metadata"
+#   secrets:
+#     - film-reviews-get-metadata
