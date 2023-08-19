@@ -42,11 +42,11 @@ spec:
 
           resources:
             requests:
-              cpu: "200m"
-              memory: "256Mi"
+              cpu: "1000m"
+              memory: "1024Mi"
             limits:
-              cpu: "200m"
-              memory: "256Mi"
+              cpu: "1000m"
+              memory: "1024Mi"
 
           ports:
             - name: http
