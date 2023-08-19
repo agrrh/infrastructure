@@ -3,18 +3,18 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: payload
+  name: passbolt
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/agrrh/infrastructure.git
+    repoURL: https://github.com/agrrh/infrastructure
     targetRevision: master
-    path: kubernetes/ufoo/50-payload
-    # directory:
-    #   recurse: true
+    path: kubernetes/ufoo/50-payload/passbolt
+    directory:
+      recurse: true
   destination:
-    namespace: argocd
+    namespace: payload
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
