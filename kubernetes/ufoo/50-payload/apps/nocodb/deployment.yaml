@@ -40,6 +40,9 @@ spec:
             - name: NC_MINIMAL_DBS
               value: "true"
 
+            - name: NC_AUTOMATION_LOG_LEVEL
+              value: "ALL"
+
           resources:
             requests:
               cpu: "1000m"
