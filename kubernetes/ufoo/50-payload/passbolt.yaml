@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: master
-    path: kubernetes/ufoo/50-payload/passbolt
+    path: kubernetes/ufoo/50-payload/apps/passbolt
     directory:
       recurse: true
   destination:

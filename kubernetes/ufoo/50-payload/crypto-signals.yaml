@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: master
-    path: kubernetes/ufoo/50-payload/crypto-signals
+    path: kubernetes/ufoo/50-payload/apps/crypto-signals
     directory:
       recurse: true
   destination:
