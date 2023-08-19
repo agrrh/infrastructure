@@ -6,7 +6,7 @@ metadata:
   name: film-reviews-get-metadata
   namespace: openfaas-fn
 spec:
-  name: keel-webhook
+  name: film-reviews-get-metadata
   image: agrrh/film-reviews-get-metadata:latest-v20230528-1-geea4f63
   labels:
     com.openfaas.scale.min: "0"
