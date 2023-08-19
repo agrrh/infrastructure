@@ -3,7 +3,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: openfaas-fn
+  name: payload-openfaas-fn
   namespace: argocd
 spec:
   project: default

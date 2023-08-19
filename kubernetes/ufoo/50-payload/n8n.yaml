@@ -3,7 +3,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: n8n
+  name: payload-n8n
   namespace: argocd
 spec:
   project: default

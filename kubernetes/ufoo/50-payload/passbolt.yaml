@@ -3,7 +3,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: passbolt
+  name: payload-passbolt
   namespace: argocd
 spec:
   project: default
