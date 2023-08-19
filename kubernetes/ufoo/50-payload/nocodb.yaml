@@ -1,0 +1,22 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: nocodb
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: master
+    path: kubernetes/ufoo/50-payload/nocodb
+    directory:
+      recurse: true
+  destination:
+    namespace: payload
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
