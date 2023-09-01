@@ -80,7 +80,7 @@ spec:
                 - --fail
                 - --silent
                 - http://localhost:8000/api/_health/
-            initialDelaySeconds: 5
+            initialDelaySeconds: 120
             periodSeconds: 5
             timeoutSeconds: 5
             successThreshold: 1
