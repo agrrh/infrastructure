@@ -10,5 +10,5 @@ data:
   BASEROW_MAX_IMPORT_FILE_SIZE_MB: "512"
   BASEROW_MAX_SNAPSHOTS_PER_GROUP: "-1"
   PRIVATE_BACKEND_URL: "http://baserow-wsgi:8000"
-  PUBLIC_BACKEND_URL: ""
-  PUBLIC_WEB_FRONTEND_URL: ""
+  PUBLIC_BACKEND_URL: "https://baserow-wsgi.agrrh.com"
+  PUBLIC_WEB_FRONTEND_URL: "https://baserow.agrrh.com"

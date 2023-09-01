@@ -3,7 +3,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: baserow-http
+  name: baserow-front-http
   namespace: baserow
 spec:
   entryPoints:
@@ -19,3 +19,25 @@ spec:
           name: baserow-frontend
           namespace: baserow
           port: 3000
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: baserow-backend-http
+  namespace: baserow
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`baserow-wsgi.agrrh.com`) || Host(`baserow-wsgi.5426b488.nip.io`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+      services:
+        - kind: Service
+          name: baserow-wsgi
+          namespace: baserow
+          port: 8000
