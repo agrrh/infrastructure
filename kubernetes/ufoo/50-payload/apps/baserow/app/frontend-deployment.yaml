@@ -50,14 +50,16 @@ spec:
               path: /_health
               port: 3000
             initialDelaySeconds: 120
-            periodSeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 10
             successThreshold: 1
           readinessProbe:
             httpGet:
               path: /_health
               port: 3000
-            initialDelaySeconds: 5
-            periodSeconds: 5
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 10
             successThreshold: 1
           securityContext:
             runAsGroup: 9999
