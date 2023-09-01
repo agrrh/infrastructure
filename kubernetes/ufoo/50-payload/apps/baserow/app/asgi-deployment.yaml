@@ -4,6 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: baserow-asgi
+  namespace: baserow
   labels:
     helm.sh/chart: baserow-1.25.0
     app.kubernetes.io/name: baserow-asgi
