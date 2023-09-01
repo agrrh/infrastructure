@@ -3,7 +3,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: release-name-baserow-backend
+  name: baserow-backend
+  namespace: baserow
 data:
   # Baserow Backend Settings
   BASEROW_ACCESS_TOKEN_LIFETIME_MINUTES: "10"
@@ -46,10 +47,10 @@ data:
   BASEROW_WEBHOOKS_REQUEST_TIMEOUT_SECONDS: "5"
   BASEROW_WEBHOOKS_URL_CHECK_TIMEOUT_SECS: "10"
   # Database Settings
-  DATABASE_HOST: "release-name-postgresql"
+  DATABASE_HOST: "baserow-postgresql"
   DATABASE_PORT: "5432"
   DATABASE_NAME: "baserow"
   DATABASE_USER: "baserow"
   # Redis Settings
-  REDIS_HOST: "release-name-redis-master"
+  REDIS_HOST: "baserow-redis-master"
   REDIS_PORT: "6379"
