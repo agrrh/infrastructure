@@ -1,0 +1,180 @@
+---
+# Source: baserow/templates/celery-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: baserow-celery
+  namespace: baserow
+  labels:
+    helm.sh/chart: baserow-1.25.0
+    app.kubernetes.io/name: baserow-celery
+    app.kubernetes.io/instance: baserow
+    app.kubernetes.io/version: "1.19.1"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: baserow-celery
+      app.kubernetes.io/instance: baserow
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: baserow-celery
+        app.kubernetes.io/instance: baserow
+    spec:
+      serviceAccountName: baserow-celery
+      securityContext:
+        fsGroup: 9999
+        runAsGroup: 9999
+        runAsUser: 9999
+      containers:
+        - name: baserow-celery-worker
+          image: "baserow/backend:1.19.1"
+          imagePullPolicy: Always
+          args:
+            - "celery-worker"
+          env:
+            # Baserow Backend Settings
+            - name: BASEROW_JWT_SIGNING_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-backend"
+                  key: jwt-signing-key
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-backend"
+                  key: secret-key
+            # Baserow Email Settings
+                        # Baserow File Upload Settings
+            # Database Settings
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-postgresql"
+                  key: "password"
+            # Redis Settings
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-redis"
+                  key: "redis-password"
+          envFrom:
+            - configMapRef:
+                name: baserow
+            - configMapRef:
+                name: baserow-backend
+          livenessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - /baserow/backend/docker/docker-entrypoint.sh celery-worker-healthcheck
+            initialDelaySeconds: 120
+            timeoutSeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - /baserow/backend/docker/docker-entrypoint.sh celery-worker-healthcheck
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 10
+          securityContext:
+            runAsGroup: 9999
+            runAsNonRoot: true
+            runAsUser: 9999
+        - name: baserow-celery-export-worker
+          image: "baserow/backend:1.19.1"
+          imagePullPolicy: Always
+          args:
+            - "celery-exportworker"
+          env:
+            # Baserow Backend Settings
+            - name: BASEROW_JWT_SIGNING_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-backend"
+                  key: jwt-signing-key
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-backend"
+                  key: secret-key
+            # Baserow Email Settings
+            # Baserow File Upload Settings
+            # Database Settings
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-postgresql"
+                  key: "password"
+            # Redis Settings
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-redis"
+                  key: "redis-password"
+          envFrom:
+            - configMapRef:
+                name: baserow
+            - configMapRef:
+                name: baserow-backend
+          livenessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - /baserow/backend/docker/docker-entrypoint.sh celery-exportworker-healthcheck
+            initialDelaySeconds: 120
+            timeoutSeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - /baserow/backend/docker/docker-entrypoint.sh celery-exportworker-healthcheck
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 10
+          securityContext:
+            runAsGroup: 9999
+            runAsNonRoot: true
+            runAsUser: 9999
+        - name: baserow-celery-backend-beat-worker
+          image: "baserow/backend:1.19.1"
+          imagePullPolicy: Always
+          args:
+            - "celery-beat"
+          env:
+            # Baserow Backend Settings
+            - name: BASEROW_JWT_SIGNING_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-backend"
+                  key: jwt-signing-key
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-backend"
+                  key: secret-key
+            # Redis Settings
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "baserow-redis"
+                  key: "redis-password"
+          envFrom:
+            - configMapRef:
+                name: baserow
+            - configMapRef:
+                name: baserow-backend
+          securityContext:
+            runAsGroup: 9999
+            runAsNonRoot: true
+            runAsUser: 9999
