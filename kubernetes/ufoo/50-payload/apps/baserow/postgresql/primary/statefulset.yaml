@@ -3,30 +3,30 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: release-name-postgresql
+  name: baserow-postgresql
   namespace: "baserow"
   labels:
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: baserow
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: postgresql
     helm.sh/chart: postgresql-12.10.0
     app.kubernetes.io/component: primary
 spec:
   replicas: 1
-  serviceName: release-name-postgresql-hl
+  serviceName: baserow-postgresql-hl
   updateStrategy:
     rollingUpdate: {}
     type: RollingUpdate
   selector:
     matchLabels:
-      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/instance: baserow
       app.kubernetes.io/name: postgresql
       app.kubernetes.io/component: primary
   template:
     metadata:
-      name: release-name-postgresql
+      name: baserow-postgresql
       labels:
-        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/instance: baserow
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: postgresql
         helm.sh/chart: postgresql-12.10.0
@@ -42,7 +42,7 @@ spec:
             - podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    app.kubernetes.io/instance: release-name
+                    app.kubernetes.io/instance: baserow
                     app.kubernetes.io/name: postgresql
                     app.kubernetes.io/component: primary
                 topologyKey: kubernetes.io/hostname
@@ -82,12 +82,12 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: release-name-postgresql
+                  name: baserow-postgresql
                   key: password
             - name: POSTGRES_POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: release-name-postgresql
+                  name: baserow-postgresql
                   key: postgres-password
             - name: POSTGRES_DATABASE
               value: "baserow"
