@@ -2,9 +2,11 @@
 
 kind: Application
 apiVersion: argoproj.io/v1alpha1
+
 metadata:
-  name: tech
+  name: tech-dogseen
   namespace: argocd
+
 spec:
   project: default
   source:
