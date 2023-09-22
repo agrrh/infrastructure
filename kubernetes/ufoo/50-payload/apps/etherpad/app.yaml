@@ -1,0 +1,28 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: etherpad
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://nicholaswilde.github.io/helm-charts/
+    chart: etherpad
+    targetRevision: 1.0.2
+
+    helm:
+      values: |
+        env:
+          TZ: "Europe/Moscow"
+
+  destination:
+    namespace: etherpad
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
