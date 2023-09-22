@@ -17,6 +17,6 @@ spec:
           namespace: traefik
       services:
         - kind: Service
-          name: rethinkdb
+          name: rethinkdb-rethinkdb-admin
           namespace: rethinkdb
           port: 8080
