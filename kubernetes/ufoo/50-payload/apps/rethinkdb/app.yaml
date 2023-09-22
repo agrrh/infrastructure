@@ -1,0 +1,28 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: rethinkdb
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://cloudnativeapp.github.io/charts/curated/
+    chart: rethinkdb
+    targetRevision: 1.0.0
+
+    helm:
+      values: |
+        cluster:
+          replicas: 1
+
+  destination:
+    namespace: rethinkdb
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
