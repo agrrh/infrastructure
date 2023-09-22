@@ -16,6 +16,7 @@ spec:
       values: |
         env:
           TZ: "Europe/Moscow"
+          ADMIN_PASSWORD: "y59MxqTqBnAhdhTy"
 
   destination:
     namespace: etherpad
