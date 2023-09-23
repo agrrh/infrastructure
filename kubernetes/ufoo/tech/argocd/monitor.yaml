@@ -1,0 +1,27 @@
+---
+
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+
+metadata:
+  name: argocd
+  namespace: metrics
+  labels:
+    app: argocd
+    release: kube-prometheus-stack
+
+spec:
+  endpoints:
+    - honorLabels: true
+      path: /metrics
+      port: https-controller
+      scheme: http
+      interval: 15s
+      scrapeTimeout: 15s
+  jobLabel: argocd
+  namespaceSelector:
+    matchNames:
+      - argocd
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: application-controller
