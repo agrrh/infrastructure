@@ -6,11 +6,11 @@ metadata:
   name: payload-dukhota
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: master
-    path: kubernetes/ufoo/50-payload/apps/dukhota
+    path: kubernetes/ufoo/payload/apps/dukhota
     directory:
       recurse: true
   destination:

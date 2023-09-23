@@ -6,7 +6,7 @@ metadata:
   name: payload-n8n
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: master

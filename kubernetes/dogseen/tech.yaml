@@ -8,7 +8,7 @@ metadata:
   namespace: argocd
 
 spec:
-  project: default
+  project: initail
   source:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master

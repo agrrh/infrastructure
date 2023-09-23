@@ -6,7 +6,7 @@ metadata:
   name: metacontroller
   namespace: argocd
 spec:
-  project: default
+  project: tech
   source:
     repoURL: https://cowboysysop.github.io/charts/
     chart: metacontroller

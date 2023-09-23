@@ -6,11 +6,11 @@ metadata:
   name: payload-crypto-stuff
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: master
-    path: kubernetes/ufoo/50-payload/apps/crypto-stuff
+    path: kubernetes/ufoo/payload/apps/crypto-stuff
     directory:
       recurse: true
   destination:

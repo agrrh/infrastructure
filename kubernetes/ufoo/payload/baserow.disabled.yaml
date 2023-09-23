@@ -6,11 +6,11 @@
 #   name: payload-baserow
 #   namespace: argocd
 # spec:
-#   project: default
+#   project: payload
 #   source:
 #     repoURL: https://github.com/agrrh/infrastructure
 #     targetRevision: master
-#     path: kubernetes/ufoo/50-payload/apps/baserow
+#     path: kubernetes/ufoo/payload/apps/baserow
 #     directory:
 #       recurse: true
 #   destination:

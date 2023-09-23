@@ -6,11 +6,11 @@ metadata:
   name: payload-getlock
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: master
-    path: kubernetes/ufoo/50-payload/apps/getlock
+    path: kubernetes/ufoo/payload/apps/getlock
     directory:
       recurse: true
   destination:

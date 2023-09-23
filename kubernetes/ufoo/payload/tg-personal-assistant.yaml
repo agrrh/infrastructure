@@ -6,11 +6,11 @@ metadata:
   name: payload-tg-personal-assistant
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: master
-    path: kubernetes/ufoo/50-payload/apps/tg-personal-assistant
+    path: kubernetes/ufoo/payload/apps/tg-personal-assistant
     directory:
       recurse: true
   destination:

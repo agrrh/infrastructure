@@ -3,14 +3,14 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: meta-project
+  name: meta-hello
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master
-    path: kubernetes/ufoo/20-metacontrollers/project
+    path: kubernetes/ufoo/payload/metacontollers/hello
     directory:
       recurse: true
   destination:
