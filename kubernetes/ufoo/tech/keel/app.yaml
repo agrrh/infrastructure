@@ -6,7 +6,7 @@ metadata:
   name: keel
   namespace: argocd
 spec:
-  project: default
+  project: tech
   source:
     repoURL: https://charts.keel.sh
     chart: keel

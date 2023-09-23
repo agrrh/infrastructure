@@ -6,7 +6,7 @@ metadata:
   name: drone-runner
   namespace: argocd
 spec:
-  project: default
+  project: tech
   source:
     repoURL: https://charts.drone.io
     chart: drone-runner-kube

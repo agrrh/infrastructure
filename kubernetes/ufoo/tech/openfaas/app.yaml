@@ -6,7 +6,7 @@ metadata:
   name: openfaas
   namespace: argocd
 spec:
-  project: default
+  project: tech
   source:
     repoURL: https://openfaas.github.io/faas-netes
     chart: openfaas
