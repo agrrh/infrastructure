@@ -6,7 +6,7 @@ metadata:
   name: hajimari
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://hajimari.io
     chart: hajimari

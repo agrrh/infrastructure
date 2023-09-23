@@ -6,7 +6,7 @@ metadata:
   name: rethinkdb
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://cloudnativeapp.github.io/charts/curated/
     chart: rethinkdb

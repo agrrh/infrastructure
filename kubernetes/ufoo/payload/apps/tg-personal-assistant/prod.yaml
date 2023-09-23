@@ -6,7 +6,7 @@ metadata:
   name: tg-personal-assistant-prod
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://github.com/agrrh/tg-personal-assistant
     targetRevision: master

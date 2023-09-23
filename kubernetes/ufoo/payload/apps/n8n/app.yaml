@@ -6,7 +6,7 @@ metadata:
   name: n8n
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://8gears.container-registry.com/chartrepo/library/
     chart: n8n

@@ -6,7 +6,7 @@ metadata:
   name: events-bus
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://nats-io.github.io/k8s/helm/charts
     chart: nats

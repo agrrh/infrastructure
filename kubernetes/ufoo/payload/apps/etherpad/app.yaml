@@ -6,7 +6,7 @@ metadata:
   name: etherpad
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://nicholaswilde.github.io/helm-charts/
     chart: etherpad

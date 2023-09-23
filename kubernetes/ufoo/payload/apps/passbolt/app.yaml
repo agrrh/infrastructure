@@ -8,7 +8,7 @@ metadata:
   name: passbolt
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://cnieg.github.io/helm-charts
     chart: passbolt
