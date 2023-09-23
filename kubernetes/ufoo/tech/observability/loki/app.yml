@@ -63,12 +63,6 @@ spec:
     - group: apps/v1
       kind: StatefulSet
       jqPathExpressions:
-        - .spec.persistentVolumeClaimRetentionPolicy[]
-        - .spec.persistentVolumeClaimRetentionPolicy.whenDeleted
-        - .spec.persistentVolumeClaimRetentionPolicy.whenScaled
-    - group: apps
-      kind: StatefulSet
-      jqPathExpressions:
-        - .spec.persistentVolumeClaimRetentionPolicy[]
+        - .spec.persistentVolumeClaimRetentionPolicy
         - .spec.persistentVolumeClaimRetentionPolicy.whenDeleted
         - .spec.persistentVolumeClaimRetentionPolicy.whenScaled
