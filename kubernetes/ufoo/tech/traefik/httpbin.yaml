@@ -6,7 +6,7 @@ metadata:
   name: httpbin
   namespace: argocd
 spec:
-  project: default
+  project: tech
   source:
     repoURL: https://matheusfm.dev/charts
     chart: httpbin
