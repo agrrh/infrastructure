@@ -60,7 +60,7 @@ spec:
       selfHeal: true
 
   ignoreDifferences:
-    - group: apps/v1
+    - group: apps
       kind: StatefulSet
       jqPathExpressions:
         - .spec.persistentVolumeClaimRetentionPolicy
