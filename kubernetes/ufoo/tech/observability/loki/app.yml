@@ -9,7 +9,7 @@ metadata:
   name: loki
   namespace: argocd
 spec:
-  project: default
+  project: tech
   source:
     repoURL: https://grafana.github.io/helm-charts
     chart: loki

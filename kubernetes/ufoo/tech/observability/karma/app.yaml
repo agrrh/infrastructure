@@ -6,7 +6,7 @@ metadata:
   name: karma
   namespace: argocd
 spec:
-  project: default
+  project: tech
   source:
     repoURL: https://wiremind.github.io/wiremind-helm-charts
     chart: karma

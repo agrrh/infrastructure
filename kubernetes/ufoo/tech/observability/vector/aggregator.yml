@@ -9,7 +9,7 @@ metadata:
   name: vector-aggregator
   namespace: argocd
 spec:
-  project: default
+  project: tech
   source:
     repoURL: https://helm.vector.dev
     chart: vector
