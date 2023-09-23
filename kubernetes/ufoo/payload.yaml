@@ -2,22 +2,20 @@
 
 kind: Application
 apiVersion: argoproj.io/v1alpha1
-
 metadata:
-  name: tech-dogseen
+  name: payload-ufoo
   namespace: argocd
-
 spec:
   project: default
   source:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master
-    path: kubernetes/dogseen/10-tech
-    directory:
-      recurse: true
+    path: kubernetes/ufoo/payload
+    # directory:
+    #   recurse: true
   destination:
     namespace: argocd
-    name: k3s.spb.agrrh.com
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       selfHeal: true

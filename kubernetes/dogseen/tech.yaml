@@ -4,7 +4,7 @@ kind: Application
 apiVersion: argoproj.io/v1alpha1
 
 metadata:
-  name: payload-dogseen
+  name: tech-dogseen
   namespace: argocd
 
 spec:
@@ -12,9 +12,9 @@ spec:
   source:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master
-    path: kubernetes/dogseen/50-payload
-    # directory:
-    #   recurse: true
+    path: kubernetes/dogseen/tech
+    directory:
+      recurse: true
   destination:
     namespace: argocd
     name: k3s.spb.agrrh.com
