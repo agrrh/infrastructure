@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: master
-    path: kubernetes/ufoo/50-payload/apps/n8n
+    path: kubernetes/ufoo/payload/apps/n8n
     directory:
       recurse: true
   destination:

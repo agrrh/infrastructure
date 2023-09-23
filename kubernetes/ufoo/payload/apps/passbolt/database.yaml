@@ -8,7 +8,7 @@ metadata:
   name: passbolt-mariadb
   namespace: argocd
 spec:
-  project: default
+  project: payload
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: mariadb
