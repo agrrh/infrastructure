@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master
-    path: kubernetes/ufoo/payload/metacontollers/hello
+    path: kubernetes/ufoo/payload/metacontrollers/hello
     directory:
       recurse: true
   destination:
