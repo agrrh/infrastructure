@@ -65,5 +65,3 @@ spec:
       jqPathExpressions:
         - .spec.persistentVolumeClaimRetentionPolicy
         - .spec.persistentVolumeClaimRetentionPolicy[]
-        - .spec.persistentVolumeClaimRetentionPolicy.whenDeleted
-        - .spec.persistentVolumeClaimRetentionPolicy.whenScaled
