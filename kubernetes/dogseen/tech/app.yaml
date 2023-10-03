@@ -8,9 +8,8 @@ metadata:
 spec:
   project: tech
   source:
-    repoURL: https://risserlabs.gitlab.io/community/charts
-    chart: olm
-    targetRevision: 0.25.0
+    repoURL: https://github.com/clayrisser/charts/tree/main/stable/olm
+    targetRevision: main
 
     helm:
       values: |
