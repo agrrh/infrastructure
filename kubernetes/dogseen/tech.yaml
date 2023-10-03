@@ -13,8 +13,8 @@ spec:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master
     path: kubernetes/dogseen/tech
-    directory:
-      recurse: true
+    # directory:
+    #   recurse: true
   destination:
     namespace: argocd
     name: k3s.spb.agrrh.com

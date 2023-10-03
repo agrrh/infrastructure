@@ -1,0 +1,22 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: tech-olm
+  namespace: argocd
+spec:
+  project: tech
+  source:
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: master
+    path: kubernetes/dogseen/tech/olm
+    directory:
+      recurse: true
+  destination:
+    namespace: tech
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
