@@ -1,0 +1,25 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: operator-lifecycle-manager
+  namespace: argocd
+spec:
+  project: tech
+  source:
+    repoURL: https://risserlabs.gitlab.io/community/charts
+    chart: olm
+    targetRevision: 0.25.0
+
+    helm:
+      values: |
+        # changeme
+
+  destination:
+    namespace: operator-lifecycle-manager
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
