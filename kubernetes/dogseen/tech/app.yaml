@@ -8,8 +8,9 @@ metadata:
 spec:
   project: tech
   source:
-    repoURL: https://github.com/clayrisser/charts/tree/main/stable/olm
-    targetRevision: main
+    repoURL: https://github.com/operator-framework/operator-lifecycle-manager.git
+    targetRevision: v0.25.0
+    path: deploy/chart
 
     helm:
       values: |
