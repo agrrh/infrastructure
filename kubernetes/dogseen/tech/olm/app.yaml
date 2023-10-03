@@ -18,7 +18,7 @@ spec:
 
   destination:
     namespace: operator-lifecycle-manager
-    server: https://kubernetes.default.svc
+    name: k3s.spb.agrrh.com
   syncPolicy:
     automated:
       prune: true
