@@ -11,6 +11,6 @@ spec:
   image: 'vertica/vertica-k8s:12.0.4-0'
   subclusters:
     - name: default_subcluster
-      size: 3
-    - name: my_subcluster
       size: 1
+    # - name: my_subcluster
+    #   size: 1
