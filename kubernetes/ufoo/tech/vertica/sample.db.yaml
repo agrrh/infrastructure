@@ -6,6 +6,10 @@ metadata:
   name: verticadb-sample
   namespace: verticadb-operator
 spec:
+  labels:
+    purpose: analytics
+    owner: team-foo
+
   # communal:
   #   endpoint: 'https://s3.amazonaws.com'
 
