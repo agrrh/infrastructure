@@ -3,9 +3,14 @@
 apiVersion: vertica.com/v1beta1
 kind: VerticaDB
 metadata:
-  name: verticadb-sample
+  name: vertica-foo
   namespace: verticadb-operator
 spec:
+  image: 'vertica/vertica-k8s:12.0.1-0-minimal'
+  # image: 'vertica/vertica-k8s:12.0.2-0-minimal'
+  # image: 'vertica/vertica-k8s:12.0.3-0-minimal'
+  # image: 'vertica/vertica-k8s:12.0.4-0-nokeys'
+
   labels:
     purpose: analytics
     owner: team-foo
@@ -18,11 +23,10 @@ spec:
 
   licenseSecret: license
 
-  image: 'vertica/vertica-k8s:12.0.3-0'
   subclusters:
     # default
     - name: default_subcluster
-      size: 3
+      size: 2
 
       # resources:
       #   requests:
