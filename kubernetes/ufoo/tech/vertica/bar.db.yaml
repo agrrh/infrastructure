@@ -6,10 +6,7 @@ metadata:
   name: verticadb-bar
   namespace: verticadb-operator
 spec:
-  # image: 'vertica/vertica-k8s:12.0.1-0-minimal'
-  # image: 'vertica/vertica-k8s:12.0.2-0-minimal'
-  image: 'vertica/vertica-k8s:12.0.3-0-minimal'
-  # image: 'vertica/vertica-k8s:12.0.4-0-nokeys'
+  image: 'vertica/vertica-k8s:12.0.4-0-nokeys'
 
   labels:
     purpose: analytics
