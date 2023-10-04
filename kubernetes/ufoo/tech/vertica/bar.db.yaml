@@ -25,13 +25,13 @@ spec:
     - name: default_subcluster
       size: 2
 
-      # resources:
-      #   requests:
-      #     cpu: 0.1
-      #     memory: 128Mi
-      #   limit:
-      #     cpu: 0.5
-      #     memory: 512Mi
+      resources:
+        requests:
+          cpu: 0.1
+          memory: 64Mi
+        limit:
+          cpu: 0.1
+          memory: 64Mi
 
       # nodeSelector:
       #   disktype: ssd
