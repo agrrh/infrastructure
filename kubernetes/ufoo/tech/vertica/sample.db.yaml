@@ -8,9 +8,10 @@ metadata:
 spec:
   # communal:
   #   endpoint: 'https://s3.amazonaws.com'
-  image: 'vertica/vertica-k8s:12.0.4-0'
+  image: 'vertica/vertica-k8s:12.0.4-0-nokeys'
   subclusters:
     - name: default_subcluster
       size: 1
     # - name: my_subcluster
     #   size: 1
+  sshSecret: vertica-ssh-secret
