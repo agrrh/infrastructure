@@ -34,6 +34,6 @@ spec:
       #   disktype: ssd
       #   region: us-east
 
-    - name: second_subcluster
-      size: 3
+    # - name: second_subcluster
+    #   size: 3
   sshSecret: vertica-ssh-secret
