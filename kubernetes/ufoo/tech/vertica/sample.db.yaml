@@ -12,10 +12,11 @@ spec:
 
   # communal:
   #   endpoint: 'https://s3.amazonaws.com'
+  #   path: "s3://bucket-name"
 
   licenseSecret: license
 
-  image: 'vertica/vertica-k8s:12.0.4-0-nokeys'
+  image: 'vertica/vertica-k8s:12.0.3-0-nokeys'
   subclusters:
     # default
     - name: default_subcluster
