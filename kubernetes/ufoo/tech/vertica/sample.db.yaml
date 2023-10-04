@@ -14,6 +14,8 @@ spec:
   #   endpoint: 'https://s3.amazonaws.com'
   #   path: "s3://bucket-name"
 
+  kSafety: "1"
+
   licenseSecret: license
 
   image: 'vertica/vertica-k8s:12.0.3-0'
