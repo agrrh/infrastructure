@@ -10,8 +10,22 @@ spec:
   #   endpoint: 'https://s3.amazonaws.com'
   image: 'vertica/vertica-k8s:12.0.4-0-nokeys'
   subclusters:
+    # default
     - name: default_subcluster
-      size: 1
+      size: 3
+
+      # resources:
+      #   requests:
+      #     cpu: 0.1
+      #     memory: 128Mi
+      #   limit:
+      #     cpu: 0.5
+      #     memory: 512Mi
+
+      # nodeSelector:
+      #   disktype: ssd
+      #   region: us-east
+
     # - name: my_subcluster
     #   size: 1
   sshSecret: vertica-ssh-secret
