@@ -1,0 +1,15 @@
+---
+
+apiVersion: vertica.com/v1beta1
+kind: VerticaDB
+metadata:
+  name: verticadb-sample
+spec:
+  communal:
+    endpoint: 'https://s3.amazonaws.com'
+  image: 'vertica/vertica-k8s:12.0.4-0'
+  subclusters:
+    - name: default_subcluster
+      size: 3
+    - name: my_subcluster
+      size: 1
