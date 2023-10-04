@@ -23,7 +23,7 @@ spec:
   subclusters:
     # default
     - name: default_subcluster
-      size: 3
+      size: 4
 
       resources:
         requests:
