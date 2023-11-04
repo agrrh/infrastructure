@@ -18,8 +18,8 @@ spec:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master
     path: kubernetes/dogseen/tech
-    # directory:
-    #   recurse: true
+    directory:
+      recurse: false
 
   syncPolicy:
     automated:
