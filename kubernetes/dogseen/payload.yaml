@@ -11,8 +11,8 @@ spec:
   project: initial
 
   destination:
+    name: k3s.spb.agrrh.com
     namespace: argocd
-    name: in-cluster
 
   source:
     repoURL: https://github.com/agrrh/infrastructure.git
