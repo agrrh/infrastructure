@@ -17,7 +17,7 @@ spec:
     targetRevision: master
     path: kubernetes/dogseen/payload/apps/etherpad/extras
     directory:
-      recurse: true
+      recurse: false
 
   syncPolicy:
     automated:

@@ -18,8 +18,8 @@ spec:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master
     path: kubernetes/dogseen/payload
-    # directory:
-    #   recurse: false
+    directory:
+      recurse: false
 
   syncPolicy:
     automated:
