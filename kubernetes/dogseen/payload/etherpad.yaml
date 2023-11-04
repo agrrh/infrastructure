@@ -9,7 +9,7 @@ spec:
   project: payload
 
   destination:
-    name: dogseen
+    name: k3s.spb.agrrh.com
     namespace: argocd
 
   source:
