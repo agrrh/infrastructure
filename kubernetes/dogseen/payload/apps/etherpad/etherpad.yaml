@@ -3,21 +3,21 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: payload-etherpad
+  name: etherpad-extras
   namespace: argocd
 spec:
   project: payload
 
   destination:
-    name: in-cluster
+    name: k3s.spb.agrrh.com
     namespace: argocd
 
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: master
-    path: kubernetes/dogseen/payload/apps/etherpad
+    path: kubernetes/dogseen/payload/apps/etherpad/extras
     directory:
-      recurse: false
+      recurse: true
 
   syncPolicy:
     automated:
