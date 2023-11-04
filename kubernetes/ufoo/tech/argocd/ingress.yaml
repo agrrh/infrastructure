@@ -18,6 +18,6 @@ spec:
           namespace: traefik
       services:
         - kind: Service
-          name: argo-cd-argocd-server
+          name: argocd-server
           namespace: argocd
           port: 80
