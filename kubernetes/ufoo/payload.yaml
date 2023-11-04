@@ -7,15 +7,18 @@ metadata:
   namespace: argocd
 spec:
   project: initial
+
+  destination:
+    name: in-cluster
+    namespace: argocd
+
   source:
     repoURL: https://github.com/agrrh/infrastructure.git
     targetRevision: master
     path: kubernetes/ufoo/payload
     # directory:
     #   recurse: true
-  destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
+
   syncPolicy:
     automated:
       selfHeal: true
