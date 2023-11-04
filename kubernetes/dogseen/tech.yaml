@@ -11,7 +11,7 @@ spec:
   project: initial
 
   destination:
-    name: k3s.spb.agrrh.com
+    name: in-cluster
     namespace: argocd
 
   source:
