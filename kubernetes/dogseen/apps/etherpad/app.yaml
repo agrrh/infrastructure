@@ -7,6 +7,11 @@ metadata:
   namespace: argocd
 spec:
   project: payload
+
+  destination:
+    name: dogseen
+    namespace: etherpad
+
   source:
     repoURL: https://nicholaswilde.github.io/helm-charts/
     chart: etherpad
@@ -18,9 +23,6 @@ spec:
           TZ: "Europe/Moscow"
           ADMIN_PASSWORD: "y59MxqTqBnAhdhTy"
 
-  destination:
-    namespace: etherpad
-    server: https://kubernetes.default.svc
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
