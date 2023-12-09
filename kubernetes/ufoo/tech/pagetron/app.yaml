@@ -14,6 +14,7 @@ spec:
 
     helm:
       values: |
+        publicUrl: "https://pagetron.agrrh.com"
         targets:
           - https://agrrh.com
           - https://prometheus.agrrh.com
