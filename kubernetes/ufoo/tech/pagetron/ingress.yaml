@@ -2,9 +2,11 @@
 
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
+
 metadata:
   name: pagetron-http
   namespace: argocd
+
 spec:
   entryPoints:
     - web
@@ -22,18 +24,17 @@ spec:
 
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
+
 metadata:
   name: pagetron-api-http
   namespace: argocd
+
 spec:
   entryPoints:
     - web
   routes:
     - kind: Rule
-      match: >-
-        (
-          Host(`pagetron.agrrh.com`) || Host(`pagetron.5426b488.nip.io`)
-        ) && PathPrefix(`/api`)
+      match: (Host(`pagetron.agrrh.com`) || Host(`pagetron.5426b488.nip.io`)) && PathPrefix(`/api/`)
       middlewares:
         - name: pagetron-api-stripprefix
           namespace: argocd
@@ -47,6 +48,7 @@ spec:
 
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
+
 metadata:
   name: pagetron-api-stripprefix
   namespace: argocd
