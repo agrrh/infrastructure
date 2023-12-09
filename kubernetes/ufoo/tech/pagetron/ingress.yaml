@@ -1,0 +1,19 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pagetron-http
+  namespace: argocd
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`pagetron.agrrh.com`) || Host(`pagetron.5426b488.nip.io`)
+      middlewares: []
+      services:
+        - kind: Service
+          name: pagetron-frontend
+          namespace: pagetron
+          port: 80
