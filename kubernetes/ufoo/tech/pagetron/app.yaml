@@ -22,6 +22,10 @@ spec:
           - https://karma.agrrh.com
           - https://hajimari.agrrh.com
 
+          - https://example.org
+          - https://example.com
+          - https://example.org/api
+
   destination:
     namespace: pagetron
     server: https://kubernetes.default.svc
