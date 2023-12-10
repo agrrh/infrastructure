@@ -17,14 +17,12 @@ spec:
         publicUrl: "https://pagetron.agrrh.com"
         targets:
           - https://agrrh.com
-          - https://prometheus.agrrh.com
           - https://grafana.agrrh.com
           - https://karma.agrrh.com
           - https://hajimari.agrrh.com
 
           - https://example.org
           - https://example.com
-          - https://example.org/api
 
   destination:
     namespace: pagetron
