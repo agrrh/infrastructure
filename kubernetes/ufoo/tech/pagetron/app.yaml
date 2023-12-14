@@ -14,6 +14,7 @@ spec:
 
     helm:
       values: |
+        timezone: Europe/Moscow
         publicUrl: "https://status.agrrh.com"
         targets:
           - https://agrrh.com
