@@ -53,8 +53,8 @@ spec:
     syncOptions:
       - CreateNamespace=true
     automated:
-      prune: true
-      selfHeal: true
+      prune: false
+      selfHeal: false
 
   ignoreDifferences:
     - group: apps
