@@ -1,27 +1,27 @@
----
-
-kind: Application
-apiVersion: argoproj.io/v1alpha1
-metadata:
-  name: metacontroller
-  namespace: argocd
-spec:
-  project: tech
-  source:
-    repoURL: https://cowboysysop.github.io/charts/
-    chart: metacontroller
-    targetRevision: 1.2.2
-
-    helm:
-      values: |
-        # changeme
-
-  destination:
-    namespace: metacontroller
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: true
+# ---
+#
+# kind: Application
+# apiVersion: argoproj.io/v1alpha1
+# metadata:
+#   name: metacontroller
+#   namespace: argocd
+# spec:
+#   project: tech
+#   source:
+#     repoURL: https://cowboysysop.github.io/charts/
+#     chart: metacontroller
+#     targetRevision: 1.2.2
+#
+#     helm:
+#       values: |
+#         # changeme
+#
+#   destination:
+#     namespace: metacontroller
+#     server: https://kubernetes.default.svc
+#   syncPolicy:
+#     syncOptions:
+#       - CreateNamespace=true
+#     automated:
+#       prune: true
+#       selfHeal: true
