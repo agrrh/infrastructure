@@ -12,7 +12,7 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`pagetron.agrrh.com`) || Host(`pagetron.5426b488.nip.io`)
+      match: Host(`status.agrrh.com`) || Host(`status.5426b488.nip.io`)
       middlewares: []
       services:
         - kind: Service
@@ -34,7 +34,7 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: (Host(`pagetron.agrrh.com`) || Host(`pagetron.5426b488.nip.io`)) && PathPrefix(`/api/`)
+      match: (Host(`status.agrrh.com`) || Host(`status.5426b488.nip.io`)) && PathPrefix(`/api/`)
       middlewares:
         - name: pagetron-api-stripprefix
           namespace: argocd

@@ -14,7 +14,7 @@ spec:
 
     helm:
       values: |
-        publicUrl: "https://pagetron.agrrh.com"
+        publicUrl: "https://status.agrrh.com"
         targets:
           - https://agrrh.com
           - https://grafana.agrrh.com

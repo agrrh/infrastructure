@@ -9,5 +9,5 @@ spec:
   name: Pagetron
   group: observability
   icon: mdi:list-status
-  url: https://pagetron.agrrh.com/
+  url: https://status.agrrh.com/
   info: Status page
