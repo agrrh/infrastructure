@@ -1,0 +1,31 @@
+---
+
+# https://github.com/argoproj/argo-helm/blob/argo-cd-5.51.6/charts/argo-cd/values.yaml
+
+# helm upgrade argocd argo/argo-cd --version 5.51.6 --install --namespace argocd --create-namespace
+
+# TODO: Add GitHub SSO
+# TODO: Add notifications
+
+global:
+  image:
+    repository: quay.io/argoproj/argocd
+    tag: "v2.9.3"
+
+  logging:
+    format: json
+    level: info
+
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: "true"
+
+  tolerations:
+    - key: agrrh.com/node-role
+      operator: Equal
+      value: master
+      effect: NoSchedule
+
+configs:
+  cm:
+    exec.enabled: false
+    admin.enabled: true
