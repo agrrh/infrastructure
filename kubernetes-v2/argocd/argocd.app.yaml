@@ -21,7 +21,7 @@ spec:
 
       helm:
         valueFiles:
-          - $values/kubernetes-v2/argocd/bootstrap/values.yaml
+          - $values/kubernetes-v2/argocd/values.yaml
 
     - repoURL: https://github.com/agrrh/infrastructure
       targetRevision: HEAD
