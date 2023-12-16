@@ -17,7 +17,7 @@ spec:
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: HEAD
-    path: kubernetes-v2/tech
+    path: kubernetes-v2/personal
     directory:
       recurse: false
 
