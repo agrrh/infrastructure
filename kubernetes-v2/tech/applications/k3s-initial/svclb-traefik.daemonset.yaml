@@ -1,0 +1,108 @@
+---
+
+apiVersion: apps/v1
+kind: DaemonSet
+
+metadata:
+  name: svclb-traefik
+  namespace: kube-system
+  labels:
+    svccontroller.k3s.cattle.io/svcname: traefik
+    svccontroller.k3s.cattle.io/svcnamespace: kube-system
+
+spec:
+  selector:
+    matchLabels:
+      app: svclb-traefik
+
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: svclb-traefik
+        svccontroller.k3s.cattle.io/svcname: traefik
+        svccontroller.k3s.cattle.io/svcnamespace: kube-system
+    spec:
+      containers:
+        - name: lb-tcp-80
+          image: rancher/klipper-lb:v0.4.4
+          imagePullPolicy: IfNotPresent
+
+          env:
+            - name: SRC_PORT
+              value: "80"
+            - name: SRC_RANGES
+              value: 0.0.0.0/0
+            - name: DEST_PROTO
+              value: TCP
+            - name: DEST_PORT
+              value: "80"
+            - name: DEST_IPS
+              value: 10.43.79.142
+
+          ports:
+            - containerPort: 80
+              hostPort: 80
+              name: lb-tcp-80
+              protocol: TCP
+
+          securityContext:
+            capabilities:
+              add:
+              - NET_ADMIN
+
+        - name: lb-tcp-443
+          image: rancher/klipper-lb:v0.4.4
+          imagePullPolicy: IfNotPresent
+
+          env:
+            - name: SRC_PORT
+              value: "443"
+            - name: SRC_RANGES
+              value: 0.0.0.0/0
+            - name: DEST_PROTO
+              value: TCP
+            - name: DEST_PORT
+              value: "443"
+            - name: DEST_IPS
+              value: 10.43.79.142
+
+          ports:
+          - containerPort: 443
+            hostPort: 443
+            name: lb-tcp-443
+            protocol: TCP
+
+          securityContext:
+            capabilities:
+              add:
+              - NET_ADMIN
+
+      dnsPolicy: ClusterFirst
+      securityContext:
+        sysctls:
+        - name: net.ipv4.ip_forward
+          value: "1"
+      serviceAccount: svclb
+      serviceAccountName: svclb
+
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+          operator: Exists
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+          operator: Exists
+        - key: CriticalAddonsOnly
+          operator: Exists
+
+        - effect: NoSchedule
+          key: agrrh.com/node-role
+          operator: Equal
+          value: master
