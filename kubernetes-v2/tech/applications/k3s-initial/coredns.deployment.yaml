@@ -93,10 +93,6 @@ spec:
         kubernetes.io/os: linux
 
       tolerations:
-        - effect: NoSchedule
-          key: agrrh.com/node-role
-          operator: Equal
-          value: master
         - key: CriticalAddonsOnly
           operator: Exists
         - effect: NoSchedule
@@ -105,6 +101,11 @@ spec:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
           operator: Exists
+
+        - effect: NoSchedule
+          key: agrrh.com/node-role
+          operator: Equal
+          value: master
 
       topologySpreadConstraints:
         - labelSelector:
