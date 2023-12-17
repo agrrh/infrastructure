@@ -53,6 +53,12 @@ spec:
                 operator: Equal
                 value: master
 
+          tolerations:
+            - effect: NoSchedule
+              key: agrrh.com/node-role
+              operator: Equal
+              value: master
+
         prometheus:
           enabled: true
           prometheusSpec:
