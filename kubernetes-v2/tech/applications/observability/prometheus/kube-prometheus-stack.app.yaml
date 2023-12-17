@@ -45,6 +45,14 @@ spec:
           defaultDashboardsEnabled: true
           defaultDashboardsTimezone: browser
 
+        prometheusOperator:
+          admissionWebhooks:
+            tolerations:
+              - effect: NoSchedule
+                key: agrrh.com/node-role
+                operator: Equal
+                value: master
+
         prometheus:
           enabled: true
           prometheusSpec:
