@@ -24,6 +24,13 @@ spec:
         alertmanager:
           enabled: true
 
+        alertmanagerSpec:
+          tolerations:
+            - effect: NoSchedule
+              key: agrrh.com/node-role
+              operator: Equal
+              value: master
+
         defaultRules:
           create: true
           runbookUrl: https://runbooks.prometheus-operator.dev/runbooks
@@ -50,6 +57,13 @@ spec:
                     requests:
                       storage: 10Gi
                   storageClassName: microk8s-hostpath
+
+        prometheusSpec:
+          tolerations:
+            - effect: NoSchedule
+              key: agrrh.com/node-role
+              operator: Equal
+              value: master
 
   syncPolicy:
     syncOptions:
