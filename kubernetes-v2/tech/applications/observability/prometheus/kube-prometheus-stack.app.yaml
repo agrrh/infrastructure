@@ -1,0 +1,66 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+spec:
+  project: tech
+
+  destination:
+    name: brave-booth
+    namespace: metrics
+
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 45.0.0
+
+    helm:
+      values: |
+        # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+
+        alertmanager:
+          enabled: true
+
+        defaultRules:
+          create: true
+          runbookUrl: https://runbooks.prometheus-operator.dev/runbooks
+
+        grafana:
+          additionalDataSources: []
+          admin:
+            existingSecret: grafana-admin
+            userKey: admin-user
+            passwordKey: admin-password
+
+          defaultDashboardsEnabled: true
+          defaultDashboardsTimezone: browser
+
+        prometheus:
+          enabled: true
+          prometheusSpec:
+            storageSpec:
+              volumeClaimTemplate:
+                spec:
+                  accessModes:
+                    - ReadWriteOnce
+                  resources:
+                    requests:
+                      storage: 10Gi
+                  storageClassName: microk8s-hostpath
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: false
+      selfHeal: false
+
+  ignoreDifferences:
+    - group: apps
+      kind: StatefulSet
+      jqPathExpressions:
+        - .spec.persistentVolumeClaimRetentionPolicy
+        - .spec.persistentVolumeClaimRetentionPolicy[]
