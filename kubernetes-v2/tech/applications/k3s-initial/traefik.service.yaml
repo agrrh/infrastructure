@@ -36,12 +36,13 @@ spec:
 
   ports:
     - name: web
-      nodePort: 32555
+      nodePort: 32080
       port: 80
       protocol: TCP
       targetPort: web
+
     - name: websecure
-      nodePort: 32271
+      nodePort: 32443
       port: 443
       protocol: TCP
       targetPort: websecure
