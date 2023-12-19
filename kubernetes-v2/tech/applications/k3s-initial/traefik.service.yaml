@@ -2,42 +2,46 @@
 
 apiVersion: v1
 kind: Service
-
 metadata:
-  name: traefik-nodeport
+  name: traefik
   namespace: kube-system
+
   labels:
     app.kubernetes.io/instance: traefik-kube-system
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: traefik
 
-spec:
-  type: NodePort
+  annotations:
+    meta.helm.sh/release-name: traefik
+    meta.helm.sh/release-namespace: kube-system
 
+  finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+
+spec:
+  type: LoadBalancer
   selector:
     app.kubernetes.io/instance: traefik-kube-system
     app.kubernetes.io/name: traefik
 
-  externalTrafficPolicy: Local
-  internalTrafficPolicy: Local
+  allocateLoadBalancerNodePorts: true
+  sessionAffinity: None
+
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
 
   ipFamilies:
     - IPv4
-  ipFamilyPolicy: SingleStack
+  ipFamilyPolicy: PreferDualStack
 
   ports:
     - name: web
-      nodePort: 32080
+      nodePort: 32555
       port: 80
       protocol: TCP
       targetPort: web
     - name: websecure
-      nodePort: 32443
+      nodePort: 32271
       port: 443
       protocol: TCP
       targetPort: websecure
-
-  sessionAffinity: None
-
-status:
-  loadBalancer: {}
