@@ -60,6 +60,12 @@ spec:
             usernameKey: username
             passwordKey: password
 
+        tolerations:
+          - effect: NoSchedule
+            key: agrrh.com/node-role
+            operator: Equal
+            value: master
+
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

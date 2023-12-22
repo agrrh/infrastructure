@@ -28,6 +28,12 @@ spec:
             accessModes:
               - ReadWriteOnce
 
+          tolerations:
+            - effect: NoSchedule
+              key: agrrh.com/node-role
+              operator: Equal
+              value: master
+
   destination:
     namespace: passbolt
     server: https://kubernetes.default.svc
