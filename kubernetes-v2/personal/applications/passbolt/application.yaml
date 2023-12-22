@@ -24,7 +24,7 @@ spec:
         image:
           repository: passbolt/passbolt
           pullPolicy: IfNotPresent
-          tag: 4.4.2-1-ce
+          tag: 4.4.2-1-ce-non-root
 
         env:
           PASSBOLT_EMAIL_SHOW_SECRET: false
