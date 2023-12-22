@@ -8,7 +8,12 @@ metadata:
   name: passbolt-mariadb
   namespace: argocd
 spec:
-  project: payload
+  project: personal
+
+  destination:
+    name: brave-booth
+    namespace: passbolt
+
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: mariadb
@@ -34,12 +39,9 @@ spec:
               operator: Equal
               value: master
 
-  destination:
-    namespace: passbolt
-    server: https://kubernetes.default.svc
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
+    # syncOptions:
+    #   - CreateNamespace=true
     automated:
       selfHeal: true
       prune: false
