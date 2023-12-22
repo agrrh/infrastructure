@@ -12,7 +12,7 @@ spec:
 
   destination:
     name: brave-booth
-    namespace: argocd
+    namespace: passbolt
 
   source:
     repoURL: https://cnieg.github.io/helm-charts
