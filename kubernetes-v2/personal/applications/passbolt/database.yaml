@@ -23,7 +23,7 @@ spec:
           extraEnvVarsSecret: passbolt-mariadb-env
 
           persistence:
-            storageClass: microk8s-hostpath
+            storageClass: local-path
             size: 5Gi
             accessModes:
               - ReadWriteOnce
