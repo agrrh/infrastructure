@@ -1,0 +1,66 @@
+---
+
+# NOTE: https://artifacthub.io/packages/helm/cnieg/passbolt
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: passbolt
+  namespace: argocd
+spec:
+  project: payload
+  source:
+    repoURL: https://cnieg.github.io/helm-charts
+    chart: passbolt
+    targetRevision: "1.1.17"
+    helm:
+      releaseName: passbolt
+      values: |
+        image:
+          repository: passbolt/passbolt
+          pullPolicy: IfNotPresent
+          tag: 4.4.2-1-ce
+
+        env:
+          PASSBOLT_EMAIL_SHOW_SECRET: false
+          PASSBOLT_EMAIL_SHOW_URI: false
+          PASSBOLT_EMAIL_SHOW_USERNAME: false
+          PASSBOLT_EMAIL_SEND_PASSWORD_CREATE: false
+          PASSBOLT_EMAIL_SEND_PASSWORD_UPDATE: false
+          PASSBOLT_REGISTRATION_PUBLIC: false
+
+        persistence:
+          enabled: true
+          storageClass: local-path
+          accessMode: ReadWriteOnce
+          size: 1Gi
+
+        passbolt:
+          baseUrl: passbolt.agrrh.com
+
+        # email:
+        #   host: "smtp.example.com"
+        #   port: 25
+        #   from: "noreply@example.com"
+        #   timeout: 30
+
+        mariadb:
+          enabled: false
+
+        db:
+          host: mariadb
+          name: passbolt
+          existingSecret:
+            name: db-passbolt
+            usernameKey: username
+            passwordKey: password
+
+  destination:
+    namespace: passbolt
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: false
+      prune: false
