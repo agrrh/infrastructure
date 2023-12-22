@@ -1,0 +1,13 @@
+---
+
+# traefik_acme_email: "encrypted"
+# traefik_cloudflare_api_token: "encrypted"
+
+traefik_services:
+  traefik:
+    servers:
+      - http://10.0.40.20:32080/
+
+  # openfaas:
+  #   servers:
+  #     - http://10.0.40.20:31112/

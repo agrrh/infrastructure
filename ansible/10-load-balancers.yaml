@@ -1,0 +1,14 @@
+---
+
+- hosts: load-balancers
+  remote_user: agrrh
+
+  vars_files:
+    - vars/load-balancers.yaml
+    - vars/load-balancers.secrets.yaml
+
+  roles:
+    - name: docker-traefik
+
+      acme_email: "{{ traefik_acme_email }}"
+      cloudflare_api_token: "{{ traefik_cloudflare_api_token }}"

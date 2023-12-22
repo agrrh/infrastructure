@@ -1,0 +1,27 @@
+---
+
+- hosts: all
+  remote_user: root
+
+  roles:
+    - name: geerlingguy.pip
+      pip_install_packages:
+        - name: docker
+
+    - name: geerlingguy.docker
+
+    - name: geerlingguy.github-users
+      github_users:
+        - name: agrrh
+          groups: sudo,docker
+      # github_users_absent:
+      #   - name: josh
+
+  tasks:
+    - name: ensure wireguard is installed
+      apt:
+        name: "{{ item }}"
+      with_items:
+        - wireguard
+        - wireguard-tools
+      tags: wireguard

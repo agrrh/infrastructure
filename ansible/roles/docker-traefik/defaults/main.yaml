@@ -1,0 +1,16 @@
+---
+
+traefik_version: v2.8
+
+acme_email: me@example.org
+
+cloudflare_api_token: ""  # secret
+
+traefik_services:
+  traefik:
+    servers:
+      - http://127.0.0.1:31080/
+
+  another:
+    servers:
+      - http://127.0.0.1:31085/

@@ -1,0 +1,49 @@
+---
+
+- name: ensure traefik dirs exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - "/home/{{ ansible_user_id }}/traefik"
+    - "/home/{{ ansible_user_id }}/traefik/config"
+    - "/home/{{ ansible_user_id }}/traefik/letsencrypt"
+
+- name: ensure traefik config set up
+  ansible.builtin.template:
+    src: config-http.yaml
+    dest: traefik/config/http-routers.yaml
+  notify:
+    - traefik restart
+
+- name: ensure traefik is running
+  community.docker.docker_container:
+    name: traefik
+    image: traefik:{{ traefik_version }}
+    restart_policy: "unless-stopped"
+    network_mode: host
+    env:
+      CF_DNS_API_TOKEN: "{{ cloudflare_api_token | string }}"
+    command: >-
+      --api=true
+      --api.insecure=true
+      --api.dashboard=true
+      --providers.docker=true
+      --providers.docker.exposedbydefault=false
+      --providers.file.directory=/config
+      --entrypoints.web.address=:80
+      --entrypoints.websecure.address=:443
+      --entrypoints.websecure.http.tls.certResolver=myresolver
+      --certificatesresolvers.myresolver.acme.email={{ acme_email }}
+      --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+      --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web
+      --certificatesresolvers.myresolver.acme.dnschallenge.provider=cloudflare
+      --entrypoints.traefik.address=:9000
+
+    volumes:
+      - "/home/{{ ansible_user_id }}/traefik/letsencrypt:/letsencrypt"
+      - "/home/{{ ansible_user_id }}/traefik/config:/config"
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+- meta: flush_handlers

@@ -1,0 +1,12 @@
+---
+
+"load-balancers":
+  hosts:
+    gw1.spb.agrrh.com:
+      ansible_host: 84.38.180.136
+    gw2.spb.agrrh.com:
+      ansible_host: 31.184.254.89
+
+vscale:
+  children:
+    "load-balancers":

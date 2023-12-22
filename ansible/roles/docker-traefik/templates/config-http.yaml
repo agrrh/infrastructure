@@ -1,0 +1,67 @@
+---
+
+http:
+  middlewares:
+    redirect-https:
+      redirectScheme:
+        scheme: https
+        permanent: true
+    request-headers:
+      headers:
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+
+  routers:
+
+    # traefik / agrrh.com, *.agrrh.com
+
+    router-traefik-http-agrrh:
+      entryPoints:
+        - web
+      rule: "HostRegexp(`{subdomain:.+}.agrrh.com`)"
+      middlewares:
+        - redirect-https
+      service: traefik
+
+    router-traefik-https-agrrh:
+      entryPoints:
+        - websecure
+      rule: "HostRegexp(`{subdomain:.+}.agrrh.com`)"
+      middlewares:
+        - request-headers
+      service: traefik
+      tls:
+        certResolver: myresolver
+        domains:
+          - main: "*.agrrh.com"
+
+    # *.nip.io
+
+    router-traefik-http-nip:
+      entryPoints:
+        - web
+      rule: "Host(`5426b488.nip.io`) || HostRegexp(`{subdomain:.+}.5426b488.nip.io`)"
+      middlewares:
+        - redirect-https
+      service: traefik
+
+    router-traefik-https-nip:
+      entryPoints:
+        - websecure
+      rule: "Host(`5426b488.nip.io`) || HostRegexp(`{subdomain:.+}.5426b488.nip.io`)"
+      middlewares:
+        - request-headers
+      service: traefik
+      tls:
+        certResolver: myresolver
+
+  services:
+    {% for service_name, service in traefik_services.items() -%}
+    {{- service_name }}:
+      loadBalancer:
+        servers:
+          {% for server in service.servers -%}
+          - url: {{ server }}
+          {% endfor %}
+
+    {% endfor %}

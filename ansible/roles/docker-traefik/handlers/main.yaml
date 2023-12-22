@@ -1,0 +1,6 @@
+---
+
+- name: traefik restart
+  community.docker.docker_container:
+    name: traefik
+    restart: true
