@@ -10,6 +10,8 @@
 
     - name: geerlingguy.docker
 
+    - name: docker-misc
+
     - name: geerlingguy.github-users
       github_users:
         - name: agrrh
