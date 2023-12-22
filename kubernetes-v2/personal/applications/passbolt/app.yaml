@@ -8,7 +8,12 @@ metadata:
   name: passbolt
   namespace: argocd
 spec:
-  project: payload
+  project: personal
+
+  destination:
+    name: brave-booth
+    namespace: argocd
+
   source:
     repoURL: https://cnieg.github.io/helm-charts
     chart: passbolt
@@ -55,9 +60,6 @@ spec:
             usernameKey: username
             passwordKey: password
 
-  destination:
-    namespace: passbolt
-    server: https://kubernetes.default.svc
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
