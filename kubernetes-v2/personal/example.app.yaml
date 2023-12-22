@@ -17,11 +17,11 @@ spec:
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: HEAD
-    path: kubernetes-v2/personal/applications/k3s-initial
+    path: kubernetes-v2/personal/applications/example
     directory:
       recurse: true
 
   syncPolicy:
     automated:
       selfHeal: true
-      prune: true
+      prune: false
