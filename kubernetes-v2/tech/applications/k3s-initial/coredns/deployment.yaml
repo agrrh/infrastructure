@@ -83,9 +83,9 @@ spec:
             - mountPath: /etc/coredns
               name: config-volume
               readOnly: true
-            - mountPath: /etc/coredns/custom
-              name: custom-config-volume
-              readOnly: true
+            # - mountPath: /etc/coredns/custom
+            #   name: custom-config-volume
+            #   readOnly: true
 
       priorityClassName: system-cluster-critical
 
