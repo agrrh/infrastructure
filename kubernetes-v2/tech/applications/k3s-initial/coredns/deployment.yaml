@@ -118,14 +118,14 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            items:
-            - key: Corefile
-              path: Corefile
-            - key: NodeHosts
-              path: NodeHosts
             name: coredns
+            items:
+              - key: Corefile
+                path: Corefile
+              # - key: NodeHosts
+              #   path: NodeHosts
 
-        - name: custom-config-volume
-          configMap:
-            name: coredns-custom
-            optional: true
+        # - name: custom-config-volume
+        #   configMap:
+        #     name: coredns-custom
+        #     optional: true
