@@ -22,6 +22,9 @@ spec:
       labels:
         k8s-app: kube-dns
     spec:
+      serviceAccountName: coredns
+      dnsPolicy: Default
+
       containers:
         - name: coredns
           image: rancher/mirrored-coredns-coredns:1.10.1
@@ -53,22 +56,22 @@ spec:
             successThreshold: 1
             timeoutSeconds: 1
 
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /ready
-              port: 8181
-              scheme: HTTP
-            periodSeconds: 2
-            successThreshold: 1
-            timeoutSeconds: 1
+          # readinessProbe:
+          #   failureThreshold: 3
+          #   httpGet:
+          #     path: /ready
+          #     port: 8181
+          #     scheme: HTTP
+          #   periodSeconds: 2
+          #   successThreshold: 1
+          #   timeoutSeconds: 1
 
           resources:
             limits:
-              memory: 170Mi
+              memory: 512Mi
             requests:
               cpu: 100m
-              memory: 70Mi
+              memory: 128Mi
 
           securityContext:
             allowPrivilegeEscalation: false
