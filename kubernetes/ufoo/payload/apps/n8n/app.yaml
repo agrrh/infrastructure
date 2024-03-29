@@ -8,9 +8,14 @@ metadata:
 spec:
   project: payload
   source:
-    repoURL: oci://8gears.container-registry.com/library/n8n
-    chart: n8n
-    targetRevision: "0.23.0"
+    # repoURL: oci://8gears.container-registry.com/library/n8n
+    # chart: n8n
+    # targetRevision: "0.23.0"
+
+    repoURL: https://github.com/8gears/n8n-helm-chart.git
+    targetRevision: 9e1ac0e
+    path: ./
+
     helm:
       releaseName: n8n
       values: |
