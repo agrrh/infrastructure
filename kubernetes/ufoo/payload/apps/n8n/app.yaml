@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://8gears.container-registry.com/chartrepo/library/
     chart: n8n
-    targetRevision: "0.8.0"
+    targetRevision: "0.23.0"
     helm:
       releaseName: n8n
       values: |
