@@ -1,9 +1,0 @@
----
-
-apiVersion: example.com/v1
-kind: HelloWorld
-metadata:
-  name: agrrh-test
-  namespace: meta-hello
-spec:
-  who: Felix the Cat
