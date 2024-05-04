@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/agrrh/pagetron
     targetRevision: HEAD
-    path: deploy/helm/pagetron
+    path: charts/pagetron
 
     helm:
       values: |
