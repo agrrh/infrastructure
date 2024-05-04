@@ -1,0 +1,25 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: tech-pagetron-agrrh
+  namespace: argocd
+spec:
+  project: tech
+
+  destination:
+    name: in-cluster
+    namespace: argocd
+
+  source:
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: master
+    path: kubernetes/dogseen/tech/apps/pagetron-agrrh
+    directory:
+      recurse: false
+
+  syncPolicy:
+    automated:
+      selfHeal: false
+      prune: false

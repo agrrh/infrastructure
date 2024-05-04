@@ -1,0 +1,32 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: pagetron
+  namespace: argocd
+spec:
+  project: tech
+  source:
+    repoURL: https://github.com/agrrh/pagetron
+    targetRevision: HEAD
+    path: deploy/helm/pagetron
+
+    helm:
+      values: |
+        timezone: Europe/Moscow
+        publicUrl: "https://status.agrrh.com"
+        targets:
+          - https://agrrh.com
+          - https://grafana.agrrh.com
+          - https://karma.agrrh.com
+
+  destination:
+    namespace: pagetron-agrrh
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: false
+      selfHeal: false
