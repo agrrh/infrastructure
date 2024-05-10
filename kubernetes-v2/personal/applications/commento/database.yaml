@@ -39,7 +39,7 @@ spec:
                 key: password
 
         storage:
-          className: microk8s-hostpath
+          className: local-path
           requestedSize: 5Gi
           accessModes:
             - ReadWriteOnce
