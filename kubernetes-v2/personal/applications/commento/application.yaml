@@ -1,0 +1,76 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: commento
+  namespace: argocd
+
+spec:
+  project: payload
+
+  destination:
+    namespace: commento
+    server: brave-booth
+
+  source:
+    repoURL: https://groundhog2k.github.io/helm-charts/
+    chart: commento
+    targetRevision: "0.1.32"
+    helm:
+      releaseName: commento
+      values: |
+        image:
+          registry: registry.hub.docker.com
+          repository: caroga/commentoplusplus
+          tag: v1.8.7
+
+        postgres:
+          enabled: false
+
+        externalDatabase:
+          host: postgres
+          name: commento
+          user: commento
+          password: overrided-by-secret
+
+        env:
+          - name: COMMENTO_POSTGRES
+            valueFrom:
+              secretKeyRef:
+                name: postgres
+                key: uri
+
+          - name: COMMENTO_GITHUB_KEY
+            valueFrom:
+              secretKeyRef:
+                name: oauth-github
+                key: key
+          - name: COMMENTO_GITHUB_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: oauth-github
+                key: secret
+
+          - name: COMMENTO_GOOGLE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: oauth-google
+                key: key
+          - name: COMMENTO_GOOGLE_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: oauth-google
+                key: secret
+
+        settings:
+          origin: https://commento.agrrh.com
+          forbidNewOwners: true
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: false
+      prune: false
