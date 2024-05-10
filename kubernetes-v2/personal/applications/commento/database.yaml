@@ -11,8 +11,8 @@ spec:
   project: personal
 
   destination:
+    name: brave-booth
     namespace: commento
-    server: brave-booth
 
   source:
     repoURL: https://groundhog2k.github.io/helm-charts/
