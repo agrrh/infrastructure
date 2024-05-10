@@ -8,7 +8,7 @@ metadata:
   namespace: argocd
 
 spec:
-  project: payload
+  project: personal
 
   destination:
     namespace: commento
