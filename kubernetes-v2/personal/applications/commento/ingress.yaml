@@ -12,10 +12,10 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`commento.agrrh.com`) || Host(`commento.5426b488.nip.io`)
-      middlewares:
-        - name: request-headers
-          namespace: traefik
+      match: Host(`commento.agrrh.com`)
+      # middlewares:
+      #   - name: request-headers
+      #     namespace: traefik
       services:
         - kind: Service
           name: commento
