@@ -5,7 +5,7 @@ kind: Middleware
 
 metadata:
   name: request-headers
-  namespace: traefik
+  namespace: kube-system
 
 spec:
   headers:
@@ -19,7 +19,7 @@ kind: Middleware
 
 metadata:
   name: whitelist
-  namespace: traefik
+  namespace: kube-system
 
 spec:
   ipWhiteList:
