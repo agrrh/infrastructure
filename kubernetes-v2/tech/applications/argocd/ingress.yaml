@@ -15,9 +15,9 @@ spec:
       match: Host(`argocd.agrrh.com`)
       middlewares:
         - name: whitelist
-          namespace: traefik
+          namespace: kube-system
         - name: request-headers
-          namespace: traefik
+          namespace: kube-system
       services:
         - kind: Service
           name: argocd-server
