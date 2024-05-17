@@ -1,0 +1,23 @@
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: whoami-http
+  namespace: default
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`whoami.agrrh.com`)
+      # middlewares:
+      #   - name: whitelist
+      #     namespace: traefik
+      services:
+        - kind: Service
+          name: web
+          namespace: default
+          port: 80
