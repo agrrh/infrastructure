@@ -65,6 +65,8 @@ spec:
             - --providers.kubernetesingress.ingressendpoint.publishedservice=kube-system/traefik
             - --providers.kubernetescrd.allowCrossNamespace=true
             - --entrypoints.websecure.http.tls=true
+            - --accesslog
+            - --accesslog.format=json
 
           ports:
             - containerPort: 9100
