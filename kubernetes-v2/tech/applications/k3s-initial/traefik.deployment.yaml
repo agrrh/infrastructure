@@ -63,6 +63,7 @@ spec:
             - --providers.kubernetescrd
             - --providers.kubernetesingress
             - --providers.kubernetesingress.ingressendpoint.publishedservice=kube-system/traefik
+            - --providers.kubernetescrd.allowCrossNamespace=true
             - --entrypoints.websecure.http.tls=true
 
           ports:
