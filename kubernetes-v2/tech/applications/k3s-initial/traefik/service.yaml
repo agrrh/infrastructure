@@ -27,7 +27,7 @@ spec:
   allocateLoadBalancerNodePorts: true
   sessionAffinity: None
 
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy: Local
   internalTrafficPolicy: Cluster
 
   ipFamilies:
