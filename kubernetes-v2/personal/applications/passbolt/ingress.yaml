@@ -11,6 +11,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`passbolt.agrrh.com`)
+      middlewares:
+        - name: whitelist
+          namespace: kube-system
       services:
         - kind: Service
           name: passbolt

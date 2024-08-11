@@ -13,7 +13,7 @@ spec:
       match: Host(`n8n.agrrh.com`)
       middlewares:
         - name: whitelist
-          namespace: traefik
+          namespace: kube-system
       services:
         - kind: Service
           name: n8n

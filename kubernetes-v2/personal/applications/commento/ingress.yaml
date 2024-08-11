@@ -15,7 +15,7 @@ spec:
       match: Host(`commento.agrrh.com`)
       # middlewares:
       #   - name: request-headers
-      #     namespace: traefik
+      #     namespace: kube-system
       services:
         - kind: Service
           name: commento
