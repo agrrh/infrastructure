@@ -51,7 +51,7 @@ spec:
         persistence:
           enabled: true
           type: dynamic
-          storageClass: microk8s-hostpath
+          storageClass: local-path
           accessModes:
             - ReadWriteOnce
           size: 5Gi
