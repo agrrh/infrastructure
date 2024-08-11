@@ -29,3 +29,6 @@ configs:
   cm:
     exec.enabled: false
     admin.enabled: true
+
+  params:
+    server.insecure: true
