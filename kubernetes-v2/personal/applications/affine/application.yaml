@@ -26,29 +26,26 @@ spec:
           secret:
             secretName: 'server-private-key'
             privateKey: ''
+
           database:
-            user: 'postgres'
-            url: 'pg-postgresql'
+            user: affine
+            url: postgres
             port: '5432'
-            name: 'affine'
-            password: ''
+            name: affine
+            password: onIWI4LrCQqfy8Fd
             gcloud:
               enabled: false
-              # use for migration
-              cloudSqlInternal: ''
-              connectionName: ''
-              serviceAccount: ''
-              cloudProxyReplicas: 3
-              proxyPort: '5432'
+
           redis:
             enabled: true
-            host: 'redis-master'
+            host: redis
             port: '6379'
             username: ''
             password: ''
             database: 0
+
           gke:
-            enabled: true
+            enabled: false
 
         graphql:
           service:
