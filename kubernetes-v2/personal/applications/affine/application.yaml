@@ -15,9 +15,9 @@ spec:
     namespace: affine
 
   source:
-    repoURL: https://github.com/toeverything/AFFiNE.git
-    targetRevision: v0.16.3
-    path: .github/helm/affine
+    repoURL: https://github.com/agrrh/infrastructure.git
+    targetRevision: HEAD
+    path: charts/affine
 
     helm:
       releaseName: affine
