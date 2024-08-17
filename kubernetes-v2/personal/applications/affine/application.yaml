@@ -53,6 +53,10 @@ spec:
             port: 3000
             annotations:
               cloud.google.com/backend-config: '{"default": "affine-backendconfig"}'
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
 
         sync:
           service:
@@ -60,11 +64,19 @@ spec:
             port: 3010
             annotations:
               cloud.google.com/backend-config: '{"default": "affine-backendconfig"}'
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
 
         web:
           service:
             type: ClusterIP
             port: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
 
   syncPolicy:
     syncOptions:
