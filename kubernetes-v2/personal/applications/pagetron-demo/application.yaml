@@ -1,0 +1,41 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: pagetron-demo
+  namespace: argocd
+
+spec:
+  project: personal
+
+  destination:
+    name: brave-booth
+    namespace: pagetron-demo
+
+  source:
+    repoURL: https://github.com/agrrh/pagetron
+    path: charts/pagetron
+    targetRevision: "HEAD"
+    helm:
+      releaseName: pagetron-demo
+      values: |
+        publicUrl: https://pagetron-demo.agrrh.com
+
+        ingressClass: traefik
+
+        timezone: Europe/Moscow
+
+        backend:
+          replicas: 1
+
+        frontend:
+          replicas: 1
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: false
