@@ -15,7 +15,7 @@ spec:
     namespace: pagetron-demo
 
   source:
-    repoURL: https://github.com/agrrh/pagetron
+    repoURL: https://github.com/agrrh/pagetron.git
     path: charts/pagetron
     targetRevision: "HEAD"
     helm:
