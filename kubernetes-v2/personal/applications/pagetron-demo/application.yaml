@@ -22,10 +22,13 @@ spec:
       releaseName: pagetron-demo
       values: |
         publicUrl: https://pagetron-demo.agrrh.com
-
         ingressClass: traefik
 
         timezone: Europe/Moscow
+
+        targets:
+          - example.com
+          - example.org
 
         backend:
           replicas: 1
