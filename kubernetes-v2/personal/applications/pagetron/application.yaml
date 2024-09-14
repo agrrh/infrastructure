@@ -17,20 +17,30 @@ spec:
   source:
     repoURL: https://github.com/agrrh/pagetron.git
     path: charts/pagetron
-    targetRevision: "HEAD"
+    # targetRevision: HEAD
+    targetRevision: chore/simplify-helm-values
     helm:
       releaseName: pagetron
       values: |
         publicUrl: https://status.agrrh.com
         ingressClass: traefik
 
+        publicAccess:
+          ingress:
+            enabled: true
+            
+            class: traefik
+
+          s3:
+            enabled: false
+
         timezone: Europe/Moscow
 
         targets:
-          - agrrh.com
-          - argocd.agrrh.com
-          - n8n.agrrh.com
-          - passbolt.agrrh.com
+          - https://agrrh.com
+          - https://argocd.agrrh.com
+          - https://n8n.agrrh.com
+          - https://passbolt.agrrh.com
 
         backend:
           replicas: 1
