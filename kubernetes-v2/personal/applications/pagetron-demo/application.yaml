@@ -17,8 +17,7 @@ spec:
   source:
     repoURL: https://github.com/agrrh/pagetron.git
     path: charts/pagetron
-    # targetRevision: HEAD
-    targetRevision: chore/simplify-helm-values
+    targetRevision: v0.2.0
     helm:
       releaseName: pagetron-demo
       values: |
