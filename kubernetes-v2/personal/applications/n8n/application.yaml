@@ -30,22 +30,22 @@ spec:
           WEBHOOK_URL: https://n8n.agrrh.com/
           NODE_FUNCTION_ALLOW_EXTERNAL: lodash
 
-        generic:
-          timezone: Europe/Moscow
-
-        executions:
-          timeout: 1800  # 30 min
-          maxTimeout: 3600  # 1 hour
-          saveDataOnError: all
-          saveDataOnSuccess: none
-          saveDataManualExecutions: true
-          pruneData: true
-          pruneDataMaxAge: 336 # 2 weeks
-          pruneDataTimeout: 3600  # 1 hour
-
         config:
           database:
             type: postgresdb
+
+          generic:
+            timezone: Europe/Moscow
+
+          executions:
+            timeout: 1800  # 30 min
+            maxTimeout: 3600  # 1 hour
+            saveDataOnError: all
+            saveDataOnSuccess: none
+            saveDataManualExecutions: true
+            pruneData: true
+            pruneDataMaxAge: 336 # 2 weeks
+            pruneDataTimeout: 3600  # 1 hour
 
         # FIXME Store password in secure manner
         n8n:
