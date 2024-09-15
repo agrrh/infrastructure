@@ -45,7 +45,6 @@ spec:
             saveDataManualExecutions: true
             pruneData: true
             pruneDataMaxAge: 336 # 2 weeks
-            pruneDataTimeout: 3600  # 1 hour
 
         # FIXME Store password in secure manner
         n8n:
