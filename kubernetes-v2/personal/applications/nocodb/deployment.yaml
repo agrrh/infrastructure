@@ -1,0 +1,65 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: nocodb
+  namespace: nocodb
+  labels:
+    app: nocodb
+
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+
+  selector:
+    matchLabels:
+      app: nocodb
+  template:
+    metadata:
+      labels:
+        app: nocodb
+    spec:
+      containers:
+        - name: main
+
+          image: nocodb/nocodb:0.255.2
+
+          env:
+            - name: NC_PUBLIC_URL
+              value: https://nocodb.agrrh.com
+
+            - name: NC_DISABLE_TELE
+              value: "true"
+
+            - name: NC_MIN
+              value: "true"
+
+            - name: NC_MINIMAL_DBS
+              value: "true"
+
+            - name: NC_AUTOMATION_LOG_LEVEL
+              value: "ALL"
+
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
+          ports:
+            - name: http
+              containerPort: 8080
+
+          volumeMounts:
+            - mountPath: /usr/app/data/
+              name: data-volume
+
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: nocodb-sqlite
