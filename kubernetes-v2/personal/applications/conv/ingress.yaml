@@ -1,0 +1,23 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: conv-http
+  namespace: conv
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`conv.agrrh.com`)
+      middlewares:
+        - name: whitelist
+          namespace: kube-system
+      services:
+        - kind: Service
+          name: conv
+          namespace: conv
+          port: 80
