@@ -1,0 +1,42 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: tools
+  namespace: tools
+  labels:
+    app: tools
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: tools
+  template:
+    metadata:
+      labels:
+        app: tools
+    spec:
+      containers:
+        - name: main
+
+          image: corentinth/it-tools:2024.5.13-a0bc346
+
+          env:
+            - name: FOO
+              value: bar
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+
+          ports:
+            - name: http
+              containerPort: 80
