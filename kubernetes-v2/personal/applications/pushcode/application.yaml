@@ -1,0 +1,38 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: pushcode-prod
+  namespace: argocd
+
+spec:
+  project: personal
+
+  destination:
+    name: brave-booth
+    namespace: pushcode-prod
+
+  source:
+    repoURL: https://github.com/pushcode-ru/pushcode
+    targetRevision: HEAD
+    path: .deploy/
+    directory:
+      recurse: true
+
+    # repoURL: https://github.com/8gears/n8n-helm-chart.git
+    # targetRevision: ca06af7
+    # path: ./charts/n8n
+    #
+    # helm:
+    #   releaseName: n8n
+    #   values: |
+    #     # ...
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: false
