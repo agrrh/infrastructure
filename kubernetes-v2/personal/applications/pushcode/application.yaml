@@ -15,7 +15,7 @@ spec:
     namespace: pushcode-prod
 
   source:
-    repoURL: https://github.com/pushcode-ru/pushcode
+    repoURL: git@github.com/pushcode-ru/pushcode.git
     targetRevision: HEAD
     path: .deploy/
     directory:
