@@ -23,10 +23,10 @@ data:
       postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres.nocodb.svc:5432/${POSTGRES_DATABASE}
 
     # Dump data
+    # You may use something like `--exclude-table=audit_logs`
 
     pg_dump --verbose \
       --data-only \
-      --exclude-table=execution_data \
       --format=plain \
       -f /data/nocodb.data.sql \
       --inserts \
