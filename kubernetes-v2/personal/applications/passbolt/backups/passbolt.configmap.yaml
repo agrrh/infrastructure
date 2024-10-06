@@ -26,7 +26,7 @@ data:
     #   > /data/{{ .name }}.sql
 
   backup.sh: |-
-    #!/bin/bash
+    #!/bin/ash
 
     set -e
     set -x
