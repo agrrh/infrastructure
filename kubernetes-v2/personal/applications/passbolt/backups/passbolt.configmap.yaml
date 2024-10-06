@@ -35,15 +35,12 @@ data:
 
     echo "${RCLONE_CONFIG_CONTENT}" > ${HOME}/.config/rclone/rclone.conf
 
-    date
-
-    cat ${HOME}/.config/rclone/rclone.conf
-
-    date
-
     rclone size yandex-disk:/
 
     cd /data
+
+    # Sanity check, at least 100 kB
+    test $(du -sb ./ | cut -f1) -ge 102400
 
     restic \
       backup \
