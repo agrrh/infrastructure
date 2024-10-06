@@ -33,7 +33,7 @@ data:
 
     mkdir -p ${HOME}/.config/rclone
 
-    echo "${RCLONE_CONFIG}" > ${HOME}/.config/rclone/rclone.conf
+    echo "${RCLONE_CONFIG_CONTENT}" > ${HOME}/.config/rclone/rclone.conf
 
     date
 
