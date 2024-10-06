@@ -57,8 +57,3 @@ data:
       --keep-monthly 12 \
       --keep-yearly 10 \
       --prune
-
-    restic \
-      snapshots \
-      --host backups \
-      --tag passbolt
