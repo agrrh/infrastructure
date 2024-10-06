@@ -15,8 +15,9 @@ data:
     set -x
 
     pg_dump --verbose \
-      postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres.n8n.svc:5432/${POSTGRES_DATABASE} \
-      > /data/n8n.sql
+      --format=plain \
+      -f /data/n8n.sql \
+      postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres.n8n.svc:5432/${POSTGRES_DATABASE}
 
   backup.sh: |-
     #!/bin/ash
