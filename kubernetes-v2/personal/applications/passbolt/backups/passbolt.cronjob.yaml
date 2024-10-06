@@ -57,6 +57,12 @@ spec:
               imagePullPolicy: IfNotPresent
 
               env:
+                - name: RCLONE_CONFIG_BASE64
+                  valueFrom:
+                    secretKeyRef:
+                      name: rclone
+                      key: RCLONE_CONFIG_BASE64
+
                 - name: RESTIC_REPOSITORY
                   valueFrom:
                     secretKeyRef:
