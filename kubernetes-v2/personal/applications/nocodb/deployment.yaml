@@ -43,6 +43,11 @@ spec:
             - name: NC_AUTOMATION_LOG_LEVEL
               value: "ALL"
 
+            # Caching
+
+            - name: NC_REDIS_URL
+              value: redis://redis:6379/0
+
             # Enables litestream, https://litestream.io
 
             - name: LITESTREAM_SYNC_INTERVAL
