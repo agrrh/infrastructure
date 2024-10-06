@@ -43,6 +43,44 @@ spec:
             - name: NC_AUTOMATION_LOG_LEVEL
               value: "ALL"
 
+            # Enables litestream, https://litestream.io
+
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-litestream
+                  key: AWS_ACCESS_KEY_ID
+
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: s3-litestream
+                  key: AWS_BUCKET
+
+            - name: AWS_BUCKET_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: s3-litestream
+                  key: AWS_BUCKET_PATH
+
+            - name: AWS_ENDPOINT_URL_S3
+              valueFrom:
+                secretKeyRef:
+                  name: s3-litestream
+                  key: AWS_ENDPOINT_URL_S3
+
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: s3-litestream
+                  key: AWS_REGION
+
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-litestream
+                  key: AWS_SECRET_ACCESS_KEY
+
           resources:
             requests:
               cpu: "500m"
