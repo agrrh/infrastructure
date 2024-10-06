@@ -69,7 +69,7 @@ spec:
                       key: RESTIC_PASSWORD
 
               command:
-                - /bin/bash
+                - /bin/ash
                 - /app/backup.sh
 
               volumeMounts:
