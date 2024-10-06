@@ -31,7 +31,7 @@ data:
     set -e
     set -x
 
-    mkdir -p ${HOME}/.config/rclone/rclone.conf
+    mkdir -p ${HOME}/.config/rclone
 
     echo "${RCLONE_CONFIG}" > ${HOME}/.config/rclone/rclone.conf
 
