@@ -31,13 +31,13 @@ data:
     set -e
     set -x
 
-    mkdir -p ~/.config/rclone
+    mkdir -p ${HOME}/.config/rclone/rclone.conf
 
-    echo "${RCLONE_CONFIG}" > ~/.config/rclone/rclone.conf
+    echo "${RCLONE_CONFIG}" > ${HOME}/.config/rclone/rclone.conf
 
     date
 
-    cat ~/.config/rclone/rclone.conf
+    cat ${HOME}/.config/rclone/rclone.conf
 
     date
 
