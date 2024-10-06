@@ -1,0 +1,66 @@
+---
+
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: nocodb
+  namespace: backups
+
+data:
+  dump.sh: |-
+    #!/bin/bash
+
+    set -e
+    set -x
+
+    # Dump schema
+
+    pg_dump --verbose \
+      --schema-only \
+      --format=plain \
+      -f /data/nocodb.schema.sql \
+      postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres.nocodb.svc:5432/${POSTGRES_DATABASE}
+
+    # Dump data
+
+    pg_dump --verbose \
+      --data-only \
+      --exclude-table=execution_data \
+      --format=plain \
+      -f /data/nocodb.data.sql \
+      --inserts \
+      postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres.nocodb.svc:5432/${POSTGRES_DATABASE}
+
+  backup.sh: |-
+    #!/bin/ash
+
+    set -e
+    set -x
+
+    mkdir -p ${HOME}/.config/rclone
+
+    echo "${RCLONE_CONFIG_CONTENT}" > ${HOME}/.config/rclone/rclone.conf
+
+    rclone size yandex-disk:/
+
+    cd /data
+
+    # Sanity check, at least 100 kB
+    test $(du -sb ./ | cut -f1) -ge 102400
+
+    restic \
+      backup \
+      --host backups \
+      --tag nocodb \
+      ./
+
+    restic \
+      forget \
+      --host backups \
+      --tag nocodb \
+      --keep-daily 7 \
+      --keep-weekly 4 \
+      --keep-monthly 12 \
+      --keep-yearly 10 \
+      --prune
