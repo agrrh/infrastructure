@@ -17,6 +17,7 @@ data:
     pg_dump --verbose \
       --format=plain \
       -f /data/n8n.sql \
+      --inserts \
       postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres.n8n.svc:5432/${POSTGRES_DATABASE}
 
   backup.sh: |-
