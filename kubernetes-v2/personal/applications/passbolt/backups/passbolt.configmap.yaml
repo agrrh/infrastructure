@@ -32,7 +32,7 @@ data:
     set -x
 
     mkdir -p ~/.config/rclone
-    echo ${RCLONE_CONFIG_BASE64} | base64 -d > ~/.config/rclone/rclone.conf
+    echo ${RCLONE_CONFIG} > ~/.config/rclone/rclone.conf
 
     rclone size yandex-disk:/
 
