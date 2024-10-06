@@ -29,7 +29,10 @@ spec:
 
           env:
             - name: NC_DB
-              value: sqlite:///usr/app/data/data.db
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: connString
 
             - name: NC_PUBLIC_URL
               value: https://nocodb.agrrh.com
@@ -44,47 +47,6 @@ spec:
 
             - name: NC_REDIS_URL
               value: redis://redis:6379/0
-
-            # Enables litestream, https://litestream.io
-
-            - name: LITESTREAM_SYNC_INTERVAL
-              value: "60s"
-
-            - name: LITESTREAM_S3_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: s3-litestream
-                  key: LITESTREAM_S3_ACCESS_KEY_ID
-
-            - name: LITESTREAM_S3_BUCKET
-              valueFrom:
-                secretKeyRef:
-                  name: s3-litestream
-                  key: LITESTREAM_S3_BUCKET
-
-            - name: LITESTREAM_S3_PATH
-              valueFrom:
-                secretKeyRef:
-                  name: s3-litestream
-                  key: LITESTREAM_S3_PATH
-
-            - name: LITESTREAM_S3_ENDPOINT
-              valueFrom:
-                secretKeyRef:
-                  name: s3-litestream
-                  key: LITESTREAM_S3_ENDPOINT
-
-            - name: LITESTREAM_S3_REGION
-              valueFrom:
-                secretKeyRef:
-                  name: s3-litestream
-                  key: LITESTREAM_S3_REGION
-
-            - name: LITESTREAM_S3_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: s3-litestream
-                  key: LITESTREAM_S3_SECRET_ACCESS_KEY
 
           resources:
             requests:
