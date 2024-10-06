@@ -45,41 +45,44 @@ spec:
 
             # Enables litestream, https://litestream.io
 
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: s3-litestream
-                  key: AWS_ACCESS_KEY_ID
+            - name: LITESTREAM_SYNC_INTERVAL
+              value: "5m"
 
-            - name: AWS_BUCKET
+            - name: LITESTREAM_S3_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
                   name: s3-litestream
-                  key: AWS_BUCKET
+                  key: LITESTREAM_S3_ACCESS_KEY_ID
 
-            - name: AWS_BUCKET_PATH
+            - name: LITESTREAM_S3_BUCKET
               valueFrom:
                 secretKeyRef:
                   name: s3-litestream
-                  key: AWS_BUCKET_PATH
+                  key: LITESTREAM_S3_BUCKET
 
-            - name: AWS_ENDPOINT_URL_S3
+            - name: LITESTREAM_S3_PATH
               valueFrom:
                 secretKeyRef:
                   name: s3-litestream
-                  key: AWS_ENDPOINT_URL_S3
+                  key: LITESTREAM_S3_PATH
 
-            - name: AWS_REGION
+            - name: LITESTREAM_S3_ENDPOINT
               valueFrom:
                 secretKeyRef:
                   name: s3-litestream
-                  key: AWS_REGION
+                  key: LITESTREAM_S3_ENDPOINT
 
-            - name: AWS_SECRET_ACCESS_KEY
+            - name: LITESTREAM_S3_REGION
               valueFrom:
                 secretKeyRef:
                   name: s3-litestream
-                  key: AWS_SECRET_ACCESS_KEY
+                  key: LITESTREAM_S3_REGION
+
+            - name: LITESTREAM_S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-litestream
+                  key: LITESTREAM_S3_SECRET_ACCESS_KEY
 
           resources:
             requests:
