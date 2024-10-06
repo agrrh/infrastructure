@@ -32,7 +32,9 @@ data:
     set -x
 
     mkdir -p ~/.config/rclone
+
     echo "${RCLONE_CONFIG}" > ~/.config/rclone/rclone.conf
+    cat ~/.config/rclone/rclone.conf
 
     rclone size yandex-disk:/
 
