@@ -19,7 +19,7 @@ spec:
 
           initContainers:
             - name: dump
-              image: mariadb:10.6
+              image: postgres:15
               imagePullPolicy: IfNotPresent
 
               env:
