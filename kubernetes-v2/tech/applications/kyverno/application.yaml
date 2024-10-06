@@ -1,0 +1,36 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: kyverno
+  namespace: argocd
+
+spec:
+  project: personal
+
+  destination:
+    name: brave-booth
+    namespace: kyverno
+
+  source:
+    # repoURL: oci://8gears.container-registry.com/library/n8n
+    # chart: n8n
+    # targetRevision: "0.23.0"
+
+    repoURL: https://github.com/kyverno/kyverno.git
+    targetRevision: kyverno-chart-3.2.7
+    path: charts/kyverno
+
+    helm:
+      releaseName: kyverno
+      values: |
+        # https://github.com/kyverno/kyverno/blob/kyverno-chart-3.2.7/charts/kyverno/values.yaml
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: false
+      prune: false
