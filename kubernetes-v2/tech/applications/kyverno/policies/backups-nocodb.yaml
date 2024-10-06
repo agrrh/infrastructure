@@ -1,31 +1,29 @@
-# ---
-#
-# NOTE: Nocodb currently uses SQLite
-#
-# apiVersion: kyverno.io/v1
-# kind: ClusterPolicy
-#
-# metadata:
-#   name: backups-nocodb
-#   annotations:
-#     policies.kyverno.io/title: Backups NocoDB
-#     policies.kyverno.io/subject: Secret
-#
-# spec:
-#   rules:
-#     - name: sync-secret-nocodb-sqlite
-#       match:
-#         resources:
-#           kinds:
-#             - SealedSecret
-#           namespaces:
-#             - nocodb
-#       generate:
-#         apiVersion: v1
-#         kind: Secret
-#         name: nocodb-sqlite
-#         namespace: backups
-#         synchronize: true
-#         clone:
-#           namespace: nocodb
-#           name: ""
+---
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+
+metadata:
+  name: backups-nocodb
+  annotations:
+    policies.kyverno.io/title: Backups N8n
+    policies.kyverno.io/subject: Secret
+
+spec:
+  rules:
+    - name: sync-secret-nocodb-postgres
+      match:
+        resources:
+          kinds:
+            - SealedSecret
+          namespaces:
+            - nocodb
+      generate:
+        apiVersion: v1
+        kind: Secret
+        name: nocodb-postgres
+        namespace: backups
+        synchronize: true
+        clone:
+          namespace: nocodb
+          name: postgres
