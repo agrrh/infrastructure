@@ -8,7 +8,7 @@ metadata:
   namespace: backups
 
 data:
-  backup.sh: |-
+  dump.sh: |-
     #!/bin/bash
 
     set -e
