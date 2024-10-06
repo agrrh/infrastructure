@@ -57,8 +57,6 @@ spec:
               imagePullPolicy: IfNotPresent
 
               env:
-                - name: RCLONE_CONFIG
-                  value: ~/.config/rclone.conf
                 - name: RCLONE_CONFIG_CONTENT
                   valueFrom:
                     secretKeyRef:
