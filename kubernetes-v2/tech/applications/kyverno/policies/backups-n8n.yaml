@@ -1,0 +1,29 @@
+---
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+
+metadata:
+  name: backups-n8n
+  annotations:
+    policies.kyverno.io/title: Backups N8n
+    policies.kyverno.io/subject: Secret
+
+spec:
+  rules:
+    - name: sync-secret-n8n-postgres
+      match:
+        resources:
+          kinds:
+            - SealedSecret
+          namespaces:
+            - n8n
+      generate:
+        apiVersion: v1
+        kind: Secret
+        name: n8n-postgres
+        namespace: backups
+        synchronize: true
+        clone:
+          namespace: n8n
+          name: postgres

@@ -1,0 +1,29 @@
+---
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+
+metadata:
+  name: backups-passbolt
+  annotations:
+    policies.kyverno.io/title: Backups Passbolt
+    policies.kyverno.io/subject: Secret
+
+spec:
+  rules:
+    - name: sync-secret-passbolt-mariadb
+      match:
+        resources:
+          kinds:
+            - SealedSecret
+          namespaces:
+            - passbolt
+      generate:
+        apiVersion: v1
+        kind: Secret
+        name: passbolt-mariadb
+        namespace: backups
+        synchronize: true
+        clone:
+          namespace: passbolt
+          name: passbolt-mariadb-env
