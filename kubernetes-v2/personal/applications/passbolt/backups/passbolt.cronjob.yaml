@@ -1,0 +1,85 @@
+---
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: passbolt
+  namespace: backups
+
+spec:
+  schedule: "0 5 * * *"
+  concurrencyPolicy: Forbid
+
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+
+          initContainers:
+            - name: dump
+              image: mariadb:10.6
+              imagePullPolicy: IfNotPresent
+
+              env:
+                # NOTE: We're in backups namespace, so using cloned secret
+
+                - name: MARIADB_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: passbolt-mariadb
+                      key: MARIADB_USER
+                - name: MARIADB_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: passbolt-mariadb
+                      key: MARIADB_PASSWORD
+                - name: MARIADB_DATABASE
+                  valueFrom:
+                    secretKeyRef:
+                      name: passbolt-mariadb
+                      key: MARIADB_DATABASE
+
+              command:
+                - /bin/bash
+                - /app/dump.sh
+
+              volumeMounts:
+                - name: app
+                  mountPath: /app
+                - name: data
+                  mountPath: /data
+
+          containers:
+            - name: backup
+              image: agrrh/cider:0.7.0
+              imagePullPolicy: IfNotPresent
+
+              env:
+                - name: RESTIC_REPOSITORY
+                  valueFrom:
+                    secretKeyRef:
+                      name: restic
+                      key: RESTIC_REPOSITORY
+                - name: RESTIC_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: restic
+                      key: RESTIC_PASSWORD
+
+              command:
+                - /bin/bash
+                - /app/backup.sh
+
+              volumeMounts:
+                - name: app
+                  mountPath: /app
+                - name: data
+                  mountPath: /data
+
+          volumes:
+            - name: data
+              emptyDir: {}
+            - name: app
+              configMap:
+                name: passbolt

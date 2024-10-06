@@ -1,0 +1,60 @@
+---
+
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: passbolt
+  namespace: backups
+
+data:
+  backup.sh: |-
+    #!/bin/bash
+
+    set -e
+    set -x
+
+    mariadb-dump --verbose \
+      --host=mariadb.passbolt.svc \
+      --user=${MARIADB_USER} --password=${MARIADB_PASSWORD} \
+      --lock-tables \
+      --databases ${MARIADB_DATABASE} \
+      > /data/passbolt.sql
+
+    # pg_dump --verbose \
+    #   postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOSTNAME}:5432/${DB_DATABASE} \
+    #   > /data/{{ .name }}.sql
+
+  backup.sh: |-
+    #!/bin/bash
+
+    set -e
+    set -x
+
+    mkdir -p ~/.config/rclone
+    echo ${RCLONE_CONFIG_BASE64} | base64 -d > ~/.config/rclone/rclone.conf
+
+    rclone size yandex-disk:/
+
+    cd /data
+
+    restic \
+      backup \
+      --host backups \
+      --tag passbolt \
+      ./
+
+    restic \
+      forget \
+      --host backups \
+      --tag passbolt \
+      --keep-daily 7 \
+      --keep-weekly 4 \
+      --keep-monthly 12 \
+      --keep-yearly 10 \
+      --prune
+
+    restic \
+      snapshots \
+      --host backups \
+      --tag passbolt
