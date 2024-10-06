@@ -58,10 +58,12 @@ spec:
 
               env:
                 - name: RCLONE_CONFIG
+                  value: ~/.config/rclone.conf
+                - name: RCLONE_CONFIG_CONTENT
                   valueFrom:
                     secretKeyRef:
                       name: rclone
-                      key: RCLONE_CONFIG
+                      key: RCLONE_CONFIG_CONTENT
 
                 - name: RESTIC_REPOSITORY
                   valueFrom:
