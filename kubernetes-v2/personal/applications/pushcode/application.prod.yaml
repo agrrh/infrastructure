@@ -17,7 +17,7 @@ spec:
   source:
     repoURL: git@github.com/pushcode-ru/pushcode.git
     targetRevision: HEAD
-    path: .deploy/
+    path: .deploy/prod
     directory:
       recurse: true
 

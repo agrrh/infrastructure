@@ -4,7 +4,7 @@ kind: Application
 apiVersion: argoproj.io/v1alpha1
 
 metadata:
-  name: pushcode-dev
+  name: pushcode-stage
   namespace: argocd
 
 spec:
@@ -12,12 +12,12 @@ spec:
 
   destination:
     name: brave-booth
-    namespace: pushcode-dev
+    namespace: pushcode-stage
 
   source:
     repoURL: git@github.com/pushcode-ru/pushcode.git
-    targetRevision: dev
-    path: .deploy/
+    targetRevision: HEAD
+    path: .deploy/stage
     directory:
       recurse: true
 
