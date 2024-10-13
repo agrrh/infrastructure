@@ -17,7 +17,7 @@ spec:
   source:
     repoURL: git@github.com/pushcode-ru/pushcode.git
     # targetRevision: HEAD
-    targetRevision: feat/add-auth
+    targetRevision: feat/add-panel
     path: .deploy/stage
     directory:
       recurse: true
