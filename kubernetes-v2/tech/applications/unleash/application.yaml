@@ -1,0 +1,32 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: unleash
+  namespace: argocd
+
+spec:
+  project: tech
+
+  destination:
+    name: brave-booth
+    namespace: unleash
+
+  source:
+    repoURL: https://github.com/Unleash/helm-charts.git
+    targetRevision: unleash-5.4.3
+    path: charts/unleash
+
+    helm:
+      releaseName: unleash
+      values: |
+        # https://github.com/Unleash/helm-charts/blob/unleash-5.4.3/charts/unleash/values.yaml
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: false
+      prune: false
