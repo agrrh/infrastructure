@@ -8,7 +8,7 @@ metadata:
   namespace: argocd
 
 spec:
-  project: personal
+  project: tech
 
   destination:
     name: brave-booth
