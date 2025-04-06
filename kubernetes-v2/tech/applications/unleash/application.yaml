@@ -20,6 +20,7 @@ spec:
     # path: charts/unleash
 
     repoURL: https://docs.getunleash.io/helm-charts
+    chart: unleash
     targetRevision: '5.4.3'
 
     helm:
