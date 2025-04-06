@@ -15,9 +15,12 @@ spec:
     namespace: unleash
 
   source:
-    repoURL: https://github.com/Unleash/helm-charts.git
-    targetRevision: unleash-5.4.3
-    path: charts/unleash
+    # repoURL: https://github.com/Unleash/helm-charts.git
+    # targetRevision: unleash-5.4.3
+    # path: charts/unleash
+
+    repoURL: https://docs.getunleash.io/helm-charts
+    targetRevision: '5.4.3'
 
     helm:
       releaseName: unleash
