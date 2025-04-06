@@ -1,0 +1,23 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: unleash-http
+  namespace: unleash
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`unleash.agrrh.com`)
+      # middlewares:
+      #   - name: request-headers
+      #     namespace: kube-system
+      services:
+        - kind: Service
+          name: unleash
+          namespace: unleash
+          port: 4242
