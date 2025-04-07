@@ -27,6 +27,9 @@ spec:
       releaseName: unleash
       values: |
         # https://github.com/Unleash/helm-charts/blob/unleash-5.4.3/charts/unleash/values.yaml
+        replicaCount: 1
+
+      # TODO: Secure default DB secrets
 
   syncPolicy:
     syncOptions:
