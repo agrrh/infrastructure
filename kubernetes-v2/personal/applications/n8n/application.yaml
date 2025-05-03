@@ -20,12 +20,16 @@ spec:
     # targetRevision: "0.23.0"
 
     repoURL: https://github.com/8gears/n8n-helm-chart.git
-    targetRevision: ca06af7
+    targetRevision: 1.0.6
     path: ./charts/n8n
 
     helm:
       releaseName: n8n
       values: |
+        image:
+          repository: n8nio/n8n
+          tag: 1.85.1
+
         extraEnv:
           WEBHOOK_URL: https://n8n.agrrh.com/
           NODE_FUNCTION_ALLOW_EXTERNAL: lodash
