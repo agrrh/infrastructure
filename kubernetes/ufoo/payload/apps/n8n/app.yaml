@@ -13,7 +13,7 @@ spec:
     # targetRevision: "0.23.0"
 
     repoURL: https://github.com/8gears/n8n-helm-chart.git
-    targetRevision: 9e1ac0e
+    targetRevision: 1.0.6 # appVersion: 1.85.1
     path: ./
 
     helm:
