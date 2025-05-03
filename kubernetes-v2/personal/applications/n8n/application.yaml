@@ -30,46 +30,47 @@ spec:
           repository: n8nio/n8n
           tag: 1.85.1
 
-        extraEnv:
-          WEBHOOK_URL: https://n8n.agrrh.com/
-          NODE_FUNCTION_ALLOW_EXTERNAL: lodash
+        main:
+          extraEnv:
+            WEBHOOK_URL: https://n8n.agrrh.com/
+            NODE_FUNCTION_ALLOW_EXTERNAL: lodash
 
-        config:
-          database:
-            type: postgresdb
+          config:
+            database:
+              type: postgresdb
 
-          generic:
-            timezone: Europe/Moscow
+            generic:
+              timezone: Europe/Moscow
 
-          executions:
-            timeout: 1800  # 30 min
-            maxTimeout: 3600  # 1 hour
-            saveDataOnError: all
-            saveDataOnSuccess: none
-            saveDataManualExecutions: true
-            pruneData: true
-            pruneDataMaxAge: 336 # 2 weeks
+            executions:
+              timeout: 1800  # 30 min
+              maxTimeout: 3600  # 1 hour
+              saveDataOnError: all
+              saveDataOnSuccess: none
+              saveDataManualExecutions: true
+              pruneData: true
+              pruneDataMaxAge: 336 # 2 weeks
 
-        # FIXME Store password in secure manner
-        n8n:
-          encryption_key: MyEncryptionKey1
+          # FIXME Store password in secure manner
+          secret:
+            n8n:
+              encryption_key: MyEncryptionKey1
 
-        # FIXME Store password in secure manner
-        secret:
-          database:
-            postgresdb:
-              host: postgres.n8n.svc
-              user: n8n
-              password: n8nQwertyPass
-              database: n8n
+            # FIXME Store password in secure manner
+            db:
+              postgresdb:
+                host: postgres.n8n.svc
+                user: n8n
+                password: n8nQwertyPass
+                database: n8n
 
-        persistence:
-          enabled: true
-          type: dynamic
-          storageClass: local-path
-          accessModes:
-            - ReadWriteOnce
-          size: 5Gi
+          persistence:
+            enabled: true
+            type: dynamic
+            storageClass: local-path
+            accessModes:
+              - ReadWriteOnce
+            size: 5Gi
 
   syncPolicy:
     syncOptions:
