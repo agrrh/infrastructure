@@ -32,8 +32,10 @@ spec:
 
         main:
           extraEnv:
-            WEBHOOK_URL: https://n8n.agrrh.com/
-            NODE_FUNCTION_ALLOW_EXTERNAL: lodash
+            WEBHOOK_URL:
+              value: https://n8n.agrrh.com/
+            NODE_FUNCTION_ALLOW_EXTERNAL:
+              value: lodash
 
           config:
             database:
