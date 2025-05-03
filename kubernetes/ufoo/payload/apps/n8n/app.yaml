@@ -14,11 +14,15 @@ spec:
 
     repoURL: https://github.com/8gears/n8n-helm-chart.git
     targetRevision: 1.0.6 # appVersion: 1.85.1
-    path: ./
+    path: ./charts/n8n
 
     helm:
       releaseName: n8n
       values: |
+        image:
+          repository: n8nio/n8n
+          tag: 1.85.1
+
         extraEnv:
           WEBHOOK_URL: https://n8n.agrrh.com/
           NODE_FUNCTION_ALLOW_EXTERNAL: lodash
