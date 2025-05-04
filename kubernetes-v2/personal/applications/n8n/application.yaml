@@ -38,7 +38,7 @@ spec:
               value: lodash
 
           config:
-            database:
+            db:
               type: postgresdb
 
             generic:
