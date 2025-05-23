@@ -15,21 +15,3 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 9091
-
-# ---
-#
-# apiVersion: monitoring.coreos.com/v1
-# kind: ServiceMonitor
-# metadata:
-#   name: pushgateway
-#   namespace: metrics
-#   labels:
-#     app: pushgateway
-# spec:
-#   selector:
-#     matchLabels:
-#       app: pushgateway
-#   endpoints:
-#     - port: http
-#       interval: 1m
-#       honorLabels: true
