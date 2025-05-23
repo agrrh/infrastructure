@@ -32,10 +32,13 @@ spec:
               value: master
 
         defaultRules:
-          create: true
+          create: false
+
           runbookUrl: https://runbooks.prometheus-operator.dev/runbooks
 
         grafana:
+          enabled: false
+
           additionalDataSources: []
           admin:
             existingSecret: grafana-admin
@@ -44,6 +47,28 @@ spec:
 
           defaultDashboardsEnabled: true
           defaultDashboardsTimezone: browser
+
+        # NOTE: Disable scrapes as those are too heavy for my toy setup
+        kubeApiServer:
+          enabled: false
+        kubelet:
+          enabled: false
+        kubeControllerManager:
+          enabled: false
+        coreDns:
+          enabled: false
+        kubeDns:
+          enabled: false
+        kubeEtcd:
+          enabled: false
+        kubeScheduler:
+          enabled: false
+        kubeProxy:
+          enabled: false
+        kubeStateMetrics:
+          enabled: false
+        nodeExporter:
+          enabled: false
 
         prometheusOperator:
           admissionWebhooks:
@@ -61,6 +86,7 @@ spec:
 
         prometheus:
           enabled: true
+
           prometheusSpec:
             storageSpec:
               volumeClaimTemplate:
