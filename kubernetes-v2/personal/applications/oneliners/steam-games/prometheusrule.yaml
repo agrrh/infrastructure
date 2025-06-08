@@ -1,0 +1,31 @@
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+
+metadata:
+  name: steam-games
+  namespace: metrics
+  labels:
+    release: kube-prometheus-stack  # NOTE: enables scrape
+
+spec:
+  groups:
+    - name: steam-games
+      rules:
+        - record: job:steam_game_playtime:inc1h
+          expr: sum(increase(steam_game_playtime_lifetime[1h])) by (appid, name)
+
+        - alert: PlayingTooLong
+          expr: job:steam_game_playtime:inc1h > 55
+          for: 4h
+          labels:
+            severity: warning
+          annotations:
+            summary: "Playing {{ $labels.name }} for too long"
+            description: >-
+              Played {{ $labels.name }} continously for few hours.
+
+              Action items:
+
+              - Move around a little.
