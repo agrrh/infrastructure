@@ -25,6 +25,8 @@ spec:
       # Telegram
       - 149.154.160.0/20
       - 91.108.4.0/22
+      # Adobra analytics
+      - 89.169.181.152/32
     ipStrategy:
       excludedIPs:
         - 84.38.180.136/32  # gateway
