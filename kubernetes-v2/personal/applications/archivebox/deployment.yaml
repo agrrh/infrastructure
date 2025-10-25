@@ -1,9 +1,12 @@
 ---
+
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: archivebox
   namespace: archivebox
+
 spec:
   selector:
     matchLabels:
@@ -17,16 +20,31 @@ spec:
         app: archivebox
     spec:
       initContainers:
-      - name: init-archivebox
-        image: archivebox/archivebox
-        args: ['init']
-        volumeMounts:
-          - mountPath: /data
-            name: archivebox
+        - name: init-archivebox
+          image: archivebox/archivebox:0.7
+          args: ['init']
+          volumeMounts:
+            - mountPath: /data
+              name: archivebox
       containers:
+        - image: linuxserver/wireguard:1.0.20250521
+          restartPolicy: Always
+          name: wireguard
+          env:
+            - name: TZ
+              value: "Europe/Moscow"
+          volumeMounts:
+            - name: wg-conf
+              mountPath: /etc/wireguard/
+              readOnly: true
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - NET_ADMIN
         - name: archivebox
           args: ["server", "--quick-init", "0.0.0.0:8000"]
-          image: archivebox/archivebox
+          image: archivebox/archivebox:0.7
           ports:
             - containerPort: 8000
               protocol: TCP
@@ -40,6 +58,10 @@ spec:
               name: archivebox
       restartPolicy: Always
       volumes:
-        - name: archivebox
-          persistentVolumeClaim:
-            claimName: archivebox
+        volumes:
+          - name: wg-conf
+            secret:
+              secretName: wireguard
+          - name: archivebox
+            persistentVolumeClaim:
+              claimName: archivebox
