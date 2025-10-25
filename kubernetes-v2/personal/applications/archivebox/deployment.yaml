@@ -46,18 +46,22 @@ spec:
           env:
             - name: WGET_ARGS
               value: >-
-                --no-verbose
-                --adjust-extension
-                --convert-links
-                --force-directories
-                --backup-converted
-                --no-parent
-                -e robots=off
+                [
+                  "--no-verbose",
+                  "--adjust-extension",
+                  "--convert-links",
+                  "--force-directories",
+                  "--backup-converted",
+                  "--no-parent",
+                  "-e", "robots=off"
+                ]
             - name: WGET_EXTRA_ARGS
               value: >-
-                --mirror
-                --adjust-extension
-                --page-requisites
+                [
+                  "--mirror",
+                  "--adjust-extension",
+                  "--page-requisites"
+                ]
           args: ["server", "--quick-init", "0.0.0.0:8000"]
           ports:
             - containerPort: 8000
