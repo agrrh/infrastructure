@@ -28,7 +28,6 @@ spec:
               name: archivebox
       containers:
         - image: linuxserver/wireguard:1.0.20250521
-          restartPolicy: Always
           name: wireguard
           env:
             - name: TZ
