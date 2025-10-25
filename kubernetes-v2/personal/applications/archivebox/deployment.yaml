@@ -51,14 +51,9 @@ spec:
                   "--adjust-extension",
                   "--convert-links",
                   "--no-parent",
-                  "-e", "robots=off"
-                ]
-            - name: WGET_EXTRA_ARGS
-              value: >-
-                [
+                  "-e", "robots=off",
                   "--mirror",
-                  "--page-requisites",
-                  "--timeout=300"
+                  "--page-requisites"
                 ]
           args: ["server", "--quick-init", "0.0.0.0:8000"]
           ports:
