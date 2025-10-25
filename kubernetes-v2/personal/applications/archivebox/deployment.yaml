@@ -60,7 +60,8 @@ spec:
                 [
                   "--mirror",
                   "--adjust-extension",
-                  "--page-requisites"
+                  "--page-requisites",
+                  "--timeout=300"
                 ]
           args: ["server", "--quick-init", "0.0.0.0:8000"]
           ports:
