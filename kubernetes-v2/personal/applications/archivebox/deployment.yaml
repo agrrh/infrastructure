@@ -58,10 +58,9 @@ spec:
               name: archivebox
       restartPolicy: Always
       volumes:
-        volumes:
-          - name: wg-conf
-            secret:
-              secretName: wireguard
-          - name: archivebox
-            persistentVolumeClaim:
-              claimName: archivebox
+        - name: wg-conf
+          secret:
+            secretName: wireguard
+        - name: archivebox
+          persistentVolumeClaim:
+            claimName: archivebox
