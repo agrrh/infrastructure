@@ -32,6 +32,20 @@ spec:
           env:
             - name: TZ
               value: "Europe/Moscow"
+            - name: WGET_ARGS
+              value: >-
+                --no-verbose
+                --adjust-extension
+                --convert-links
+                --force-directories
+                --backup-converted
+                --no-parent
+                -e robots=off
+            - name: WGET_EXTRA_ARGS
+              value: >-
+                --mirror
+                --adjust-extension
+                --page-requisites
           volumeMounts:
             - name: wg-conf
               mountPath: /etc/wireguard/
