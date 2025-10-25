@@ -27,11 +27,23 @@ spec:
             - mountPath: /data
               name: archivebox
       containers:
-        - image: linuxserver/wireguard:1.0.20250521
-          name: wireguard
+        - name: wireguard
+          image: linuxserver/wireguard:1.0.20250521
           env:
             - name: TZ
               value: "Europe/Moscow"
+          volumeMounts:
+            - name: wg-conf
+              mountPath: /etc/wireguard/
+              readOnly: true
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - NET_ADMIN
+        - name: archivebox
+          image: archivebox/archivebox:0.7
+          env:
             - name: WGET_ARGS
               value: >-
                 --no-verbose
@@ -46,18 +58,7 @@ spec:
                 --mirror
                 --adjust-extension
                 --page-requisites
-          volumeMounts:
-            - name: wg-conf
-              mountPath: /etc/wireguard/
-              readOnly: true
-          securityContext:
-            privileged: true
-            capabilities:
-              add:
-                - NET_ADMIN
-        - name: archivebox
           args: ["server", "--quick-init", "0.0.0.0:8000"]
-          image: archivebox/archivebox:0.7
           ports:
             - containerPort: 8000
               protocol: TCP
