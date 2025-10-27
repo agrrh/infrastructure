@@ -56,7 +56,7 @@ spec:
                   "--page-requisites"
                 ]
             - name: WGET_TIMEOUT
-              value: 600
+              value: "600"
           args: ["server", "--quick-init", "0.0.0.0:8000"]
           ports:
             - containerPort: 8000
