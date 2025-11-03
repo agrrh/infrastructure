@@ -32,6 +32,9 @@ spec:
           env:
             - name: TZ
               value: "Europe/Moscow"
+          livenessProbe:
+            exec:
+              command: ["ping", "-c3", "10.5.0.1"]
           volumeMounts:
             - name: wg-conf
               mountPath: /etc/wireguard/
