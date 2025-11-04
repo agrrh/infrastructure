@@ -28,7 +28,7 @@ spec:
       values: |
         image:
           repository: n8nio/n8n
-          tag: 1.114.4
+          tag: 1.117.3
 
         main:
           extraEnv:
