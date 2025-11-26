@@ -22,4 +22,3 @@ spec:
           namespace: kargo
           port: 443
           scheme: https
-          passHostHeader: true
