@@ -15,7 +15,7 @@ spec:
     namespace: kargo
 
   source:
-    repoURL: oci://ghcr.io/akuity/kargo-charts
+    repoURL: ghcr.io/akuity/kargo-charts
     chart: kargo
     targetRevision: v1.8.4
 
