@@ -55,6 +55,9 @@ spec:
     automated:
       selfHeal: true
       prune: false
+    managedNamespaceMetadata:
+      annotations:
+        kargo.akuity.io/keep-namespace: "true"
 
   ignoreDifferences:
     - group: apps
