@@ -35,9 +35,9 @@ spec:
           logLevel: INFO
           logFormat: json
 
-            gitClient:
-              name: "Kargo"
-              email: "no-reply@kargo.agrrh.com"
+          gitClient:
+            name: "Kargo"
+            email: "no-reply@kargo.agrrh.com"
 
   syncPolicy:
     syncOptions:
