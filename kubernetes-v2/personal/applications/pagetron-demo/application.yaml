@@ -6,6 +6,8 @@ apiVersion: argoproj.io/v1alpha1
 metadata:
   name: pagetron-demo
   namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: pagetron:public-demo
 
 spec:
   project: personal
@@ -54,3 +56,16 @@ spec:
     automated:
       selfHeal: true
       prune: false
+
+  ignoreDifferences:
+    ignoreDifferences:
+      - group: apps
+        kind: Deployment
+        name: pagetron-backend
+        jqPathExpressions:
+          - '.spec.template.spec.containers[] | select(.name == "pagetron-backend") | .image'
+      - group: apps
+        kind: Deployment
+        name: pagetron-frontend
+        jqPathExpressions:
+          - '.spec.template.spec.containers[] | select(.name == "pagetron-frontend") | .image'
