@@ -20,4 +20,4 @@ spec:
         - kind: Service
           name: kargo-api
           namespace: kargo
-          port: 8080
+          port: 443
