@@ -1,0 +1,27 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: app-cert-manager
+  namespace: argocd
+
+spec:
+  project: tech
+
+  destination:
+    name: brave-booth
+    namespace: cert-manager
+
+  source:
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: HEAD
+    path: kubernetes-v2/tech/applications/cert-manager
+    directory:
+      recurse: true
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
