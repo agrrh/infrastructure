@@ -21,3 +21,25 @@ spec:
           name: kargo-api
           namespace: kargo
           port: 80
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: kargo-external-webhooks-http
+  namespace: kargo
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`kargo-webhook.agrrh.com`)
+      middlewares: []
+      services:
+        - kind: Service
+          name: kargo-external-webhooks-server
+          namespace: kargo
+          port: 80

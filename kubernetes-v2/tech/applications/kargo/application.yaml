@@ -42,6 +42,10 @@ spec:
             name: "Kargo"
             email: "no-reply@kargo.agrrh.com"
 
+        externalWebhooksServer:
+          tls:
+            enabled: false
+
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
