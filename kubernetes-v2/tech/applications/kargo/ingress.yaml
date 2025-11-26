@@ -5,7 +5,7 @@ kind: IngressRoute
 
 metadata:
   name: kargo-http
-  namespace: argocd
+  namespace: kargo
 
 spec:
   entryPoints:
@@ -15,8 +15,6 @@ spec:
       match: Host(`kargo.agrrh.com`)
       middlewares:
         - name: whitelist
-          namespace: kube-system
-        - name: request-headers
           namespace: kube-system
       services:
         - kind: Service
