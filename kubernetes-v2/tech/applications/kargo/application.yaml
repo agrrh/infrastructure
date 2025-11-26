@@ -24,12 +24,12 @@ spec:
       values: |
         # https://github.com/akuity/kargo/blob/v1.8.4/charts/kargo/values.yaml
         api:
+          secret:
+            name: admin
+
           argocd:
             urls:
               "": http://argocd-server.argocd.svc
-
-          secret:
-            name: kargo-creds
 
         controller:
           logLevel: INFO
