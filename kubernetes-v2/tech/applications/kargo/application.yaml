@@ -43,8 +43,10 @@ spec:
             email: "no-reply@kargo.agrrh.com"
 
         externalWebhooksServer:
+          host: kargo-webhook.agrrh.com
           tls:
             enabled: false
+            terminatedUpstream: true
 
   syncPolicy:
     syncOptions:
