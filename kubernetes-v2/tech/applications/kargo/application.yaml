@@ -32,7 +32,7 @@ spec:
               "": http://argocd-server.argocd.svc
 
           tls:
-            terminatedUpstream: true
+            enabled: false
 
         controller:
           logLevel: INFO
