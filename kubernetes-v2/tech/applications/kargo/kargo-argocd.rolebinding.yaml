@@ -16,3 +16,8 @@ subjects:
 - kind: ServiceAccount
   name: kargo-controller
   namespace: kargo
+
+# per project
+- kind: ServiceAccount
+  name: kargo-promoter
+  namespace: pagetron
