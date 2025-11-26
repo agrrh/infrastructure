@@ -20,6 +20,6 @@ spec:
           namespace: kube-system
       services:
         - kind: Service
-          name: kargo
+          name: kargo-api
           namespace: kargo
-          port: 80
+          port: 8080
