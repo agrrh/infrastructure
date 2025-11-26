@@ -24,43 +24,10 @@ spec:
             - name: TZ
               value: Europe/Moscow
             - name: REGISTRY_PROXY_CONFIG
-              value: |-
-                version: 0.1
-                log:
-                  accesslog:
-                    disabled: false
-                  level: warn
-                  formatter: json
-                  fields:
-                    service: registry
-                storage:
-                  cache:
-                    blobdescriptor: inmemory
-                    blobdescriptorsize: 0
-                  filesystem:
-                    rootdirectory: /registry-proxy/var
-                  maintenance:
-                    uploadpurging:
-                      enabled: true
-                      age: 24h
-                      interval: 6h
-                      dryrun: false
-                http:
-                  addr: 0.0.0.0:5000
-                  net: tcp
-                  tls:
-                    certificate: /registry-proxy/ssl/default.crt
-                    key: /registry-proxy/ssl/default.key
-                  headers:
-                    X-Content-Type-Options: [nosniff]
-                health:
-                  storagedriver:
-                    enabled: true
-                    interval: 10s
-                    threshold: 3
-                proxy:
-                  remoteurl: https://registry-1.docker.io
-                  ttl: 24h
+              valueFrom:
+                secretKeyRef:
+                  name: config
+                  key: config
 
           ports:
             - containerPort: 5000
