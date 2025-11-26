@@ -6,6 +6,8 @@ apiVersion: argoproj.io/v1alpha1
 metadata:
   name: pagetron
   namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: pagetron:self-managed
 
 spec:
   project: personal

@@ -1,23 +1,23 @@
----
-
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-
-metadata:
-  name: kargo-argocd
-  namespace: argocd
-
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: kargo-argocd
-
-subjects:
-- kind: ServiceAccount
-  name: kargo-controller
-  namespace: kargo
-
-# per project
-- kind: ServiceAccount
-  name: kargo-promoter
-  namespace: pagetron
+# ---
+#
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: RoleBinding
+#
+# metadata:
+#   name: kargo-argocd
+#   namespace: argocd
+#
+# roleRef:
+#   apiGroup: rbac.authorization.k8s.io
+#   kind: Role
+#   name: kargo-argocd
+#
+# subjects:
+# - kind: ServiceAccount
+#   name: kargo-controller
+#   namespace: kargo
+#
+# # per project
+# - kind: ServiceAccount
+#   name: kargo-promoter
+#   namespace: pagetron
