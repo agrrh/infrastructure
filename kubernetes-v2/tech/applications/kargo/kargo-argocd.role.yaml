@@ -12,3 +12,9 @@ rules:
   - secrets
   verbs:
   - '*'
+- apiGroups:
+  - argoproj.io
+  resources:
+  - applications
+  verbs:
+  - '*'
