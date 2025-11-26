@@ -4,7 +4,7 @@ kind: Application
 apiVersion: argoproj.io/v1alpha1
 
 metadata:
-  name: app-dockerhub-proxy
+  name: app-dockerhub
   namespace: argocd
 
 spec:
@@ -12,12 +12,12 @@ spec:
 
   destination:
     name: brave-booth
-    namespace: dockerhub-proxy
+    namespace: dockerhub
 
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: HEAD
-    path: kubernetes-v2/tech/applications/dockerhub-proxy
+    path: kubernetes-v2/tech/applications/dockerhub
     directory:
       recurse: true
 
