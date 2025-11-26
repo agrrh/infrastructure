@@ -1,0 +1,25 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: kargo-http
+  namespace: argocd
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`kargo.agrrh.com`)
+      middlewares:
+        - name: whitelist
+          namespace: kube-system
+        - name: request-headers
+          namespace: kube-system
+      services:
+        - kind: Service
+          name: kargo
+          namespace: kargo
+          port: 80

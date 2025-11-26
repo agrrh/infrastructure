@@ -1,0 +1,47 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: kargo
+  namespace: argocd
+
+spec:
+  project: tech
+
+  destination:
+    name: brave-booth
+    namespace: kargo
+
+  source:
+    repoURL: oci://ghcr.io/akuity/kargo-charts
+    chart: kargo
+    targetRevision: v1.8.4
+
+    helm:
+      releaseName: kargo
+      values: |
+        # https://github.com/akuity/kargo/blob/v1.8.4/charts/kargo/values.yaml
+        api:
+          argocd:
+            urls:
+              "": http://argocd-server.argocd.svc
+
+          secret:
+            name: kargo-creds
+
+        controller:
+          logLevel: INFO
+          logFormat: json
+
+            gitClient:
+              name: "Kargo"
+              email: "no-reply@kargo.agrrh.com"
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: false
+      prune: false
