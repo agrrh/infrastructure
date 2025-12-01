@@ -25,13 +25,13 @@ backend:
   replicas: 1
   image:
     repository: agrrh/pagetron-backend
-    tag: ""
+    tag: v0.2.3-test.1
 
 frontend:
   replicas: 1
   image:
     repository: agrrh/pagetron-frontend
-    tag: ""
+    tag: v0.2.2
 
 publisher:
   buildImage:
