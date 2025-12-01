@@ -1,0 +1,59 @@
+---
+
+publicUrl: https://pagetron-demo.agrrh.com
+ingressClass: traefik
+
+publicAccess:
+  ingress:
+    enabled: true
+
+    class: traefik
+
+  s3:
+    enabled: true
+
+    secretName: s3-publish-credentials
+    bucketName: pagetron-status-page
+
+timezone: Europe/Moscow
+
+targets:
+  - http://example.com
+  - http://example.org
+
+backend:
+  replicas: 1
+  image:
+    repository: agrrh/pagetron-backend
+    tag: ""
+
+frontend:
+  replicas: 1
+  image:
+    repository: agrrh/pagetron-frontend
+    tag: ""
+
+publisher:
+  buildImage:
+    repository: agrrh/pagetron-frontend-builder
+    tag: ""
+
+  image:
+    repository: agrrh/cider
+    tag: 0.7.0
+
+prometheus:
+  image:
+    repository: prom/prometheus
+    tag: v2.48.0
+
+blackbox:
+  image:
+    repository: prom/blackbox-exporter
+    tag: v0.24.0
+
+housekeeper:
+  image:
+    repository: agrrh/cider
+    tag: 0.7.0
+

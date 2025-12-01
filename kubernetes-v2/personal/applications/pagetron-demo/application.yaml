@@ -16,39 +16,17 @@ spec:
     name: brave-booth
     namespace: pagetron-demo
 
-  source:
-    repoURL: https://github.com/agrrh/pagetron.git
-    path: charts/pagetron
-    targetRevision: v0.2.2
-    helm:
-      releaseName: pagetron-demo
-      values: |
-        publicUrl: https://pagetron-demo.agrrh.com
-        ingressClass: traefik
-
-        publicAccess:
-          ingress:
-            enabled: true
-
-            class: traefik
-
-          s3:
-            enabled: true
-
-            secretName: s3-publish-credentials
-            bucketName: pagetron-status-page
-
-        timezone: Europe/Moscow
-
-        targets:
-          - http://example.com
-          - http://example.org
-
-        backend:
-          replicas: 1
-
-        frontend:
-          replicas: 1
+  sources:
+    - repoURL: 'https://github.com/agrrh/infrastructure.git'
+      targetRevision: HEAD
+      ref: values
+    - repoURL: https://github.com/agrrh/pagetron.git
+      path: charts/pagetron
+      targetRevision: v0.2.2
+      helm:
+        releaseName: pagetron-demo
+        valueFiles:
+          - $values/kubernetes-v2/personal/applications/pagetron-demo/values.yaml
 
   syncPolicy:
     syncOptions:
