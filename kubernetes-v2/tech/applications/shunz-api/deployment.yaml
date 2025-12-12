@@ -1,0 +1,27 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: shunz-api
+  namespace: default
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shunz-api
+  template:
+    metadata:
+      labels:
+        app: shunz-api
+    spec:
+      containers:
+        - name: main
+          image: agrrh/shunz-api:v0.1.0
+          # env:
+          #   - name: TZ
+          #     value: Europe/Moscow
+          ports:
+            - containerPort: 8080

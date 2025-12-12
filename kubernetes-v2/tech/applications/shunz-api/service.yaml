@@ -1,0 +1,19 @@
+---
+
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: shunz-api
+  namespace: default
+  labels:
+    app: shunz-api
+
+spec:
+  selector:
+    app: shunz-api
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
