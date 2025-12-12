@@ -1,0 +1,51 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: redis
+  namespace: n8n
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: main
+          image: redis:6
+          command:
+            - "redis-server"
+          args:
+            - "/etc/redis/redis.conf"
+            - "--protected-mode"
+            - "no"
+            - "--appendonly"
+            - "no"
+            - "--save"
+            - "300"
+            - "1"
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: config
+              mountPath: /etc/redis
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: config
+          configMap:
+            name: redis
+            items:
+              - key: redis.conf
+                path: redis.conf
+        - name: data
+          persistentVolumeClaim:
+            claimName: redis
