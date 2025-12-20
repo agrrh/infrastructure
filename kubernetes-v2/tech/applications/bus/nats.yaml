@@ -23,7 +23,7 @@ spec:
       values: |
         # https://github.com/nats-io/k8s/blob/nats-2.12.3/helm/charts/nats/values.yaml
         fullnameOverride: "nats"
-        nats:
+        config:
           jetstream:
             enabled: true
 
