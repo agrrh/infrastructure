@@ -2,26 +2,31 @@
 
 kind: Application
 apiVersion: argoproj.io/v1alpha1
+
 metadata:
-  name: events-bus-dev
+  name: bus
   namespace: argocd
+
 spec:
-  project: payload
+  project: tech
+
+  destination:
+    name: brave-booth
+    namespace: bus
+
   source:
     repoURL: https://nats-io.github.io/k8s/helm/charts
     chart: nats
-    targetRevision: 0.18.0
+    targetRevision: 2.12.3
 
     helm:
       values: |
+        # https://github.com/nats-io/k8s/blob/nats-2.12.3/helm/charts/nats/values.yaml
         fullnameOverride: "nats"
         nats:
           jetstream:
             enabled: true
 
-  destination:
-    namespace: bus-dev
-    server: https://kubernetes.default.svc
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
