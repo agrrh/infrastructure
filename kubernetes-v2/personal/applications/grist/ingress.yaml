@@ -1,0 +1,23 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: grist-http
+  namespace: grist
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`grist.agrrh.com`)
+      middlewares:
+        - name: whitelist
+          namespace: kube-system
+      services:
+        - kind: Service
+          name: grist
+          namespace: grist
+          port: 80

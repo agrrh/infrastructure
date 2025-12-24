@@ -1,0 +1,65 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: grist
+  namespace: grist
+  labels:
+    app: grist
+
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+
+  selector:
+    matchLabels:
+      app: grist
+  template:
+    metadata:
+      labels:
+        app: grist
+    spec:
+      containers:
+        - name: main
+
+          image: gristlabs/grist:1.7.8
+
+          env:
+            - name: GRIST_SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: grist
+                  key: session_secret
+
+            - name: GRIST_DEFAULT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: grist
+                  key: default_email
+
+            - name: APP_HOME_URL
+              value: https://grist.agrrh.com
+
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
+          ports:
+            - name: http
+              containerPort: 8484
+
+          volumeMounts:
+            - mountPath: /persist
+              name: data-volume
+
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: grist-data
