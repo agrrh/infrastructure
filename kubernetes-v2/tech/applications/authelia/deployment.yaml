@@ -31,8 +31,8 @@ spec:
             - name: data
               mountPath: /var/lib/authelia
             - name: config
-              mountPath: /config/authelia.yaml
-              subPath: authelia.yaml
+              mountPath: /config/configuration.yml
+              subPath: configuration.yml
               readOnly: true
             - name: config
               mountPath: /config/users.yaml
@@ -45,7 +45,7 @@ spec:
             secretName: config
             items:
               - key: config.yaml
-                path: authelia.yaml
+                path: configuration.yml
               - key: users.yaml
                 path: users.yaml
         - name: data
