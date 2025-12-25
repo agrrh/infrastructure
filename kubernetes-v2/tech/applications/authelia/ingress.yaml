@@ -1,0 +1,23 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: authelia-http
+  namespace: authelia
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`auth.agrrh.com`)
+      middlewares: []
+        # - name: whitelist
+        #   namespace: kube-system
+      services:
+        - kind: Service
+          name: authelia
+          namespace: authelia
+          port: 80
