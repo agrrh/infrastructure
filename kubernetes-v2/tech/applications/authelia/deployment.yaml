@@ -1,0 +1,27 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: authelia
+  namespace: authelia
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authelia
+  template:
+    metadata:
+      labels:
+        app: authelia
+    spec:
+      containers:
+        - name: main
+          image: authelia/authelia:4.39.15
+          env:
+            - name: TZ
+              value: Europe/Moscow
+          ports:
+            - containerPort: 9091
