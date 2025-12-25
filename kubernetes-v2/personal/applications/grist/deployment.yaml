@@ -60,6 +60,11 @@ spec:
                   name: grist
                   key: oidc_client_secret
 
+          securityContext:
+            capabilities:
+              add:
+              - SYS_PTRACE
+
           resources: {}
             # requests:
             #   cpu: "500m"
