@@ -17,6 +17,7 @@ spec:
       labels:
         app: authelia
     spec:
+      enableServiceLinks: false
       containers:
         - name: main
           image: authelia/authelia:4.39.14
