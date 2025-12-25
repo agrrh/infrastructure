@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: main
-          image: authelia/authelia:4.39.15
+          image: authelia/authelia:4.39.14
           env:
             - name: TZ
               value: Europe/Moscow
