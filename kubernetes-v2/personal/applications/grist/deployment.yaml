@@ -43,6 +43,21 @@ spec:
             - name: APP_HOME_URL
               value: https://grist.agrrh.com
 
+            - name: GRIST_OIDC_SP_HOST
+              value: https://grist.agrrh.com
+            - name: GRIST_OIDC_IDP_ISSUER
+              value: https://auth.agrrh.com/
+            - name: GRIST_OIDC_IDP_SCOPES
+              value: "openid profile email"
+
+            - name: GRIST_OIDC_IDP_CLIENT_ID
+              value: grist
+            - name: GRIST_OIDC_IDP_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: grist
+                  key: oidc_client_secret
+
           resources: {}
             # requests:
             #   cpu: "500m"
