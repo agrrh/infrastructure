@@ -34,7 +34,7 @@ spec:
               mountPath: /config/authelia.yaml
               subPath: authelia.yaml
               readOnly: true
-            - name: users
+            - name: config
               mountPath: /config/users.yaml
               subPath: users.yaml
               readOnly: true
@@ -44,7 +44,7 @@ spec:
           secret:
             secretName: config
             items:
-              - key: authelia.yaml
+              - key: config.yaml
                 path: authelia.yaml
               - key: users.yaml
                 path: users.yaml
