@@ -43,6 +43,9 @@ spec:
             - name: APP_HOME_URL
               value: https://grist.agrrh.com
 
+            - name: GRIST_SINGLE_ORG
+              value: docs
+
             - name: GRIST_OIDC_SP_HOST
               value: https://grist.agrrh.com
             - name: GRIST_OIDC_IDP_ISSUER
