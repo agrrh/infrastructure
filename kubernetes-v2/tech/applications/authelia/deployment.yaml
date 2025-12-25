@@ -24,4 +24,30 @@ spec:
             - name: TZ
               value: Europe/Moscow
           ports:
-            - containerPort: 9091
+            - name: http
+              containerPort: 9091
+
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/authelia
+            - name: config
+              mountPath: /config/authelia.yaml
+              subPath: authelia.yaml
+              readOnly: true
+            - name: users
+              mountPath: /config/users.yaml
+              subPath: users.yaml
+              readOnly: true
+
+      volumes:
+        - name: config
+          secret:
+            secretName: config
+            items:
+              - key: authelia.yaml
+                path: authelia.yaml
+              - key: users.yaml
+                path: users.yaml
+        - name: data
+          persistentVolumeClaim:
+            claimName: authelia-data
