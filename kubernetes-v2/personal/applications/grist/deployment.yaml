@@ -46,7 +46,9 @@ spec:
             - name: GRIST_OIDC_SP_HOST
               value: https://grist.agrrh.com
             - name: GRIST_OIDC_IDP_ISSUER
-              value: https://auth.agrrh.com/
+              value: https://auth.agrrh.com
+            - name: GRIST_OIDC_IDP_SKIP_END_SESSION_ENDPOINT
+              value: "true"
             - name: GRIST_OIDC_IDP_SCOPES
               value: "openid profile email"
 
