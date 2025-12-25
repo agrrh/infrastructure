@@ -60,6 +60,9 @@ spec:
                   name: grist
                   key: oidc_client_secret
 
+            - name: GRIST_SANDBOX_FLAVOR
+              value: gvisor
+
           securityContext:
             capabilities:
               add:
