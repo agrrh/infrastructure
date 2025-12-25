@@ -33,11 +33,11 @@ spec:
             - name: config
               mountPath: /config/configuration.yml
               subPath: configuration.yml
-              readOnly: true
+              # readOnly: true
             - name: config
               mountPath: /config/users.yaml
               subPath: users.yaml
-              readOnly: true
+              # readOnly: true
 
       volumes:
         - name: config
