@@ -21,6 +21,11 @@ data:
       .message = to_string(.message) ?? "default"
       if is_json(.message) {
         ., err = parse_json(.message)
+
+        if err != null {
+          log("Unable to parse json:" + err, level: "error")
+          log(., level: "error")
+        }
       }
     '''
 
