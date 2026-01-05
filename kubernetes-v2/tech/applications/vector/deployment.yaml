@@ -1,0 +1,92 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: vector
+  namespace: vector
+  labels:
+    app: vector
+
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: vector
+  template:
+    metadata:
+      labels:
+        app: vector
+    spec:
+      serviceAccountName: vector
+      containers:
+        - name: vector
+          image: timberio/vector:0.52.X-alpine
+          imagePullPolicy: IfNotPresent
+
+          env:
+            - name: VECTOR_CONFIG
+              value: /etc/vector/vector.toml
+            - name: VECTOR_SELF_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: VECTOR_SELF_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: RUST_LOG
+              value: "info"
+
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8686
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8686
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          volumeMounts:
+            - name: config
+              mountPath: /etc/vector
+              readOnly: true
+            - name: data
+              mountPath: /vector-data
+            - name: varlog
+              mountPath: /var/log
+              readOnly: true
+            - name: varlibcontainers
+              mountPath: /var/lib/docker/containers
+              readOnly: true
+            - name: podlogs
+              mountPath: /var/log/pods
+              readOnly: true
+
+      volumes:
+        - name: config
+          configMap:
+            name: vector-config
+        - name: data
+          emptyDir: {}
+        - name: varlog
+          hostPath:
+            path: /var/log
+            type: Directory
+        - name: varlibcontainers
+          hostPath:
+            path: /var/lib/docker/containers
+            type: Directory
+        - name: podlogs
+          hostPath:
+            path: /var/log/pods
+            type: Directory
