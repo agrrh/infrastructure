@@ -16,7 +16,7 @@ spec:
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: HEAD
-    path: kubernetes-v2/tech/applications/goflow
+    path: kubernetes-v2/tech/applications/goflow2
     directory:
       recurse: true
 
