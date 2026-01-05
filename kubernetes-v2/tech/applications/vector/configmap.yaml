@@ -12,7 +12,6 @@ data:
 
     [sources.k8s_logs]
     type = "kubernetes_logs"
-    # extra_label_selector = "app=goflow"
 
     [transforms.parse_json]
     type = "remap"
@@ -37,9 +36,19 @@ data:
       .collector = "vector"
     '''
 
+    [transforms.select_goflow]
+    type = "filter"
+    inputs = ["add_metadata"]
+    condition.type = "vrl"
+    condition.source = """
+      if .kubernetes.pod_namespace != "netflow" || !starts_with(string!(.kubernetes.pod_name), "goflow-") {
+        abort
+      }
+    """
+
     [sinks.http_output]
     type = "http"
-    inputs = ["add_metadata"]
+    inputs = ["select_goflow"]
     uri = "http://availability-checker:8080/api/v1/flows"
     method = "post"
     encoding.codec = "json"
