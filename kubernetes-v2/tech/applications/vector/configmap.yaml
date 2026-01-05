@@ -49,8 +49,8 @@ data:
     target = "stdout"
     encoding.codec = "json"
 
-    [sinks.prometheus]
-    type = "prometheus_exporter"
-    inputs = []
-    address = "0.0.0.0:9598"
-    default_namespace = "vector"
+    # [sinks.prometheus]
+    # type = "prometheus_exporter"
+    # inputs = []
+    # address = "0.0.0.0:9598"
+    # default_namespace = "vector"
