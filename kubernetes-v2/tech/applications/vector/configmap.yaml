@@ -41,7 +41,7 @@ data:
     inputs = ["add_metadata"]
     condition.type = "vrl"
     condition.source = """
-      return .kubernetes.pod_namespace != "netflow" || !starts_with(string!(.kubernetes.pod_name), "goflow-")
+      return .kubernetes.pod_namespace == "netflow" && starts_with(string!(.kubernetes.pod_name), "goflow-")
     """
 
     [sinks.goflow_send_to_analyze]
