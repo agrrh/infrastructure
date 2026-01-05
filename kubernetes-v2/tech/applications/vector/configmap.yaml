@@ -26,7 +26,8 @@ data:
           abort
         }
 
-        . = parsed
+        del(.message)
+        .json = parsed
       }
     '''
 
