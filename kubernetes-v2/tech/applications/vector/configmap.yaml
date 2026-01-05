@@ -55,7 +55,7 @@ data:
     [sinks.goflow_send_to_analyze]
     type = "http"
     inputs = ["select_goflow"]
-    uri = "http://10.0.55.101:8080/api/v1/flows"
+    uri = "http://10.0.55.110:8080/api/v1/flows"
     method = "post"
     encoding.codec = "json"
     batch.max_events = 10
