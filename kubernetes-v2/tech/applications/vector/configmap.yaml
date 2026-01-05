@@ -18,6 +18,7 @@ data:
     type = "remap"
     inputs = ["k8s_logs"]
     source = '''
+      .message = to_string(.message) ?? "default"
       if is_json(.message) {
         . = parse_json(.message)
       }
