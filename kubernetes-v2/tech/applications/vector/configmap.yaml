@@ -19,7 +19,7 @@ data:
     source = '''
       .message = to_string(.message) ?? "default"
       if is_json(.message) {
-        ., err = parse_json(.message)
+        parsed, err = parse_json(.message)
 
         if err != null {
           log("Skipping non-JSON message: " + err, level: "debug")
