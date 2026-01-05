@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: goflow
+  namespace: netflow
+  labels:
+    app: goflow
+
+spec:
+  selector:
+    matchLabels:
+      app: goflow
+  template:
+    metadata:
+      labels:
+        app: goflow
+    spec:
+      containers:
+        - image: netsampler/goflow2:v2.2.6
+          name: goflow
+          args:
+            - "-listen=netflow://0.0.0.0:2055"
+          # args:
+          #   - -transport.kafka.brokers=sflow-kafka.sflow.svc.cluster.local:9092
+          #   - -transport=kafka
+          #   - -transport.kafka.topic=flows
+          #   - -format=pb
+          #   - -format.protobuf.fixedlen=true
