@@ -20,7 +20,7 @@ data:
     source = '''
       .message = to_string(.message) ?? "default"
       if is_json(.message) {
-        . = parse_json(.message)
+        ., err = parse_json(.message)
       }
     '''
 
