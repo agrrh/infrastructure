@@ -42,8 +42,9 @@ data:
     condition.type = "vrl"
     condition.source = """
       if .kubernetes.pod_namespace != "netflow" || !starts_with(string!(.kubernetes.pod_name), "goflow-") {
-        abort
+        return false
       }
+      return true
     """
 
     [sinks.http_output]
