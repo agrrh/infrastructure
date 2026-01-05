@@ -22,23 +22,17 @@ data:
         ., err = parse_json(.message)
 
         if err != null {
-          log("Unable to parse json:" + err, level: "error")
-          log(., level: "error")
+          log("Skipping non-JSON message: " + err, level: "debug")
+          abort
         }
-      }
-    '''
 
-    [transforms.add_metadata]
-    type = "remap"
-    inputs = ["parse_json"]
-    source = '''
-      .timestamp = now()
-      .collector = "vector"
+        . = parsed
+      }
     '''
 
     [transforms.select_goflow]
     type = "filter"
-    inputs = ["add_metadata"]
+    inputs = ["parse_json"]
     condition.type = "vrl"
     condition.source = """
       return .kubernetes.pod_namespace == "netflow" && starts_with(string!(.kubernetes.pod_name), "goflow-")
@@ -61,10 +55,10 @@ data:
     [sinks.goflow_send_to_analyze]
     type = "http"
     inputs = ["select_goflow"]
-    uri = "http://availability-checker:8080/api/v1/flows"
+    uri = "http://10.0.55.101:8080/api/v1/flows"
     method = "post"
     encoding.codec = "json"
-    batch.max_events = 50
+    batch.max_events = 10
     batch.timeout_secs = 1
     request.timeout_secs = 10
     request.retry_attempts = 3
