@@ -39,20 +39,6 @@ data:
       return .kubernetes.pod_namespace == "netflow" && starts_with(string!(.kubernetes.pod_name), "goflow-")
     """
 
-    # [transforms.aggregate_addresses]
-    # type = "aggregate"
-    # inputs = ["filter_suspicious"]
-    # identifier_fields = ["dst_address"]
-    # aggregate = [
-    #   { window_seconds = 60, target_field = "flow_count", function = "count" },
-    #   { window_seconds = 60, target_field = "total_packets", function = "sum", field = "packets" },
-    #   { window_seconds = 60, target_field = "unique_sources", function = "count_distinct", field = "src_address" }
-    # ]
-    # condition = "true"
-    # output_schema.fields.flow_count = "int"
-    # output_schema.fields.total_packets = "int"
-    # output_schema.fields.unique_sources = "int"
-
     [sinks.goflow_send_to_analyze]
     type = "http"
     inputs = ["select_goflow"]
@@ -61,7 +47,7 @@ data:
     encoding.codec = "json"
     batch.max_events = 10
     batch.timeout_secs = 1
-    request.timeout_secs = 10
+    request.timeout_secs = 5
     request.retry_attempts = 3
     request.retry_backoff_secs = 1
 
