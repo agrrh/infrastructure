@@ -58,7 +58,7 @@ data:
 
     [sinks.console]
     type = "console"
-    inputs = ["goflow_send_to_analyze"]
+    inputs = ["select_goflow"]
     target = "stdout"
     encoding.codec = "json"
 
