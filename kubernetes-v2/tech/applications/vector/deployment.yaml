@@ -40,10 +40,6 @@ spec:
               value: "info"
 
           ports:
-            - name: syslog-tcp
-              port: 9000
-              protocol: TCP
-              containerPort: 9000
             - name: syslog-udp
               port: 9000
               protocol: UDP
