@@ -13,7 +13,12 @@ data:
     [sources.k8s_logs]
     type = "kubernetes_logs"
 
-    [sources.syslog]
+    # [sources.syslog_tcp]
+    # type = "syslog"
+    # address = "0.0.0.0:9000"
+    # mode = "tcp"
+
+    [sources.syslog_udp]
     type = "syslog"
     address = "0.0.0.0:9000"
     mode = "udp"
@@ -46,7 +51,7 @@ data:
 
     [transforms.select_dns]
     type = "filter"
-    inputs = ["parse_json"]
+    inputs = ["syslog_udp"]
     condition.type = "vrl"
     condition.source = """
       return .appname == "ndnproxy" && contains(string!(.message), " domain ")
@@ -57,7 +62,7 @@ data:
     inputs = ["select_dns"]
     source = """
       # [C787] domain 'example.com.'
-      .domain = parse_regex!(.message, r'domain \\'(?P<domain>[\w\d\.]+)\\'').domain
+      .domain = parse_regex!(.message, r'domain \\'(?P<domain>[\\w\\d\\.]+)\\'').domain
     """
 
     [sinks.goflow_send]
