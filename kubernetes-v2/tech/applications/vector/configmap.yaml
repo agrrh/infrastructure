@@ -57,14 +57,7 @@ data:
     inputs = ["select_dns"]
     source = """
       # [C787] domain 'example.com.'
-      domain_match = parse_regex(.message, r"domain '([^\s]+)'")
-
-      if domain_match != null {
-        .domain = domain_match.captures[0]
-      } else {
-        log("Could not extract domain from: " + .message, level: "warn")
-        abort
-      }
+      .domain = parse_regex!(.message, r'domain \'(?P<domain>[\w\d\.]+)\'').domain
     """
 
     [sinks.goflow_send]
