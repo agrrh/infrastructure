@@ -87,7 +87,7 @@ data:
 
     [sinks.console]
     type = "console"
-    inputs = ["select_goflow"]
+    inputs = ["k8s_logs", "syslog_udp"]
     target = "stdout"
     encoding.codec = "json"
 
