@@ -39,6 +39,14 @@ spec:
             - name: RUST_LOG
               value: "info"
 
+          ports:
+            - name: syslog-tcp
+              port: 9000
+              protocol: TCP
+            - name: syslog-udp
+              port: 9000
+              protocol: UDP
+
           resources:
             limits:
               memory: "256Mi"

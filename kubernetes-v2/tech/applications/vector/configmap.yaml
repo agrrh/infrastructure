@@ -13,6 +13,11 @@ data:
     [sources.k8s_logs]
     type = "kubernetes_logs"
 
+    [sources.syslog]
+    type = "syslog"
+    address = "0.0.0.0:9000"
+    # mode = "tcp"
+
     [transforms.parse_json]
     type = "remap"
     inputs = ["k8s_logs"]
@@ -53,7 +58,7 @@ data:
 
     [sinks.console]
     type = "console"
-    inputs = ["select_goflow"]
+    inputs = ["syslog", "select_goflow"]
     target = "stdout"
     encoding.codec = "json"
 
