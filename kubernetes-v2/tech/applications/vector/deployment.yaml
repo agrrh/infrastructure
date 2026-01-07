@@ -43,9 +43,11 @@ spec:
             - name: syslog-tcp
               port: 9000
               protocol: TCP
+              containerPort: 9000
             - name: syslog-udp
               port: 9000
               protocol: UDP
+              containerPort: 9000
 
           resources:
             limits:
