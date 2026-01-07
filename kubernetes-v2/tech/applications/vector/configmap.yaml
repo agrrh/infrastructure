@@ -44,21 +44,52 @@ data:
       return .kubernetes.pod_namespace == "netflow" && starts_with(string!(.kubernetes.pod_name), "goflow-")
     """
 
-    [sinks.goflow_send_to_analyze]
+    [transforms.select_dns]
+    type = "filter"
+    inputs = ["parse_json"]
+    condition.type = "vrl"
+    condition.source = """
+      return .appname == "ndnproxy" && contains(string!(.message), " domain ")
+    """
+
+    [transforms.parse_dns]
+    type = "remap"
+    inputs = ["select_dns"]
+    source = """
+      # [C787] domain 'example.com.'
+      domain_match = parse_regex(.message, r"domain '([^\\s]+)'")
+
+      if domain_match != null {
+        .domain = domain_match.captures[0]
+      } else {
+        log("Could not extract domain from: " + .message, level: "warn")
+        abort
+      }
+    """
+
+    [sinks.goflow_send]
     type = "http"
     inputs = ["select_goflow"]
     uri = "http://10.0.55.110:8080/api/v1/flows"
     method = "post"
     encoding.codec = "json"
-    batch.max_events = 10
-    batch.timeout_secs = 1
-    request.timeout_secs = 5
+    request.timeout_secs = 2
     request.retry_attempts = 3
-    request.retry_backoff_secs = 1
+    request.retry_backoff_secs = 5
+
+    [sinks.dns_send]
+    type = "http"
+    inputs = ["parse_dns"]
+    uri = "http://10.0.55.110:8080/api/v1/dns_queries"
+    method = "post"
+    encoding.codec = "json"
+    request.timeout_secs = 2
+    request.retry_attempts = 3
+    request.retry_backoff_secs = 5
 
     [sinks.console]
     type = "console"
-    inputs = ["syslog", "select_goflow"]
+    inputs = ["parse_dns"]
     target = "stdout"
     encoding.codec = "json"
 
