@@ -16,7 +16,7 @@ data:
     [sources.syslog]
     type = "syslog"
     address = "0.0.0.0:9000"
-    # mode = "tcp"
+    mode = "udp"
 
     [transforms.parse_json]
     type = "remap"
