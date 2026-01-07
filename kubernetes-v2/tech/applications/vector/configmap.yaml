@@ -62,7 +62,7 @@ data:
     inputs = ["select_dns"]
     source = """
       # [C787] domain 'example.com.'
-      .domain = parse_regex!(.message, r'domain \\'(?P<domain>[\\w\\d\\.]+)\\'').domain
+      .domain = parse_regex!(.message, r'domain \\'(?P<domain>.+)\\'').domain
     """
 
     [sinks.goflow_send]
