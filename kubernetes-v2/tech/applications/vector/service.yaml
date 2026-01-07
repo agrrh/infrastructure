@@ -18,11 +18,13 @@ spec:
   selector:
     app: vector
   ports:
-    - nodePort: 30900
+    - name: syslog-tcp
+      nodePort: 30900
       port: 9000
       protocol: TCP
       targetPort: 9000
-    - nodePort: 30900
+    - name: syslog-udp
+      nodePort: 30900
       port: 9000
       protocol: UDP
       targetPort: 9000
