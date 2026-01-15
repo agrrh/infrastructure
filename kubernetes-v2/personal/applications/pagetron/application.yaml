@@ -56,6 +56,8 @@ spec:
       selfHeal: true
       prune: false
     managedNamespaceMetadata:
+      labels:
+        kargo.akuity.io/project: "true"
       annotations:
         kargo.akuity.io/keep-namespace: "true"
 
