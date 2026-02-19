@@ -18,7 +18,8 @@ Source of truth for allocated cluster names is this repository.
 ## Allocated names
 
 ```
-brave-booth
+brave-booth (@caramel, 2024)
+funny-bell (@kitkat, 2026q1)
 ```
 
 And some legacy ones:
