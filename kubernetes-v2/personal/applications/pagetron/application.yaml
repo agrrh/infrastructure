@@ -13,7 +13,7 @@ spec:
   project: personal
 
   destination:
-    name: brave-booth
+    name: funny-bell
     namespace: pagetron
 
   source:
