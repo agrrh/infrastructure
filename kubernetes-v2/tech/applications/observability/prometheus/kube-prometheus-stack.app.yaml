@@ -9,7 +9,7 @@ spec:
   project: tech
 
   destination:
-    name: brave-booth
+    name: funny-bell
     namespace: metrics
 
   source:
