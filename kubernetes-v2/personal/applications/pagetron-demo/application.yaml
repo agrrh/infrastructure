@@ -22,7 +22,7 @@ spec:
       ref: values
     - repoURL: https://github.com/agrrh/pagetron.git
       path: charts/pagetron
-      targetRevision: v0.2.2
+      targetRevision: v0.2.3
       helm:
         releaseName: pagetron-demo
         valueFiles:
