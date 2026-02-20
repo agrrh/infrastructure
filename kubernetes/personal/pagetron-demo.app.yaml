@@ -1,0 +1,34 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: app-pagetron-demo
+  namespace: argocd
+
+spec:
+  project: personal
+
+  destination:
+    name: funny-bell
+    namespace: argocd
+
+  source:
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: HEAD
+    path: kubernetes/personal/applications/pagetron-demo
+    directory:
+      recurse: true
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: false
+
+  ignoreDifferences:
+    - group: argoproj.io
+      kind: Application
+      jqPathExpressions:
+        - .spec.source.targetRevision
+        - .spec.sources[] | .targetRevision

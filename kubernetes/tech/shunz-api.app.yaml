@@ -1,0 +1,27 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: app-shunz-api
+  namespace: argocd
+
+spec:
+  project: tech
+
+  destination:
+    name: funny-bell
+    namespace: default
+
+  source:
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: HEAD
+    path: kubernetes/tech/applications/shunz-api
+    directory:
+      recurse: true
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

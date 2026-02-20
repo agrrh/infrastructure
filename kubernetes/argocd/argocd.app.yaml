@@ -1,0 +1,33 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: argocd
+  namespace: argocd
+
+spec:
+  project: default
+
+  destination:
+    name: funny-bell
+    namespace: argocd
+
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: 9.1.4
+
+      helm:
+        valueFiles:
+          - $values/kubernetes/argocd/values.yaml
+
+    - repoURL: https://github.com/agrrh/infrastructure
+      targetRevision: HEAD
+      ref: values
+
+  # syncPolicy:
+  #   automated:
+  #     selfHeal: true
+  #     prune: true

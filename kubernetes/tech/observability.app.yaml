@@ -1,0 +1,27 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: app-observability
+  namespace: argocd
+
+spec:
+  project: tech
+
+  destination:
+    name: funny-bell
+    namespace: argocd
+
+  source:
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: HEAD
+    path: kubernetes/tech/applications/observability
+    directory:
+      recurse: true
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

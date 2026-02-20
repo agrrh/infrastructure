@@ -1,0 +1,27 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: app-dockerhub
+  namespace: argocd
+
+spec:
+  project: tech
+
+  destination:
+    name: funny-bell
+    namespace: dockerhub
+
+  source:
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: HEAD
+    path: kubernetes/tech/applications/dockerhub
+    directory:
+      recurse: true
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

@@ -1,0 +1,27 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: app-grist
+  namespace: argocd
+
+spec:
+  project: personal
+
+  destination:
+    name: brave-booth
+    namespace: argocd
+
+  source:
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: HEAD
+    path: kubernetes/personal/applications/grist
+    directory:
+      recurse: true
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: false
