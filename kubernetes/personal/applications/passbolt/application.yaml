@@ -15,11 +15,9 @@ spec:
     namespace: passbolt
 
   source:
-    repoURL: https://github.com/cnieg/helm-charts
-    targetRevision: passbolt-1.1.17
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: HEAD
     path: charts/passbolt
-    directory:
-      recurse: true
     
     helm:
       releaseName: passbolt

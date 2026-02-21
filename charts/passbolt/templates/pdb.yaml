@@ -1,0 +1,19 @@
+{{- if .Values.podDisruptionBudget.enabled -}}
+{{- $kubeVer := .Capabilities.KubeVersion.GitVersion -}}
+{{- if semverCompare ">=1.21-0" $kubeVer -}}
+apiVersion: policy/v1
+{{- else -}}
+apiVersion: policy/v1beta1
+{{- end }}
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "passbolt.fullname" . }}
+  labels:
+    {{- include "passbolt.labels" . | nindent 4 }}
+spec:
+  {{ .Values.podDisruptionBudget.rule.type }}: {{.Values.podDisruptionBudget.rule.value}}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "passbolt.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}

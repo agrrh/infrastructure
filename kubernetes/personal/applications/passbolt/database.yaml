@@ -15,9 +15,9 @@ spec:
     namespace: passbolt
 
   source:
-    repoURL: oci://registry-1.docker.io/bitnamicharts
-    chart: mariadb
-    targetRevision: 11.4.7
+    repoURL: https://github.com/agrrh/infrastructure
+    targetRevision: HEAD
+    path: charts/mariadb
     
     helm:
       releaseName: mariadb
