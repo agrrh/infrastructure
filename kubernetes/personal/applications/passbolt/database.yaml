@@ -15,9 +15,11 @@ spec:
     namespace: passbolt
 
   source:
-    repoURL: https://github.com/bitnami/charts/
+    repoURL: https://github.com/bitnami/charts
     targetRevision: mariadb/11.4.7
     path: bitnami/mariadb
+    directory:
+      recurse: true
     
     helm:
       releaseName: mariadb
