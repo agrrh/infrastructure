@@ -22,6 +22,10 @@ spec:
     helm:
       releaseName: mariadb
       values: |
+        image:
+          repository: bitnamilegacy/mariadb
+          tag: 10.6.12-debian-11-r3
+
         auth:
           existingSecret: passbolt-mariadb
 
