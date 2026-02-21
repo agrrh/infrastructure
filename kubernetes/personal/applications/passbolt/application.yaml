@@ -15,9 +15,10 @@ spec:
     namespace: passbolt
 
   source:
-    repoURL: https://cnieg.github.io/helm-charts
-    chart: passbolt
-    targetRevision: "1.1.17"
+    repoURL: https://github.com/cnieg/helm-charts
+    targetRevision: passbolt-1.1.17
+    path: charts/passbolt
+    
     helm:
       releaseName: passbolt
       values: |
