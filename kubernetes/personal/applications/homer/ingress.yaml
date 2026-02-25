@@ -1,0 +1,21 @@
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: homer-http
+  namespace: homer
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`homer.agrrh.com`)
+      middlewares:
+        - name: whitelist
+          namespace: kube-system
+      services:
+        - kind: Service
+          name: homer
+          namespace: homer
+          port: 80
