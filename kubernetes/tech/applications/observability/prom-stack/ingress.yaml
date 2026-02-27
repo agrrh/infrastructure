@@ -18,6 +18,6 @@ spec:
           namespace: kube-system
       services:
         - kind: Service
-          name: grafana-operated
+          name: kube-prometheus-stack-grafana
           namespace: metrics
           port: 80
