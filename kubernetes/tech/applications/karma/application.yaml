@@ -44,41 +44,41 @@ spec:
                   # headers:
                   #   x-auth-token: some-token
                   #   any-header: string-value
-              annotations:
-                default:
-                  hidden: false
-                hidden:
-                  - help
-                visible: []
-              filters:
-                default:
-                  - "@receiver=by-cluster-service"
-              labels:
-                color:
-                  static:
-                    - job
-                  unique:
-                    - cluster
-                    - instance
-                    - "@receiver"
-                keep: []
-                strip: []
-              listen:
-                address: "0.0.0.0"
-                port: 8080
-                prefix: /
-              log:
-                config: false
-                level: info
-              # jira:
-              #   - regex: DEVOPS-[0-9]+
-              #     uri: https://jira.example.com
-              receivers:
-                keep: []
-                strip: []
-              # sentry:
-              #   private: secret
-              #   public: 123456789
+            annotations:
+              default:
+                hidden: false
+              hidden:
+                - help
+              visible: []
+            filters:
+              default:
+                - "@receiver=by-cluster-service"
+            labels:
+              color:
+                static:
+                  - job
+                unique:
+                  - cluster
+                  - instance
+                  - "@receiver"
+              keep: []
+              strip: []
+            listen:
+              address: "0.0.0.0"
+              port: 8080
+              prefix: /
+            log:
+              config: false
+              level: info
+            # jira:
+            #   - regex: DEVOPS-[0-9]+
+            #     uri: https://jira.example.com
+            receivers:
+              keep: []
+              strip: []
+            # sentry:
+            #   private: secret
+            #   public: 123456789
             # aclsConfig:
             #   rules:
             #    - action: block
