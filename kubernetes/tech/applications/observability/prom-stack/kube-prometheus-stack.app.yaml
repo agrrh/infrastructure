@@ -33,11 +33,10 @@ spec:
 
         defaultRules:
           create: false
-
           runbookUrl: https://runbooks.prometheus-operator.dev/runbooks
 
         grafana:
-          enabled: false
+          enabled: true
 
           additionalDataSources: []
           admin:
