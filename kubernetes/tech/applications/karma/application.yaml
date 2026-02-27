@@ -15,8 +15,8 @@ spec:
     namespace: metrics
 
   source:
-    repoURL: https://wiremind.github.io/wiremind-helm-charts/wiremind
-    chart: karma
+    repoURL: https://wiremind.github.io/wiremind-helm-charts/
+    chart: wiremind/karma
     targetRevision: 2.11.0
 
     helm:
