@@ -16,6 +16,7 @@ spec:
 
   source:
     repoURL: oci://ghcr.io/netbox-community/netbox-chart/netbox
+    chart: netbox
     targetRevision: 8.0.10
 
     helm:
