@@ -1,0 +1,23 @@
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: netbox-http
+  namespace: metrics
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`netbox.agrrh.com`)
+      middlewares:
+        - name: whitelist
+          namespace: kube-system
+      services:
+        - kind: Service
+          name: netbox
+          namespace: netbox
+          port: 80

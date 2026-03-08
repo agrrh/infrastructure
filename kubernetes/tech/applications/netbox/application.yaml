@@ -1,0 +1,36 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: netbox
+  namespace: argocd
+
+spec:
+  project: tech
+
+  destination:
+    name: funny-bell
+    namespace: netbox
+
+  source:
+    repoURL: oci://ghcr.io/netbox-community/netbox-chart/netbox
+    targetRevision: 8.0.10
+
+    helm:
+      releaseName: netbox
+      values: |
+        # https://github.com/netbox-community/netbox-chart/blob/netbox-8.0.10/charts/netbox/values.yaml
+        
+        existingSecret: config
+        
+        # superuser:
+        #   existingSecret: superuser
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: false
+      prune: false
