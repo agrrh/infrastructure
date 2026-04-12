@@ -7,7 +7,7 @@ metadata:
   name: pagetron
   namespace: argocd
   annotations:
-    kargo.akuity.io/authorized-stage: pagetron:self-managed
+    kargo.akuity.io/authorized-stage: pagetron:staging
 
 spec:
   project: personal
