@@ -42,4 +42,4 @@ spec:
       port: 53
       targetPort: dns-tcp
       protocol: TCP
-      nodePort: 30053
+      nodePort: 30054
