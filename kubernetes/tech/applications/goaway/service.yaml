@@ -29,17 +29,17 @@ metadata:
     app: goaway
 
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: goaway
   ports:
     - name: dns-udp
-      port: 30053
+      port: 53
       targetPort: dns-udp
       protocol: UDP
       nodePort: 30053
     - name: dns-tcp
-      port: 30053
+      port: 53
       targetPort: dns-tcp
       protocol: TCP
       nodePort: 30053
