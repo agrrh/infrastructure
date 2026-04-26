@@ -9,7 +9,7 @@ metadata:
 
 data:
   # https://pommee.github.io/goaway/configuration/
-  config.yaml: |
+  settings.yaml: |
     ---
     api:
       port: 8080
