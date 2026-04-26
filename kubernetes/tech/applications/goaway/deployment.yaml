@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: goaway
+  labels:
+    app: goaway
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goaway
+  template:
+    metadata:
+      labels:
+        app: goaway
+    spec:
+      containers:
+        - name: goaway
+          image: pommee/goaway:0.63.14
+          imagePullPolicy: Always
+          env:
+            - name: DNS_PORT
+              value: "53"
+            - name: WEBSITE_PORT
+              value: "8080"
+          ports:
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          securityContext:
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+                - NET_RAW

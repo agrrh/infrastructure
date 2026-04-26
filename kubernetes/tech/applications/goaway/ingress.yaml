@@ -1,0 +1,23 @@
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: goaway-http
+  namespace: goaway
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`goaway.agrrh.com`)
+      middlewares:
+        - name: whitelist
+          namespace: kube-system
+      services:
+        - kind: Service
+          name: goaway
+          namespace: goaway
+          port: 80
