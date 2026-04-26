@@ -1,0 +1,18 @@
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+
+metadata:
+  name: goaway-data
+  namespace: goaway
+  labels:
+    app: goaway
+
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: local-path

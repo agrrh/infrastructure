@@ -1,0 +1,41 @@
+---
+
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: config
+  namespace: goaway
+
+data:
+  # https://pommee.github.io/goaway/configuration/
+  config.yaml: |
+    ---
+    api:
+      port: 8080
+      authentication: true
+      jwtSecret: ""
+      rateLimit:
+        enabled: true
+        maxTries: 5
+        window: 5
+    logging:
+      enabled: true
+      level: 1
+    misc:
+      inAppUpdate: false
+      statisticsRetention: 7
+      dashboard: true
+      scheduledBlacklistUpdates: true
+    dns:
+      address: 0.0.0.0
+      gateway: 10.0.55.1:53
+      ports:
+        udptcp: 53
+      upstream:
+        preferred: 1.1.1.1:53
+        fallback:
+          - 1.0.0.1:53
+          - 8.8.8.8:53
+      # resolution:
+      #   kitkat: 10.0.55.55
