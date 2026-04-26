@@ -4,6 +4,7 @@ kind: Deployment
 
 metadata:
   name: goaway
+  namespace: goaway
   labels:
     app: goaway
 
