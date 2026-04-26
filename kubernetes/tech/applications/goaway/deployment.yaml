@@ -18,6 +18,24 @@ spec:
       labels:
         app: goaway
     spec:
+      initContainers:
+        - name: copy-default-config
+          image: busybox:stable # или alpine:3.18
+          command:
+            - sh
+            - -c
+            - |
+              if [ ! -f /config/goaway.yaml ]; then
+                echo "Config is absent, putting default in ..."
+                cp /default/settings.yaml /config/settings.yaml
+              else
+                echo "Config exists, skipping."
+              fi
+          volumeMounts:
+            - name: config-default
+              mountPath: /default
+            - name: config
+              mountPath: /config
       containers:
         - name: goaway
           image: pommee/goaway:0.63.14
@@ -49,9 +67,12 @@ spec:
               mountPath: /app/data
 
       volumes:
-        - name: config
+        - name: config-default
           configMap:
-            name: config
+            name: config-default
+        - name: config
+          persistentVolumeClaim:
+            claimName: goaway-config
         - name: data
           persistentVolumeClaim:
             claimName: goaway-data
