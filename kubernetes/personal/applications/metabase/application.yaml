@@ -56,29 +56,36 @@ spec:
 
         resources:
           limits:
-           cpu: 2000m
-           memory: 2048Mi
-          requests:
-           cpu: 500m
-           memory: 256Mi
+           cpu: 4000m
+           # memory: 2048Mi
+          # requests:
+          #  cpu: 500m
+          #  memory: 256Mi
 
         startupProbe:
           path: /api/health
           timeoutSeconds: 5
-          failureThreshold: 60
-          periodSeconds: 10
+          # failureThreshold: 60
+          # periodSeconds: 10
+          failureThreshold: 100
+          periodSeconds: 30
 
         livenessProbe:
           path: /api/health
+          # timeoutSeconds: 30
+          # failureThreshold: 6
           initialDelaySeconds: 600
-          timeoutSeconds: 30
-          failureThreshold: 6
+          failureThreshold: 100
+          periodSeconds: 30
 
         readinessProbe:
           path: /api/health
-          initialDelaySeconds: 30
+          # initialDelaySeconds: 30
           timeoutSeconds: 3
-          periodSeconds: 15
+          # periodSeconds: 15
+          initialDelaySeconds: 600
+          failureThreshold: 100
+          periodSeconds: 30
 
   syncPolicy:
     syncOptions:
