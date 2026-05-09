@@ -63,29 +63,10 @@ spec:
           #  memory: 256Mi
 
         startupProbe:
-          path: /api/health
-          timeoutSeconds: 30
-          # failureThreshold: 60
-          # periodSeconds: 10
-          failureThreshold: 1000
-          periodSeconds: 60
+          failureThreshold: 10000
 
         livenessProbe:
-          path: /api/health
-          # timeoutSeconds: 30
-          # failureThreshold: 6
-          initialDelaySeconds: 3000
-          failureThreshold: 100
-          periodSeconds: 30
-
-        readinessProbe:
-          path: /api/health
-          # initialDelaySeconds: 30
-          timeoutSeconds: 3
-          # periodSeconds: 15
-          initialDelaySeconds: 3000
-          failureThreshold: 100
-          periodSeconds: 30
+          initialDelaySeconds: 3600
 
   syncPolicy:
     syncOptions:
