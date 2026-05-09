@@ -1,0 +1,21 @@
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: metabase-http
+  namespace: metabase
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`metabase.agrrh.com`)
+      middlewares:
+        - name: whitelist
+          namespace: kube-system
+      services:
+        - kind: Service
+          name: metabase
+          namespace: metabase
+          port: 80

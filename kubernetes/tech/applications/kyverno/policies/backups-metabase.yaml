@@ -1,0 +1,29 @@
+---
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+
+metadata:
+  name: backups-metabase
+  annotations:
+    policies.kyverno.io/title: Backups Metabase
+    policies.kyverno.io/subject: Secret
+
+spec:
+  rules:
+    - name: sync-secret-metabase-postgres
+      match:
+        resources:
+          kinds:
+            - SealedSecret
+          namespaces:
+            - metabase
+      generate:
+        apiVersion: v1
+        kind: Secret
+        name: metabase-postgres
+        namespace: backups
+        synchronize: true
+        clone:
+          namespace: metabase
+          name: postgres

@@ -1,0 +1,70 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: metabase
+  namespace: argocd
+
+spec:
+  project: personal
+
+  destination:
+    name: funny-bell
+    namespace: metabase
+
+  source:
+    repoURL: https://pmint93.github.io/helm-charts
+    targetRevision: 2.27.2
+    path: metabase
+
+    helm:
+      releaseName: metabase
+      values: |
+        image:
+          repository: metabase/metabase
+          tag: v0.61.x
+
+        timeZone: Europe/Moscow
+
+        monitoring:
+          enabled: true
+          port: 9191
+          serviceMonitor:
+            enabled: false
+            releaseLabel: kube-prometheus-stack
+
+        ssl:
+          enabled: false
+
+        database:
+          type: postgres
+
+          existingSecret: postgres
+          existingSecretDatabaseNameKey: database
+          existingSecretUsernameKey: user
+          existingSecretPasswordKey: password
+          # existingSecretConnectionURIKey:
+          existingSecretEncryptionKeyKey: encryptionKey
+          existingSecretPortKey: port
+          existingSecretHostKey: host
+
+        password:
+          complexity: strong
+          length: 12
+
+        resources:
+          limits:
+           # cpu: 100m
+           memory: 1024Mi
+          requests:
+           cpu: 500m
+           memory: 256Mi
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: false
+      prune: false
