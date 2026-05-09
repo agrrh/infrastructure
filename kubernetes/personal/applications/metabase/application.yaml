@@ -56,11 +56,17 @@ spec:
 
         resources:
           limits:
-           # cpu: 100m
+           cpu: 2000m
            memory: 1024Mi
           requests:
            cpu: 500m
            memory: 256Mi
+
+        startupProbe:
+          path: /api/health
+          timeoutSeconds: 3
+          failureThreshold: 120
+          periodSeconds: 5
 
   syncPolicy:
     syncOptions:
