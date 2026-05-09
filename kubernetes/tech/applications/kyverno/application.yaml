@@ -33,18 +33,23 @@ spec:
             tag: latest
         cleanupJobs:
           admissionReports:
+            schedule: '5 * * * *'
             image:
               tag: latest
           clusterAdmissionReports:
+            schedule: '5 * * * *'
             image:
               tag: latest
           updateRequests:
+            schedule: '5 * * * *'
             image:
               tag: latest
           ephemeralReports:
+            schedule: '5 * * * *'
             image:
               tag: latest
           clusterEphemeralReports:
+            schedule: '5 * * * *'
             image:
               tag: latest
 
