@@ -64,9 +64,9 @@ spec:
 
         startupProbe:
           path: /api/health
-          timeoutSeconds: 3
-          failureThreshold: 120
-          periodSeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 60
+          periodSeconds: 10
 
   syncPolicy:
     syncOptions:
