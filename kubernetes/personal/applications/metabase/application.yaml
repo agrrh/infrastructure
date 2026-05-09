@@ -24,7 +24,7 @@ spec:
       values: |
         image:
           repository: metabase/metabase
-          tag: v0.61.x
+          tag: v0.60.3.x
 
         timeZone: Europe/Moscow
 
