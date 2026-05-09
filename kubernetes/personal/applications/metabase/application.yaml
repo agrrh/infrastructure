@@ -15,9 +15,9 @@ spec:
     namespace: metabase
 
   source:
-    repoURL: https://pmint93.github.io/helm-charts
+    repoURL: https://pmint93.github.io/helm-charts/
     targetRevision: 2.27.2
-    path: metabase
+    chart: metabase
 
     helm:
       releaseName: metabase
