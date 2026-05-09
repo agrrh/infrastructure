@@ -15,7 +15,8 @@ spec:
       match:
         resources:
           kinds:
-            - SealedSecret
+            # - SealedSecret
+            - Secret
           namespaces:
             - nocodb
       generate:
