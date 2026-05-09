@@ -15,8 +15,7 @@ spec:
       match:
         resources:
           kinds:
-            # - SealedSecret
-            - Secret
+            - SealedSecret
           namespaces:
             - passbolt
       generate:
