@@ -15,10 +15,6 @@ spec:
     namespace: kyverno
 
   source:
-    # repoURL: oci://8gears.container-registry.com/library/n8n
-    # chart: n8n
-    # targetRevision: "0.23.0"
-
     repoURL: https://github.com/kyverno/kyverno.git
     targetRevision: kyverno-chart-3.2.7
     path: charts/kyverno
@@ -27,6 +23,30 @@ spec:
       releaseName: kyverno
       values: |
         # https://github.com/kyverno/kyverno/blob/kyverno-chart-3.2.7/charts/kyverno/values.yaml
+
+        # NOTE: bitnami/kubectl image now uses :latest
+        webhooksCleanup:
+          image:
+            tag: latest
+        policyReportsCleanup:
+          image:
+            tag: latest
+        cleanupJobs:
+          admissionReports:
+            image:
+              tag: latest
+          clusterAdmissionReports:
+            image:
+              tag: latest
+          updateRequests:
+            image:
+              tag: latest
+          ephemeralReports:
+            image:
+              tag: latest
+          clusterEphemeralReports:
+            image:
+              tag: latest
 
   syncPolicy:
     syncOptions:
