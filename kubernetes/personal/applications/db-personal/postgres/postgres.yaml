@@ -17,7 +17,7 @@ spec:
   source:
     repoURL: https://groundhog2k.github.io/helm-charts/
     chart: postgres
-    targetRevision: "0.4.1"
+    targetRevision: "1.6.3"
     helm:
       releaseName: postgres
       values: |
