@@ -1,0 +1,23 @@
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: tanya-http
+  namespace: tanya
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`tanya.agrrh.com`)
+      middlewares:
+        - name: whitelist
+          namespace: kube-system
+      services:
+        - kind: Service
+          name: tanya
+          namespace: tanya
+          port: 80

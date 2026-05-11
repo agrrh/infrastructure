@@ -1,0 +1,38 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: tanya
+  namespace: tanya
+  labels:
+    app: tanya
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: tanya
+  template:
+    metadata:
+      labels:
+        app: tanya
+    spec:
+      containers:
+        - name: main
+
+          image: agrrh/birthday-tanya:latest
+
+          resources: {}
+            # requests:
+            #   cpu: "500m"
+            #   memory: "512Mi"
+            # limits:
+            #   cpu: "500m"
+            #   memory: "512Mi"
+
+          ports:
+            - name: http
+              containerPort: 80
