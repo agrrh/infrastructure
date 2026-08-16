@@ -4,26 +4,26 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: tanya
-  namespace: tanya
+  name: today
+  namespace: today
   labels:
-    app: tanya
+    app: today
 
 spec:
   replicas: 1
 
   selector:
     matchLabels:
-      app: tanya
+      app: today
   template:
     metadata:
       labels:
-        app: tanya
+        app: today
     spec:
       containers:
         - name: main
 
-          image: agrrh/birthday-tanya:latest
+          image: agrrh/today:latest
 
           resources: {}
             # requests:

@@ -4,20 +4,20 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 
 metadata:
-  name: tanya-http
-  namespace: tanya
+  name: today-http
+  namespace: today
 
 spec:
   entryPoints:
     - web
   routes:
     - kind: Rule
-      match: Host(`tanya.agrrh.com`)
+      match: Host(`today.agrrh.com`)
       middlewares:
         - name: whitelist
           namespace: kube-system
       services:
         - kind: Service
-          name: tanya
-          namespace: tanya
+          name: today
+          namespace: today
           port: 80

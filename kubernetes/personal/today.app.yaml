@@ -4,7 +4,7 @@ kind: Application
 apiVersion: argoproj.io/v1alpha1
 
 metadata:
-  name: app-tanya
+  name: app-today
   namespace: argocd
 
 spec:
@@ -17,7 +17,7 @@ spec:
   source:
     repoURL: https://github.com/agrrh/infrastructure
     targetRevision: HEAD
-    path: kubernetes/personal/applications/tanya
+    path: kubernetes/personal/applications/today
     directory:
       recurse: true
 
