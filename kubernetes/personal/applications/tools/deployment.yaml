@@ -23,7 +23,10 @@ spec:
       containers:
         - name: main
 
-          image: corentinth/it-tools:2024.5.13-a0bc346
+          # NOTE: Original image
+          # image: corentinth/it-tools:2024.5.13-a0bc346
+          # NOTE: Most advanced fork found
+          image: sharevb/it-tools:2026.9.27
 
           env:
             - name: FOO
@@ -31,12 +34,11 @@ spec:
 
           resources:
             requests:
-              cpu: "100m"
-              memory: "128Mi"
+              cpu: 100m
+              memory: 64Mi
             limits:
-              cpu: "200m"
-              memory: "256Mi"
+              memory: 64Mi
 
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
