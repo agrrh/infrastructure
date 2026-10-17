@@ -36,7 +36,7 @@ spec:
           runbookUrl: https://runbooks.prometheus-operator.dev/runbooks
 
         grafana:
-          enabled: true
+          enabled: false
 
           additionalDataSources: []
           admin:
