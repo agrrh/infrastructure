@@ -1,0 +1,45 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: server
+  namespace: mindwtr
+  labels:
+    app: mindwtr
+    component: server
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mindwtr
+      component: server
+  template:
+    metadata:
+      labels:
+        app: mindwtr
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: ghcr.io/dongdongbh/mindwtr-cloud:1.3.8
+          ports:
+            - name: http
+              containerPort: 8787
+          env:
+            - name: MINDWTR_CLOUD_AUTH_TOKENS
+              valueFrom:
+                secretKeyRef:
+                  name: server
+                  key: tokens
+            - name: MINDWTR_CLOUD_CORS_ORIGIN
+              value: "https://mindwtr.agrrh.com"
+          volumeMounts:
+            - name: data
+              mountPath: /app/cloud_data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: server-pvc

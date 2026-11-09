@@ -1,0 +1,39 @@
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: mindwtr-server-http
+  namespace: mindwtr
+
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`mindwtr.agrrh.com`) && PathPrefix(`/api`)
+      middlewares:
+        - name: whitelist
+          namespace: kube-system
+        - name: server-stripprefix
+          namespace: mindwtr
+      services:
+        - kind: Service
+          name: server
+          namespace: mindwtr
+          port: http
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+
+metadata:
+  name: server-stripprefix
+  namespace: mindwtr
+
+spec:
+  stripPrefix:
+    prefixes:
+      - /api

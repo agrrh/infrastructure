@@ -1,0 +1,22 @@
+---
+
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: server
+  namespace: mindwtr
+  labels:
+    app: mindwtr
+    component: server
+
+spec:
+  type: ClusterIP
+  selector:
+    app: mindwtr
+    component: server
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
